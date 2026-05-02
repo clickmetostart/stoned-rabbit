@@ -9,7 +9,7 @@ const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } }
 };
 
 const staggerContainer = {
@@ -379,7 +379,7 @@ export default function Charity() {
 
         {/* ── ABOUT THE IMPACT ──────────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <GhostWord word="IMPACT" />
+          <GhostWord word="CAUSE" />
           <div className="relative z-10 container mx-auto px-6 lg:px-16 max-w-4xl text-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
               <AccentLine className="w-16 mx-auto mb-8" />
@@ -452,13 +452,13 @@ export default function Charity() {
 
         {/* ── FEATURED EVENT ────────────────────────────────────────── */}
         <section id="featured" className="relative py-24 overflow-hidden">
-          <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none z-0">
+          <div className="absolute inset-0 flex items-center pointer-events-none select-none z-0">
             <span
               className="font-display font-black italic uppercase text-white whitespace-nowrap leading-none"
               style={{
-                fontSize: "clamp(6rem, 22vw, 22rem)",
-                opacity: 0.032,
-                transform: "translateX(15%)",
+                fontSize: "clamp(6rem, 18vw, 18rem)",
+                opacity: 0.04,
+                marginLeft: "22%",
               }}
             >
               REGISTER
