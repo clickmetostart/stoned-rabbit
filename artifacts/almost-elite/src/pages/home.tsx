@@ -1,11 +1,12 @@
 import { Link } from "wouter";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
+import { RegisterModal } from "@/components/RegisterModal";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -442,6 +443,7 @@ function ShopByCategory() {
    HOME
 ══════════════════════════════════════════════════════════════ */
 export default function Home() {
+  const [registerOpen, setRegisterOpen] = useState(false);
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />
@@ -757,10 +759,10 @@ export default function Home() {
             <img src="/charity-outing-2.jpg" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65" />
           </div>
-          {/* Watermark */}
-          <div className="absolute inset-0 z-[1] flex items-center justify-center overflow-hidden pointer-events-none select-none">
-            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 20vw, 20rem)", opacity: 0.07 }}>
-              FORE
+          {/* Watermark — REGISTER bleeds from center-right */}
+          <div className="absolute inset-0 z-[1] flex items-center overflow-hidden pointer-events-none select-none">
+            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 18vw, 18rem)", opacity: 0.06, marginLeft: "22%" }}>
+              REGISTER
             </span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
@@ -778,8 +780,12 @@ export default function Home() {
               <p className="text-white/45 text-sm mb-10">
                 Supporting the <span className="text-white font-bold">Boys & Girls Clubs of America</span>
               </p>
-              <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors">
-                Support The Scramble
+              <Button
+                size="lg"
+                onClick={() => setRegisterOpen(true)}
+                className="bg-accent hover:bg-white hover:text-black text-white font-black italic tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors"
+              >
+                Register for the Event
               </Button>
             </div>
           </div>
@@ -906,6 +912,10 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <AnimatePresence>
+        {registerOpen && <RegisterModal onClose={() => setRegisterOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 }
