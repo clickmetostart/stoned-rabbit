@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap } from "lucide-react";
+import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -114,6 +114,173 @@ function ProductSlider({ products, title, href, gradient }: { products: typeof P
               </div>
             </div>
           </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+const COLLAB_BRANDS = [
+  {
+    name: "BUDWEISER",
+    tag: "King of the Fairway",
+    accent: "#C8102E",
+    bg: "#0a0a0a",
+    img: "/polo-skull.png",
+    slug: "budweiser-collab",
+  },
+  {
+    name: "JACK DANIEL'S",
+    tag: "Old No. 7 on the Back Nine",
+    accent: "#8B7355",
+    bg: "#111111",
+    img: "/polo-flamingo.png",
+    slug: "jack-daniels-collab",
+  },
+  {
+    name: "COORS LIGHT",
+    tag: "Cold as Your Putting Game",
+    accent: "#0057A8",
+    bg: "#0c1929",
+    img: "/product-hat.png",
+    slug: "coors-light-collab",
+  },
+  {
+    name: "TWISTED TEA",
+    tag: "Half & Half on Hole 9",
+    accent: "#5A8C3C",
+    bg: "#0d1a0a",
+    img: "/polo-retro.png",
+    slug: "twisted-tea-collab",
+  },
+  {
+    name: "CAPTAIN MORGAN",
+    tag: "Spiced. Structured. Snapback.",
+    accent: "#B8860B",
+    bg: "#1a1000",
+    img: "/product-polo.png",
+    slug: "captain-morgan-collab",
+  },
+  {
+    name: "WHITE CLAW",
+    tag: "Ain't No Laws on the Muni",
+    accent: "#7B2D8B",
+    bg: "#0f0a14",
+    img: "/product-womens.png",
+    slug: "white-claw-collab",
+  },
+];
+
+function CollabBrands() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scroll = (dir: "left" | "right") => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: dir === "right" ? 380 : -380, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section className="py-16 bg-zinc-950 overflow-hidden">
+      <div className="px-6 lg:px-16 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
+          <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none text-white">
+            ICONIC BRANDS.<br />
+            <span className="text-accent">GOLF COURSE LOUD.</span>
+          </h2>
+          <p className="text-white/60 text-base mt-4 max-w-xl leading-relaxed">
+            From the cooler at the 19th hole to the legends on the label — we take the brands you already love and put them where they belong. On the polo.
+          </p>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => scroll("left")}
+            className="w-11 h-11 flex items-center justify-center border border-white/20 text-white hover:border-accent hover:text-accent transition-colors"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            className="w-11 h-11 flex items-center justify-center border border-white/20 text-white hover:border-accent hover:text-accent transition-colors"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4"
+        style={{ scrollSnapType: "x mandatory" }}
+      >
+        {COLLAB_BRANDS.map((brand, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.07 }}
+            className="group flex-shrink-0 w-[300px] md:w-[340px] cursor-pointer"
+            style={{ scrollSnapAlign: "start" }}
+          >
+            <div
+              className="relative overflow-hidden flex flex-col"
+              style={{ height: "420px", background: brand.bg }}
+            >
+              {/* Brand color accent bar */}
+              <div className="h-1.5 w-full" style={{ background: brand.accent }} />
+
+              {/* Brand name header */}
+              <div className="px-6 pt-5 pb-3 z-10 relative">
+                <p className="font-display font-black italic text-3xl uppercase tracking-tighter text-white leading-none">
+                  {brand.name}
+                </p>
+                <p className="text-white/50 text-xs mt-1 font-medium uppercase tracking-widest">{brand.tag}</p>
+              </div>
+
+              {/* Product image */}
+              <div className="flex-1 relative overflow-hidden mx-6">
+                <img
+                  src={brand.img}
+                  alt={brand.name}
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              {/* Bottom CTA */}
+              <div
+                className="px-6 py-5 flex items-center justify-between border-t z-10"
+                style={{ borderColor: `${brand.accent}30` }}
+              >
+                <span className="text-white font-bold uppercase tracking-widest text-xs">Shop the Collab</span>
+                <div
+                  className="w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  style={{ color: brand.accent }}
+                >
+                  <ArrowUpRight className="w-5 h-5" />
+                </div>
+              </div>
+
+              {/* Hover overlay */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-400"
+                style={{ background: brand.accent }}
+              />
+            </div>
+
+            {/* "Limited Drop" pill */}
+            <div className="mt-3 flex items-center gap-2">
+              <span
+                className="text-xs font-bold uppercase tracking-widest px-2.5 py-1"
+                style={{ color: brand.accent, border: `1px solid ${brand.accent}40`, background: `${brand.accent}10` }}
+              >
+                Limited Drop
+              </span>
+              <span className="text-white/30 text-xs uppercase tracking-wider">x Almost Elite</span>
+            </div>
+          </motion.div>
         ))}
       </div>
     </section>
@@ -328,6 +495,9 @@ export default function Home() {
           href="/drop"
           gradient="linear-gradient(107deg, hsl(var(--background)) 4%, hsl(var(--accent) / 0.08) 25%, hsl(var(--primary) / 0.08) 50%, hsl(var(--background)) 80%)"
         />
+
+        {/* Iconic Brands Collab Section */}
+        <CollabBrands />
 
         {/* Municipal Legends Section */}
         <section className="py-24 bg-zinc-950 text-white overflow-hidden">
