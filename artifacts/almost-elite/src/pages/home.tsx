@@ -238,39 +238,132 @@ function CollabBrands() {
 
 /* ── shop by category ─────────────────────────────────────────── */
 const SHOP_CATEGORIES = [
-  { label: "MENS",         sub: "Polos with Personality",             img: "/lifestyle-muni.jpg",         href: "/men" },
-  { label: "WOMENS",       sub: "Bold. Breathable. Yours.",           img: "/lifestyle-womens.jpg",        href: "/women" },
-  { label: "YOUTH",        sub: "Future Municipal Legends",          img: "/insta-2.png",                href: "/youth" },
-  { label: "HIS & HERS",   sub: "Matching Energy. Different Scores.", img: "/classic-vibe-fairway.jpg",   href: "/his-hers" },
-  { label: "FATHER & SON", sub: "Pass Down the Legend",              img: "/insta-3.png",                href: "/father-son" },
+  { label: "MENS",         sub: "Polos with Personality",             img: "/lifestyle-muni.jpg",        href: "/men" },
+  { label: "WOMENS",       sub: "Bold. Breathable. Yours.",           img: "/lifestyle-womens.jpg",       href: "/women" },
+  { label: "YOUTH",        sub: "Future Municipal Legends",          img: "/insta-2.png",               href: "/youth" },
+  { label: "HIS & HERS",   sub: "Matching Energy. Different Scores.", img: "/classic-vibe-fairway.jpg",  href: "/his-hers" },
+  { label: "FATHER & SON", sub: "Pass Down the Legend",              img: "/insta-3.png",               href: "/father-son" },
 ];
+
+const SKEW = -9;
 
 function ShopByCategory() {
   const [active, setActive] = useState(0);
   return (
-    <section className="h-[80vh] flex overflow-hidden">
-      {SHOP_CATEGORIES.map((cat, i) => (
-        <div key={i}
-          className="relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
-          style={{ flex: active === i ? "4 0 0%" : "1 0 0%" }}
-          onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(0)}
-        >
-          <img src={cat.img} alt={cat.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700" style={{ transform: active === i ? "scale(1.05)" : "scale(1)" }} />
-          <div className="absolute inset-0 transition-opacity duration-500" style={{ background: active === i ? "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%)" : "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 100%)" }} />
-          <div className="absolute inset-0 flex items-end justify-center pb-8 transition-opacity duration-300" style={{ opacity: active === i ? 0 : 1 }}>
-            <span className="font-display font-black italic text-white text-xl uppercase tracking-widest select-none" style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}>{cat.label}</span>
-          </div>
-          <div className="absolute inset-0 flex flex-col justify-between p-8 transition-opacity duration-300" style={{ opacity: active === i ? 1 : 0, pointerEvents: active === i ? "auto" : "none" }}>
-            <div>
-              <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white leading-none mb-2">{cat.label}</h2>
-              <div className="w-16 h-1 bg-accent mb-3" />
-              <p className="text-white/80 text-base font-medium">{cat.sub}</p>
+    <section className="py-16 overflow-hidden">
+      {/* Header */}
+      <div className="px-6 lg:px-16 mb-2">
+        <AccentLine className="w-16 mb-5" />
+      </div>
+      <div className="px-6 lg:px-16 mb-8 flex items-end justify-between">
+        <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white leading-none">
+          SHOP BY CATEGORY
+        </h2>
+      </div>
+
+      {/* Skewed floating panels */}
+      <div
+        className="flex gap-2 px-6 lg:px-16"
+        style={{ height: "72vh" }}
+      >
+        {SHOP_CATEGORIES.map((cat, i) => (
+          <div
+            key={i}
+            className="relative overflow-hidden cursor-pointer"
+            style={{
+              flex: active === i ? "4 0 0%" : "1 0 0%",
+              transform: `skewX(${SKEW}deg)`,
+              transition: "flex 0.55s cubic-bezier(0.4,0,0.2,1)",
+            }}
+            onMouseEnter={() => setActive(i)}
+            onMouseLeave={() => setActive(0)}
+          >
+            {/* Image — counter-skewed & wider to fill diagonal gaps */}
+            <div
+              className="absolute inset-0"
+              style={{
+                transform: `skewX(${-SKEW}deg)`,
+                left: "-12%",
+                right: "-12%",
+                width: "124%",
+              }}
+            >
+              <img
+                src={cat.img}
+                alt={cat.label}
+                className="w-full h-full object-cover transition-transform duration-700"
+                style={{ transform: active === i ? "scale(1.06)" : "scale(1)" }}
+              />
             </div>
-            <a href={cat.href} className="inline-block bg-accent text-white font-bold uppercase tracking-widest text-sm px-7 py-3 w-fit hover:bg-white hover:text-black transition-colors duration-200">Shop now</a>
+
+            {/* Dark gradient overlay */}
+            <div
+              className="absolute inset-0 transition-all duration-500"
+              style={{
+                background: active === i
+                  ? "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.05) 100%)"
+                  : "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.3) 100%)",
+              }}
+            />
+
+            {/* Orange top accent bar — visible on active */}
+            <div
+              className="absolute top-0 left-0 right-0 h-1 bg-accent transition-opacity duration-300"
+              style={{ opacity: active === i ? 1 : 0 }}
+            />
+
+            {/* Collapsed: vertical label */}
+            <div
+              className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 z-10"
+              style={{ opacity: active === i ? 0 : 1 }}
+            >
+              <span
+                className="font-display font-black italic text-white text-lg uppercase tracking-widest select-none"
+                style={{
+                  writingMode: "vertical-rl",
+                  transform: `rotate(180deg) skewX(${-SKEW}deg)`,
+                }}
+              >
+                {cat.label}
+              </span>
+            </div>
+
+            {/* Expanded: full content — counter-skewed */}
+            <div
+              className="absolute inset-0 flex flex-col justify-between z-10"
+              style={{
+                transform: `skewX(${-SKEW}deg)`,
+                left: "-8%",
+                right: "-8%",
+                width: "116%",
+                padding: "2rem 22% 2rem 18%",
+                opacity: active === i ? 1 : 0,
+                transition: "opacity 0.3s ease",
+                pointerEvents: active === i ? "auto" : "none",
+              }}
+            >
+              <div>
+                <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">
+                  Almost Elite
+                </p>
+                <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-white leading-none mb-3">
+                  {cat.label}
+                </h2>
+                <div className="w-12 h-1 bg-accent mb-3" />
+                <p className="text-white/75 text-sm font-medium leading-snug max-w-[160px]">
+                  {cat.sub}
+                </p>
+              </div>
+              <a
+                href={cat.href}
+                className="inline-block bg-accent text-white font-bold uppercase tracking-widest text-xs px-5 py-2.5 w-fit hover:bg-white hover:text-black transition-colors duration-200"
+              >
+                Shop Now
+              </a>
+            </div>
           </div>
-          {i < SHOP_CATEGORIES.length - 1 && <div className="absolute top-0 right-0 w-px h-full bg-white/10 z-10" />}
-        </div>
-      ))}
+        ))}
+      </div>
     </section>
   );
 }
@@ -657,7 +750,7 @@ export default function Home() {
 
             {/* Logo column */}
             <div className="md:col-span-1 flex flex-col items-start">
-              <img src="/logo-stacked.png" alt="Almost Elite" className="h-36 w-auto object-contain mb-4" />
+              <img src="/logo-badge.png" alt="Almost Elite" className="h-32 w-32 object-contain mb-4" />
               <AccentLine className="w-12 mb-4" />
               <p className="text-white/40 max-w-xs text-sm leading-relaxed mb-2">
                 Golf apparel for the rest of us. Performance-ready gear. Municipal-approved attitude.
