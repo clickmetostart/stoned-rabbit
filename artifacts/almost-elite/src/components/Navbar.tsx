@@ -107,6 +107,7 @@ const CHARITY_MENU = {
     { label: "Partner With Us",        href: "/charity" },
     { label: "Plan Your Event Drop",   href: "/charity" },
     { label: "View All Events",        href: "/charity" },
+    { label: "The Crew Wall",          href: "/crew-wall" },
   ],
 };
 
@@ -439,8 +440,9 @@ export default function Navbar() {
                   { label: "WOMEN",          href: "/women" },
                   { label: "HATS",           href: "/hats" },
                   { label: "ACCESSORIES",    href: "/accessories" },
-                  { label: "THE DROP",       href: "/drop",    accent: true },
+                  { label: "THE DROP",       href: "/drop",       accent: true },
                   { label: "CHARITY ROUNDS", href: "/charity" },
+                  { label: "CREW WALL",      href: "/crew-wall",  accent: true },
                 ].map((item) => (
                   <Link
                     key={item.href}

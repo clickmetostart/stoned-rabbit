@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import Charity from "@/pages/charity";
 import ProductDetail from "@/pages/product";
 import { MenPage, WomenPage, HatsPage, AccessoriesPage, DropPage } from "@/pages/shop";
+import CrewWall from "@/pages/crew-wall";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/CartSidebar";
 import { RewardsBanner } from "@/components/RewardsBanner";
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/women/:sub" component={WomenPage} />
       <Route path="/hats/:sub" component={HatsPage} />
       <Route path="/accessories/:sub" component={AccessoriesPage} />
+      <Route path="/crew-wall" component={CrewWall} />
       <Route component={NotFound} />
     </Switch>
   );
