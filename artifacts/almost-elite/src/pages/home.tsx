@@ -86,11 +86,13 @@ function SkewedProductRow({
   title,
   href,
   watermark,
+  ghostSubtitle,
 }: {
   products: typeof PRODUCTS_DROPPED;
   title: string;
   href: string;
   watermark: string;
+  ghostSubtitle?: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const scroll = (d: "left" | "right") => {
@@ -122,7 +124,7 @@ function SkewedProductRow({
         <div className="px-6 lg:px-16 mb-2">
           <AccentLine className="w-16 mb-5" />
         </div>
-        <div className="px-6 lg:px-16 mb-8 flex items-end justify-between">
+        <div className="px-6 lg:px-16 flex items-end justify-between">
           <a
             href={href}
             className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white hover:text-accent transition-colors leading-none"
@@ -142,10 +144,27 @@ function SkewedProductRow({
           </div>
         </div>
 
+        {/* Ghost subtitle word — under the title, above cards */}
+        {ghostSubtitle && (
+          <div className="relative px-6 lg:px-16 overflow-hidden select-none pointer-events-none" style={{ height: "clamp(5rem, 9vw, 11rem)", marginTop: "0.25rem" }}>
+            <span
+              className="font-display font-black italic uppercase text-white leading-none absolute left-16 bottom-0"
+              style={{
+                fontSize: "clamp(5rem, 9vw, 11rem)",
+                opacity: 0.038,
+                letterSpacing: "-0.04em",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {ghostSubtitle}
+            </span>
+          </div>
+        )}
+
         {/* Scrollable row */}
         <div
           ref={scrollRef}
-          className="flex gap-1 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-6"
+          className="flex gap-1 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-6 mt-8"
           style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
         >
           {products.map((p, i) => (
@@ -492,7 +511,7 @@ export default function Home() {
         </div>
 
         {/* ── JUST DROPPED — skewed images ──────────────────────── */}
-        <SkewedProductRow products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" watermark="DROP" />
+        <SkewedProductRow products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" watermark="DROP" ghostSubtitle="DROPPED" />
 
         {/* ── ON COURSE / IN THE BAG ────────────────────────────── */}
         <section className="relative py-16 overflow-hidden">

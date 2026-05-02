@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, Search, User, Menu, X, ChevronDown, ArrowUpRight } from "lucide-react";
+import { ShoppingCart, Search, User, Menu, X, ChevronDown, ArrowUpRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const NAV_BG = "#0b1a14";
@@ -13,71 +13,107 @@ const MENUS = {
       img: "/product-polo.png",
       label: "The Range Wrangler",
       sub: "Built for golfers who treat every round like they've got something to prove.",
-      href: "/men/range-wrangler",
+      href: "/men",
     },
     categories: [
       { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
-      { label: "Polos",        img: "/product-polo.png",    href: "/men/polos" },
-      { label: "Pullovers",    img: "/product-womens.png",  href: "/men/pullovers" },
-      { label: "Shorts",       img: "/product-hat.png",     href: "/men/shorts" },
+      { label: "Polos",        img: "/product-polo.png",    href: "/men" },
+      { label: "Pullovers",    img: "/product-womens.png",  href: "/men" },
+      { label: "Shorts",       img: "/product-hat.png",     href: "/men" },
     ],
-    links: ["View All Men's", "New Arrivals", "Best Sellers", "Sale"],
+    links: [
+      { label: "View All Men's",  href: "/men" },
+      { label: "New Arrivals",    href: "/drop" },
+      { label: "Best Sellers",    href: "/men" },
+      { label: "Sale",            href: "/men" },
+    ],
   },
   WOMEN: {
     featured: {
       img: "/product-womens.png",
       label: "The Backwoods Fade",
       sub: "Camo built for early tee times, questionable decisions, and rounds that drift off course in the best way.",
-      href: "/women/backwoods-fade",
+      href: "/women",
     },
     categories: [
       { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
-      { label: "Polos",        img: "/product-womens.png",  href: "/women/polos" },
-      { label: "Pullovers",    img: "/product-polo.png",    href: "/women/pullovers" },
-      { label: "Skorts",       img: "/product-hat.png",     href: "/women/skorts" },
+      { label: "Polos",        img: "/product-womens.png",  href: "/women" },
+      { label: "Pullovers",    img: "/product-polo.png",    href: "/women" },
+      { label: "Skorts",       img: "/product-hat.png",     href: "/women" },
     ],
-    links: ["View All Women's", "New Arrivals", "Best Sellers", "Sale"],
+    links: [
+      { label: "View All Women's", href: "/women" },
+      { label: "New Arrivals",     href: "/drop" },
+      { label: "Best Sellers",     href: "/women" },
+      { label: "Sale",             href: "/women" },
+    ],
   },
   HATS: {
     featured: {
       img: "/scramble-specialist-hat.jpg",
       label: "Headcover Rebellion",
       sub: "Golf doesn't have a dress code anymore. This is for the bags that don't behave.",
-      href: "/hats/headcover-rebellion",
+      href: "/hats",
     },
     categories: [
-      { label: "Snapbacks", img: "/scramble-specialist-hat.jpg",  href: "/hats/snapbacks" },
-      { label: "Fitted",    img: "/clubhouse-legend-hat.jpg",     href: "/hats/fitted" },
-      { label: "Visors",    img: "/product-polo.png",             href: "/hats/visors" },
-      { label: "Beanies",   img: "/product-womens.png",           href: "/hats/beanies" },
+      { label: "Snapbacks", img: "/scramble-specialist-hat.jpg",  href: "/hats" },
+      { label: "Fitted",    img: "/clubhouse-legend-hat.jpg",     href: "/hats" },
+      { label: "Visors",    img: "/product-polo.png",             href: "/hats" },
+      { label: "Beanies",   img: "/product-womens.png",           href: "/hats" },
     ],
-    links: ["View All Hats", "New Arrivals", "Limited Runs", "Sale"],
+    links: [
+      { label: "View All Hats",  href: "/hats" },
+      { label: "New Arrivals",   href: "/drop" },
+      { label: "Limited Runs",   href: "/hats" },
+      { label: "Sale",           href: "/hats" },
+    ],
   },
   ACCESSORIES: {
     featured: {
       img: "/drop-editorial.png",
       label: "Grip It & Rip It",
       sub: "Hold it loose, swing it loud. For the ones who don't aim to be perfect — just dangerous.",
-      href: "/accessories/grip-it",
+      href: "/accessories",
     },
     categories: [
-      { label: "Gloves",      img: "/product-hat.png",     href: "/accessories/gloves" },
-      { label: "Towels",      img: "/product-polo.png",    href: "/accessories/towels" },
-      { label: "Tees & Balls",img: "/product-womens.png",  href: "/accessories/tees" },
-      { label: "Bags",        img: "/drop-editorial.png",  href: "/accessories/bags" },
+      { label: "Gloves",       img: "/product-hat.png",     href: "/accessories" },
+      { label: "Towels",       img: "/product-polo.png",    href: "/accessories" },
+      { label: "Tees & Balls", img: "/product-womens.png",  href: "/accessories" },
+      { label: "Bags",         img: "/drop-editorial.png",  href: "/accessories" },
     ],
-    links: ["View All Accessories", "New Arrivals", "Gift Ideas", "Sale"],
+    links: [
+      { label: "View All Accessories", href: "/accessories" },
+      { label: "New Arrivals",         href: "/drop" },
+      { label: "Gift Ideas",           href: "/accessories" },
+      { label: "Sale",                 href: "/accessories" },
+    ],
   },
 };
 
 type MenuKey = keyof typeof MENUS;
 
+const CHARITY_MENU = {
+  featured: {
+    img: "/charity-outing-2.jpg",
+    badge: "Featured Event",
+    title: "Boys & Girls Club Scramble",
+    date: "June 14, 2025 · Riverside Muni",
+    href: "/charity",
+  },
+  links: [
+    { label: "Register for the Event", href: "/charity" },
+    { label: "Partner With Us",        href: "/charity" },
+    { label: "Plan Your Event Drop",   href: "/charity" },
+    { label: "View All Events",        href: "/charity" },
+  ],
+};
+
 export default function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<MenuKey | null>(null);
+  const [activeMenu, setActiveMenu] = useState<MenuKey | "CHARITY" | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleEnter = (key: MenuKey) => {
+  const handleEnter = (key: MenuKey | "CHARITY") => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveMenu(key);
   };
@@ -85,7 +121,8 @@ export default function Navbar() {
     closeTimer.current = setTimeout(() => setActiveMenu(null), 120);
   };
 
-  const menu = activeMenu ? MENUS[activeMenu] : null;
+  const menu = activeMenu && activeMenu !== "CHARITY" ? MENUS[activeMenu as MenuKey] : null;
+  const charityOpen = activeMenu === "CHARITY";
 
   return (
     <>
@@ -135,9 +172,15 @@ export default function Navbar() {
             <Link href="/drop" className="px-4 py-2 text-sm font-bold tracking-wider uppercase text-accent hover:text-white transition-colors">
               THE DROP
             </Link>
-            <Link href="/charity" className="px-4 py-2 text-sm font-bold tracking-wider uppercase text-white/80 hover:text-accent transition-colors">
+            <button
+              onMouseEnter={() => handleEnter("CHARITY")}
+              className={`flex items-center gap-1 px-4 py-2 text-sm font-bold tracking-wider uppercase transition-colors ${
+                charityOpen ? "text-accent" : "text-white/80 hover:text-accent"
+              }`}
+            >
               CHARITY ROUNDS
-            </Link>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${charityOpen ? "rotate-180 text-accent" : ""}`} />
+            </button>
           </nav>
 
           {/* Icons */}
@@ -155,7 +198,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* ── MEGA DROPDOWN ─────────────────────────────────────── */}
+        {/* ── MEGA DROPDOWN — shop categories ───────────────────── */}
         <AnimatePresence>
           {activeMenu && menu && (
             <motion.div
@@ -170,30 +213,24 @@ export default function Navbar() {
             >
               <div className="container mx-auto px-6 py-8 grid grid-cols-12 gap-6">
 
-                {/* Featured — diagonal right cut */}
+                {/* Featured */}
                 <Link
                   href={menu.featured.href}
                   className="col-span-4 group relative block overflow-hidden"
                   style={{ aspectRatio: "4/3", clipPath: "polygon(0 0, 94% 0, 100% 100%, 0 100%)" }}
                   onClick={() => setActiveMenu(null)}
                 >
-                  <img
-                    src={menu.featured.img}
-                    alt={menu.featured.label}
-                    className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105"
-                  />
+                  <img src={menu.featured.img} alt={menu.featured.label} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-10 text-white">
                     <div className="w-8 h-0.5 bg-accent mb-2" />
                     <p className="text-accent text-xs font-bold uppercase tracking-widest mb-1">Featured</p>
-                    <p className="font-display font-black italic text-2xl uppercase tracking-tight leading-none mb-2">
-                      {menu.featured.label}
-                    </p>
+                    <p className="font-display font-black italic text-2xl uppercase tracking-tight leading-none mb-2">{menu.featured.label}</p>
                     <p className="text-white/70 text-sm leading-snug">{menu.featured.sub}</p>
                   </div>
                 </Link>
 
-                {/* Category grid — parallelogram clips */}
+                {/* Category grid */}
                 <div className="col-span-5 grid grid-cols-2 gap-3">
                   {menu.categories.map((cat, i) => (
                     <Link
@@ -203,26 +240,14 @@ export default function Navbar() {
                       style={{ aspectRatio: "5/4" }}
                       onClick={() => setActiveMenu(null)}
                     >
-                      {/* Outer wrapper for clip */}
-                      <div
-                        className="w-full h-full relative overflow-hidden"
-                        style={{ clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)" }}
-                      >
-                        <img
-                          src={cat.img}
-                          alt={cat.label}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-108"
-                          style={{ transform: "scale(1)", transition: "transform 0.5s ease" }}
-                        />
+                      <div className="w-full h-full relative overflow-hidden" style={{ clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)" }}>
+                        <img src={cat.img} alt={cat.label} className="w-full h-full object-cover" style={{ transform: "scale(1)", transition: "transform 0.5s ease" }} />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent group-hover:from-black/60 transition-colors duration-300" />
                       </div>
-                      {/* Text overlay — outside clip */}
                       <div className="absolute inset-0 flex items-end p-3 pb-4 pointer-events-none">
                         <div>
                           <div className="w-5 h-0.5 bg-accent mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <p className="text-white font-display font-bold italic text-lg uppercase tracking-tight leading-none">
-                            {cat.label}
-                          </p>
+                          <p className="text-white font-display font-bold italic text-lg uppercase tracking-tight leading-none">{cat.label}</p>
                           <p className="text-accent text-xs mt-0.5 font-bold uppercase tracking-widest flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             Shop <ArrowUpRight className="w-3 h-3" />
                           </p>
@@ -239,12 +264,12 @@ export default function Navbar() {
                     {menu.links.map((l, i) => (
                       <li key={i}>
                         <Link
-                          href="#"
+                          href={l.href}
                           className="font-bold text-sm uppercase tracking-wider text-white/70 hover:text-accent transition-colors flex items-center gap-2 group"
                           onClick={() => setActiveMenu(null)}
                         >
                           <span className="w-5 h-0.5 bg-accent inline-block opacity-0 group-hover:opacity-100 transition-opacity" />
-                          {l}
+                          {l.label}
                         </Link>
                       </li>
                     ))}
@@ -262,6 +287,97 @@ export default function Navbar() {
                     </Link>
                   </div>
                 </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ── CHARITY ROUNDS DROPDOWN ────────────────────────────── */}
+        <AnimatePresence>
+          {charityOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="absolute left-0 right-0 top-full border-b-2 border-accent shadow-2xl z-40"
+              style={{ background: MENU_BG }}
+              onMouseEnter={() => { if (closeTimer.current) clearTimeout(closeTimer.current); }}
+              onMouseLeave={handleLeave}
+            >
+              <div className="container mx-auto px-6 py-8 grid grid-cols-12 gap-6 items-start">
+
+                {/* Featured event card */}
+                <Link
+                  href={CHARITY_MENU.featured.href}
+                  className="col-span-5 group relative block overflow-hidden"
+                  style={{ aspectRatio: "16/9", clipPath: "polygon(0 0, 96% 0, 100% 100%, 0 100%)" }}
+                  onClick={() => setActiveMenu(null)}
+                >
+                  <img src={CHARITY_MENU.featured.img} alt="Charity Event" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-8">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Heart className="w-3.5 h-3.5 text-accent" />
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest">{CHARITY_MENU.featured.badge}</p>
+                    </div>
+                    <p className="font-display font-black italic text-2xl uppercase tracking-tight leading-none text-white mb-1">
+                      {CHARITY_MENU.featured.title}
+                    </p>
+                    <p className="text-white/55 text-sm">{CHARITY_MENU.featured.date}</p>
+                  </div>
+                </Link>
+
+                {/* Scramble Specialist hat teaser */}
+                <div className="col-span-3">
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-4">Event Merch</p>
+                  <Link
+                    href="/product/scramble-specialist-hat"
+                    className="group block relative overflow-hidden mb-4"
+                    style={{ aspectRatio: "4/3", clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)" }}
+                    onClick={() => setActiveMenu(null)}
+                  >
+                    <img src="/scramble-specialist-hat.jpg" alt="Scramble Specialist" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                    <div className="absolute bottom-3 left-4">
+                      <p className="text-white font-display font-bold italic text-base uppercase tracking-tight leading-none">Scramble Specialist</p>
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mt-0.5">$45 · Charity Drop</p>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/product/scramble-specialist-hat"
+                    className="w-full h-10 bg-accent text-white font-black italic uppercase tracking-widest text-xs flex items-center justify-center gap-1.5 hover:bg-white hover:text-black transition-colors duration-200"
+                    onClick={() => setActiveMenu(null)}
+                  >
+                    Claim Your Merch <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+
+                {/* Quick links */}
+                <div className="col-span-4 border-l border-white/10 pl-6 pt-2">
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-5">Charity Rounds</p>
+                  <ul className="space-y-3.5 mb-8">
+                    {CHARITY_MENU.links.map((l, i) => (
+                      <li key={i}>
+                        <Link
+                          href={l.href}
+                          className="font-bold text-sm uppercase tracking-wider text-white/70 hover:text-accent transition-colors flex items-center gap-2 group"
+                          onClick={() => setActiveMenu(null)}
+                        >
+                          <span className="w-5 h-0.5 bg-accent inline-block opacity-0 group-hover:opacity-100 transition-opacity" />
+                          {l.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="p-4 bg-white/[0.04] border-l-4 border-accent">
+                    <p className="text-white/40 text-xs leading-relaxed italic">
+                      "Golf gives you the round. We make sure it gives something back."
+                    </p>
+                    <p className="text-accent text-xs font-bold uppercase tracking-widest mt-2">— Almost Elite</p>
+                  </div>
+                </div>
+
               </div>
             </motion.div>
           )}
@@ -294,12 +410,12 @@ export default function Navbar() {
               </div>
               <nav className="flex-1 p-5 space-y-0.5">
                 {[
-                  { label: "MEN",           href: "/men" },
-                  { label: "WOMEN",         href: "/women" },
-                  { label: "HATS",          href: "/hats" },
-                  { label: "ACCESSORIES",   href: "/accessories" },
-                  { label: "THE DROP",      href: "/drop",    accent: true },
-                  { label: "CHARITY ROUNDS",href: "/charity" },
+                  { label: "MEN",            href: "/men" },
+                  { label: "WOMEN",          href: "/women" },
+                  { label: "HATS",           href: "/hats" },
+                  { label: "ACCESSORIES",    href: "/accessories" },
+                  { label: "THE DROP",       href: "/drop",    accent: true },
+                  { label: "CHARITY ROUNDS", href: "/charity" },
                 ].map((item) => (
                   <Link
                     key={item.href}

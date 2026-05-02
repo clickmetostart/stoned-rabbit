@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, Star, Heart, Users, Trophy } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -46,6 +46,7 @@ const FEATURED_PRODUCTS = [
 export default function Charity() {
   const [registerOpen, setRegisterOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />
