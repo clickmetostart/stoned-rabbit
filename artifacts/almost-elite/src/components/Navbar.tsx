@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, Search, User, Menu, X, ChevronDown, ArrowUpRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/context/CartContext";
 
 const NAV_BG = "#0b1a14";
 const MENU_BG = "#0c1920";
@@ -109,6 +110,7 @@ const CHARITY_MENU = {
 };
 
 export default function Navbar() {
+  const { itemCount, setCartOpen } = useCart();
   const [activeMenu, setActiveMenu] = useState<MenuKey | "CHARITY" | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -191,9 +193,20 @@ export default function Navbar() {
             <Button variant="ghost" size="icon" className="hidden sm:flex text-white/70 hover:text-white hover:bg-white/10">
               <User className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="text-white/70 hover:text-white hover:bg-white/10 relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white/70 hover:text-white hover:bg-white/10 relative"
+              onClick={() => setCartOpen(true)}
+            >
               <ShoppingCart className="h-5 w-5" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full" />
+              {itemCount > 0 ? (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center px-1 leading-none">
+                  {itemCount}
+                </span>
+              ) : (
+                <span className="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full" />
+              )}
             </Button>
           </div>
         </div>

@@ -5,6 +5,7 @@ import { ArrowLeft, ShoppingCart, Heart, Share2, ChevronDown, ChevronUp, Star, T
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
+import { useCart } from "@/context/CartContext";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -42,6 +43,7 @@ export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   useEffect(() => { window.scrollTo(0, 0); }, [slug]);
   const product = getProductBySlug(slug || "");
+  const { addToCart, setCartOpen } = useCart();
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState(0);
   const [qty, setQty] = useState(1);
@@ -74,8 +76,12 @@ export default function ProductDetail() {
     : null;
 
   const handleAddToCart = () => {
-    if (!selectedSize) return;
+    if (!selectedSize || !product) return;
+    for (let i = 0; i < qty; i++) {
+      addToCart({ slug: product.slug, name: product.name, price: product.price, img: product.img, size: selectedSize });
+    }
     setAddedToCart(true);
+    setCartOpen(true);
     setTimeout(() => setAddedToCart(false), 2500);
   };
 

@@ -120,6 +120,23 @@ function SkewedProductRow({
     <section className="relative py-16 overflow-hidden">
       <GhostWord word={watermark} />
 
+      {/* Ghost word behind section title — large, same opacity as section ghosts */}
+      {ghostSubtitle && (
+        <div className="absolute inset-x-0 top-6 pointer-events-none select-none overflow-hidden z-0">
+          <span
+            className="font-display font-black italic uppercase text-white leading-none block pl-6 lg:pl-16"
+            style={{
+              fontSize: "clamp(6rem, 22vw, 22rem)",
+              opacity: 0.032,
+              letterSpacing: "-0.04em",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {ghostSubtitle}
+          </span>
+        </div>
+      )}
+
       <div className="relative z-10">
         <div className="px-6 lg:px-16 mb-2">
           <AccentLine className="w-16 mb-5" />
@@ -144,22 +161,6 @@ function SkewedProductRow({
           </div>
         </div>
 
-        {/* Ghost subtitle word — under the title, above cards */}
-        {ghostSubtitle && (
-          <div className="relative px-6 lg:px-16 overflow-hidden select-none pointer-events-none" style={{ height: "clamp(5rem, 9vw, 11rem)", marginTop: "0.25rem" }}>
-            <span
-              className="font-display font-black italic uppercase text-white leading-none absolute left-16 bottom-0"
-              style={{
-                fontSize: "clamp(5rem, 9vw, 11rem)",
-                opacity: 0.038,
-                letterSpacing: "-0.04em",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {ghostSubtitle}
-            </span>
-          </div>
-        )}
 
         {/* Scrollable row */}
         <div
@@ -511,7 +512,7 @@ export default function Home() {
         </div>
 
         {/* ── JUST DROPPED — skewed images ──────────────────────── */}
-        <SkewedProductRow products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" watermark="DROP" ghostSubtitle="DROPPED" />
+        <SkewedProductRow products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" watermark="DROP" ghostSubtitle="FRESH" />
 
         {/* ── ON COURSE / IN THE BAG ────────────────────────────── */}
         <section className="relative py-16 overflow-hidden">
@@ -683,7 +684,7 @@ export default function Home() {
         </section>
 
         {/* ── SHOP THE COLLECTION — skewed ──────────────────────── */}
-        <SkewedProductRow products={PRODUCTS_COLLECTION} title="SHOP THE COLLECTION" href="/men" watermark="COLLECTION" />
+        <SkewedProductRow products={PRODUCTS_COLLECTION} title="SHOP THE COLLECTION" href="/men" watermark="COLLECTION" ghostSubtitle="SIGNATURE" />
 
         {/* ── SHOP BY CATEGORY ──────────────────────────────────── */}
         <ShopByCategory />

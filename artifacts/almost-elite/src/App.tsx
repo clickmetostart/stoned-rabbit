@@ -7,6 +7,8 @@ import Home from "@/pages/home";
 import Charity from "@/pages/charity";
 import ProductDetail from "@/pages/product";
 import { MenPage, WomenPage, HatsPage, AccessoriesPage, DropPage } from "@/pages/shop";
+import { CartProvider } from "@/context/CartContext";
+import { CartSidebar } from "@/components/CartSidebar";
 
 const queryClient = new QueryClient();
 
@@ -34,9 +36,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
+        <CartProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+            <CartSidebar />
+          </WouterRouter>
+        </CartProvider>
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
