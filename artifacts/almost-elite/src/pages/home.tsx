@@ -206,37 +206,105 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
-              className="text-center max-w-3xl mx-auto mb-16"
+              className="text-center max-w-4xl mx-auto mb-20"
             >
-              <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-6">
-                NOT FOR THE PROS.<br/>FOR THE REST OF US.
+              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
+                Why We Exist
+              </motion.p>
+              <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
+                THE INDUSTRY GOT IT<br/>BACKWARDS.
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-xl opacity-90 font-medium">
-                You're 3 shots back and it doesn't matter. We make gear for the golfer who knows the score (and chooses to ignore it).
+              <motion.p variants={fadeInUp} className="text-xl opacity-90 font-medium max-w-3xl mx-auto leading-relaxed">
+                Golf brands built everything around who golfers are supposed to be — polished, performance-obsessed, chasing perfection. But most golfers aren't chasing a tour card. They're chasing a good time. Almost Elite exists for that golfer. The one who shows up for the experience, the friends, and the fun — and wants to look the part without the pretense.
               </motion.p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16 max-w-5xl mx-auto">
-              <motion.div variants={fadeInUp} className="text-center">
-                <div className="w-16 h-16 mx-auto bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
-                  <Star className="w-8 h-8 fill-accent" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-5xl mx-auto border border-primary-foreground/20">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center p-12 border-b md:border-b-0 md:border-r border-primary-foreground/20"
+              >
+                <div className="w-14 h-14 mx-auto bg-accent/20 text-accent flex items-center justify-center mb-6">
+                  <Star className="w-7 h-7 fill-accent" />
                 </div>
-                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">For The Fun Of It</h3>
-                <p className="opacity-80">Because a bad day of golf is still better than a good day at the office.</p>
+                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Play for the Experience</h3>
+                <p className="opacity-75 leading-relaxed">You're not chasing perfection — you're chasing enjoyment. We make gear for that golfer, because that golfer is most golfers.</p>
               </motion.div>
-              <motion.div variants={fadeInUp} className="text-center">
-                <div className="w-16 h-16 mx-auto bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
-                  <CheckCircle2 className="w-8 h-8" />
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center p-12 border-b md:border-b-0 md:border-r border-primary-foreground/20"
+              >
+                <div className="w-14 h-14 mx-auto bg-accent/20 text-accent flex items-center justify-center mb-6">
+                  <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Tee to Tavern</h3>
-                <p className="opacity-80">Apparel designed to look just as sharp on the 18th green as it does at the bar afterward.</p>
+                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Tee Box to Bar Stool</h3>
+                <p className="opacity-75 leading-relaxed">Apparel that moves with your whole day — not just the four hours you're on the course. Versatility isn't an afterthought. It's the point.</p>
               </motion.div>
-              <motion.div variants={fadeInUp} className="text-center">
-                <div className="w-16 h-16 mx-auto bg-accent/20 text-accent rounded-full flex items-center justify-center mb-6">
-                  <User className="w-8 h-8" />
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                className="text-center p-12"
+              >
+                <div className="w-14 h-14 mx-auto bg-accent/20 text-accent flex items-center justify-center mb-6">
+                  <User className="w-7 h-7" />
                 </div>
-                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Built for the Crew</h3>
-                <p className="opacity-80">It's not about who wins, it's about who you're playing with. And looking better than them.</p>
+                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Confident, Not Serious</h3>
+                <p className="opacity-75 leading-relaxed">Look put-together. Don't take yourself too seriously. That's the whole brief. "I care about how I show up — I just don't need anyone to know I tried this hard."</p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* The Flaw We Fixed */}
+        <section className="py-24 bg-zinc-950 text-white overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+              >
+                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
+                  The Gap We Closed
+                </motion.p>
+                <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none mb-8">
+                  BUILT FOR WHO<br/>YOU ACTUALLY ARE.
+                </motion.h2>
+                <motion.p variants={fadeInUp} className="text-white/70 text-lg leading-relaxed mb-6">
+                  The golf apparel industry optimized for who golfers are supposed to be, not who they are. Everything — the products, the marketing, the messaging — centers on performance and prestige.
+                </motion.p>
+                <motion.p variants={fadeInUp} className="text-white/70 text-lg leading-relaxed">
+                  That works for some. But it leaves out a massive, growing group of players who approach the game as a social, laid-back experience. Players who still care about style and quality — but also want personality, humor, and a brand that actually gets the joke. That's who we're for.
+                </motion.p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                className="space-y-6"
+              >
+                {[
+                  { label: "What the industry sells", value: "Aspiration", sub: "Who you're supposed to be" },
+                  { label: "What Almost Elite sells", value: "Authenticity", sub: "Who you actually are" },
+                  { label: "What they assume you want", value: "Prestige", sub: "Performance-first identity" },
+                  { label: "What you actually want", value: "Belonging", sub: "A brand that gets it" },
+                ].map((item, i) => (
+                  <div key={i} className={`p-6 border-l-4 ${i % 2 === 1 ? "border-accent bg-white/5" : "border-white/20 bg-white/[0.02]"}`}>
+                    <p className="text-white/50 text-xs uppercase tracking-widest mb-1">{item.label}</p>
+                    <p className={`font-display font-black italic text-3xl uppercase ${i % 2 === 1 ? "text-accent" : "text-white"}`}>{item.value}</p>
+                    <p className="text-white/60 text-sm mt-1">{item.sub}</p>
+                  </div>
+                ))}
               </motion.div>
             </div>
           </div>
