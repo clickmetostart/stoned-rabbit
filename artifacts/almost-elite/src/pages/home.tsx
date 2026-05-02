@@ -1,12 +1,43 @@
 import { Link } from "wouter";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+
+/* ── animated countup ─────────────────────────────────────────── */
+function CountUp({ to, prefix = "", suffix = "", duration = 2200 }: {
+  to: number; prefix?: string; suffix?: string; duration?: number;
+}) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  useEffect(() => {
+    if (!inView) return;
+    let startTime: number | null = null;
+    const tick = (ts: number) => {
+      if (!startTime) startTime = ts;
+      const progress = Math.min((ts - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * to));
+      if (progress < 1) requestAnimationFrame(tick);
+      else setCount(to);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, to, duration]);
+
+  const display = to >= 1000 ? `${Math.floor(count / 1000)}K` : `${count}`;
+
+  return (
+    <span ref={ref} className="font-display font-black italic text-5xl md:text-7xl text-accent leading-none tabular-nums">
+      {prefix}{display}{suffix}
+    </span>
+  );
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -537,13 +568,13 @@ export default function Home() {
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-3 divide-x divide-white/10">
               {[
-                { num: "10K+",  label: "Municipal Legends" },
-                { num: "47",    label: "States Represented" },
-                { num: "$250K+",label: "Raised for Charity" },
+                { to: 10000, prefix: "",  suffix: "+", label: "Municipal Legends",  delay: 0 },
+                { to: 47,    prefix: "",  suffix: "",  label: "States Represented", delay: 200 },
+                { to: 250,   prefix: "$", suffix: "K+",label: "Raised for Charity", delay: 400 },
               ].map((s, i) => (
                 <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
                   className="text-center py-10 px-4">
-                  <p className="font-display font-black italic text-5xl md:text-7xl text-accent leading-none">{s.num}</p>
+                  <CountUp to={s.to} prefix={s.prefix} suffix={s.suffix} duration={2200} />
                   <p className="text-white/45 uppercase tracking-widest text-xs mt-2">{s.label}</p>
                 </motion.div>
               ))}
