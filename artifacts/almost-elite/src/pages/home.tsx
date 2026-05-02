@@ -533,20 +533,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="grid grid-cols-2 gap-2"
+                className="relative overflow-hidden"
+                style={{ height: "480px" }}
               >
-                <div className="col-span-2 relative overflow-hidden" style={{ height: "220px" }}>
-                  <img src="/lifestyle-thumbsup.jpg" alt="Municipal legend on course" className="w-full h-full object-cover object-top" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
-                </div>
-                <div className="relative overflow-hidden" style={{ height: "200px" }}>
-                  <img src="/insta-1.png" alt="Almost Elite golfer" className="w-full h-full object-cover object-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" />
-                </div>
-                <div className="relative overflow-hidden" style={{ height: "200px" }}>
-                  <img src="/drop-editorial.png" alt="Golfers on fairway" className="w-full h-full object-cover object-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" />
-                </div>
+                <img src="/drop-editorial.png" alt="Golfers on the fairway" className="w-full h-full object-cover object-center" />
               </motion.div>
             </div>
           </div>
@@ -592,8 +582,8 @@ export default function Home() {
         {/* The Brand Story */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/hero.png" alt="For players who love the game" className="w-full h-full object-cover opacity-45" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
+            <img src="/hero.png" alt="For players who love the game" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent" />
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div
@@ -699,8 +689,8 @@ export default function Home() {
         {/* Featured Charity Event */}
         <section className="relative py-20 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/charity-outing-2.jpg" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover opacity-40" />
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/85 via-zinc-950/70 to-zinc-950/90" />
+            <img src="/charity-outing-2.jpg" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/65" />
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center">
@@ -774,8 +764,8 @@ export default function Home() {
         {/* Join 10,000+ Municipal Legends / Newsletter */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/classic-vibe-drinks.jpg" alt="Join the Almost Elite crew" className="w-full h-full object-cover opacity-50" />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/80 to-zinc-900/70" />
+            <img src="/classic-vibe-drinks.jpg" alt="Join the Almost Elite crew" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/30" />
           </div>
           <div className="relative z-10 container mx-auto px-4 max-w-4xl text-center">
             <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
