@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, ShoppingCart, Heart, Share2, ChevronDown, ChevronUp, Star, Truck, RotateCcw, Shield } from "lucide-react";
@@ -40,6 +40,7 @@ function AccordionItem({ title, children }: { title: string; children: React.Rea
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
+  useEffect(() => { window.scrollTo(0, 0); }, [slug]);
   const product = getProductBySlug(slug || "");
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState(0);
