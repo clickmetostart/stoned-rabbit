@@ -19,17 +19,17 @@ const staggerContainer = {
 
 const PRODUCTS_DROPPED = [
   { name: "Skull & Crossclubs", price: "$58", was: "$78", img: "/polo-skull.png", badge: "NEW DROP", slug: "skull-crossclubs" },
-  { name: "Scramble Specialist", price: "$45", was: "$65", img: "/scramble-specialist-hat.jpg", badge: "CHARITY DROP", slug: "scramble-specialist" },
-  { name: "Retro Static", price: "$58", was: "$78", img: "/polo-retro.png", badge: "BEST SELLER", slug: "retro-static" },
-  { name: "Flamingo Country", price: "$58", was: "$78", img: "/polo-flamingo.png", badge: "NEW DROP", slug: "flamingo-country" },
-  { name: "Clubhouse Legend", price: "$42", was: "$60", img: "/clubhouse-legend-hat.jpg", badge: "LIMITED", slug: "clubhouse-legend" },
+  { name: "The Range Wrangler", price: "$50", was: "$75", img: "/product-hat.png", badge: "BEST SELLER", slug: "range-wrangler" },
+  { name: "Retro Static", price: "$58", was: "$78", img: "/polo-retro.png", badge: "NEW DROP", slug: "retro-static" },
+  { name: "Fly It 300", price: "$50", was: "$75", img: "/product-womens.png", badge: "", slug: "fly-it-300" },
+  { name: "Flamingo Country", price: "$58", was: "$78", img: "/polo-flamingo.png", badge: "LIMITED", slug: "flamingo-country" },
 ];
 
 const PRODUCTS_COLLECTION = [
   { name: "Skull & Crossclubs", price: "$58", img: "/polo-skull.png", badge: "", slug: "skull-crossclubs-2" },
-  { name: "Flamingo Country", price: "$58", img: "/polo-flamingo.png", badge: "BEST SELLER", slug: "flamingo-country-2" },
+  { name: "The Cool Crowd", price: "$68", img: "/product-polo.png", badge: "BEST SELLER", slug: "cool-crowd" },
   { name: "Retro Static", price: "$58", img: "/polo-retro.png", badge: "", slug: "retro-static-2" },
-  { name: "Scramble Specialist Hat", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY", slug: "scramble-specialist-hat" },
+  { name: "Scramble Specialist", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY", slug: "scramble-specialist-hat" },
   { name: "Clubhouse Legend Cap", price: "$42", img: "/clubhouse-legend-hat.jpg", badge: "NEW", slug: "clubhouse-legend-cap" },
 ];
 
@@ -138,7 +138,7 @@ const SHOP_CATEGORIES = [
   {
     label: "YOUTH",
     sub: "Future Municipal Legends",
-    img: "/charity-outing-1.jpg",
+    img: "/insta-2.png",
     href: "/youth",
     active: false,
   },
@@ -152,7 +152,7 @@ const SHOP_CATEGORIES = [
   {
     label: "FATHER & SON",
     sub: "Pass Down the Legend",
-    img: "/charity-outing-2.jpg",
+    img: "/insta-3.png",
     href: "/father-son",
     active: false,
   },
@@ -300,7 +300,7 @@ export default function Home() {
               title: "In the Bag",
               sub: "Hats, gloves, and gear that stay with you from tee box to clubhouse.",
               cta: "Shop Essentials",
-              img: "/clubhouse-legend-hat.jpg",
+              img: "/product-hat.png",
               href: "/accessories",
               testId: "link-in-the-bag"
             }
@@ -370,11 +370,11 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
                 </div>
                 <div className="relative overflow-hidden" style={{ height: "200px" }}>
-                  <img src="/lifestyle-muni.jpg" alt="Almost Elite golfer" className="w-full h-full object-cover object-center" />
+                  <img src="/insta-1.png" alt="Almost Elite golfer" className="w-full h-full object-cover object-center" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" />
                 </div>
                 <div className="relative overflow-hidden" style={{ height: "200px" }}>
-                  <img src="/classic-vibe-fairway.jpg" alt="Golfers on fairway" className="w-full h-full object-cover object-center" />
+                  <img src="/drop-editorial.png" alt="Golfers on fairway" className="w-full h-full object-cover object-center" />
                   <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" />
                 </div>
               </motion.div>
@@ -422,7 +422,7 @@ export default function Home() {
         {/* The Brand Story */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/lifestyle-swing.jpg" alt="For players who love the game" className="w-full h-full object-cover opacity-45" />
+            <img src="/hero.png" alt="For players who love the game" className="w-full h-full object-cover opacity-45" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
@@ -590,7 +590,7 @@ export default function Home() {
             <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" data-testid="link-instagram" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 border-y border-border">
-            {["/lifestyle-thumbsup.jpg", "/lifestyle-womens.jpg", "/clubhouse-legend-hat.jpg", "/classic-vibe-drinks.jpg", "/lifestyle-celebrating.jpg", "/classic-vibe-fairway.jpg"].map((img, i) => (
+            {["/lifestyle-thumbsup.jpg", "/insta-1.png", "/clubhouse-legend-hat.jpg", "/classic-vibe-drinks.jpg", "/insta-3.png", "/lifestyle-celebrating.jpg"].map((img, i) => (
               <a key={i} href="#" data-testid={`link-instagram-post-${i}`} className="relative aspect-square group block overflow-hidden">
                 <img src={img} alt={`Almost Elite crew post ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
