@@ -5,6 +5,7 @@ import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap, ArrowUp
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
+import GhostWord from "@/components/GhostWord";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -50,20 +51,6 @@ const staggerContainer = {
 
 function AccentLine({ className = "" }: { className?: string }) {
   return <div className={`h-1 bg-accent ${className}`} />;
-}
-
-/* Ghost watermark behind a section */
-function GhostWord({ word, className = "" }: { word: string; className?: string }) {
-  return (
-    <div className={`absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none ${className}`}>
-      <span
-        className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap"
-        style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}
-      >
-        {word}
-      </span>
-    </div>
-  );
 }
 
 /* ── product data ─────────────────────────────────────────────── */

@@ -1,21 +1,49 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link } from "wouter";
+import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
+import Navbar from "@/components/Navbar";
+
+const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
+    <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
+      <Navbar />
+      <main className="flex-1 relative flex items-center justify-center overflow-hidden">
+        {/* Ghost 404 */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+          <span
+            className="font-display font-black italic uppercase text-white leading-none"
+            style={{ fontSize: "clamp(10rem, 40vw, 40rem)", opacity: 0.032 }}
+          >
+            404
+          </span>
+        </div>
 
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative z-10 text-center px-6"
+        >
+          <p className="text-accent font-bold tracking-widest uppercase text-sm mb-6">
+            Almost Elite — But Not Quite This Page
           </p>
-        </CardContent>
-      </Card>
+          <h1 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-6 text-white">
+            LOST ON<br />THE BACK NINE.
+          </h1>
+          <div className="w-16 h-1 bg-accent mx-auto mb-6" />
+          <p className="text-white/50 text-lg max-w-md mx-auto mb-10 leading-relaxed">
+            That hole doesn't exist on this course. Take a mulligan and head back to the clubhouse.
+          </p>
+          <Link href="/">
+            <button className="inline-flex items-center gap-3 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200">
+              <ArrowLeft className="w-5 h-5" />
+              Back to the Clubhouse
+            </button>
+          </Link>
+        </motion.div>
+      </main>
     </div>
   );
 }
