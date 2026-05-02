@@ -567,7 +567,7 @@ export default function Home() {
         </section>
 
         {/* ── STATS BAR ─────────────────────────────────────────── */}
-        <div className="relative border-y border-white/10 py-2 overflow-hidden">
+        <div className="relative py-2 overflow-hidden">
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-3">
               {[
@@ -585,11 +585,14 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ── LOYALTY ghost — bridges stats → pillars ───────────── */}
+        <div className="relative h-0 overflow-visible pointer-events-none select-none" style={{ zIndex: 0 }}>
+          <span className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-black italic uppercase text-white leading-none whitespace-nowrap"
+            style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>LOYALTY</span>
+        </div>
+
         {/* ── BRAND PILLARS ─────────────────────────────────────── */}
         <section className="relative py-24 overflow-hidden">
-          <div className="absolute bottom-0 right-0 pointer-events-none select-none z-0 overflow-hidden leading-none">
-            <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>CRAFTED</span>
-          </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-12">
               <AccentLine className="w-16 mb-5" />
