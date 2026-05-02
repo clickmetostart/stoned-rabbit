@@ -17,74 +17,149 @@ const staggerContainer = {
   visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
 
-/* ── tiny helpers ─────────────────────────────────────────────── */
 function AccentLine({ className = "" }: { className?: string }) {
   return <div className={`h-1 bg-accent ${className}`} />;
 }
 
+/* Ghost watermark behind a section */
+function GhostWord({ word, className = "" }: { word: string; className?: string }) {
+  return (
+    <div className={`absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none ${className}`}>
+      <span
+        className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap"
+        style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}
+      >
+        {word}
+      </span>
+    </div>
+  );
+}
+
 /* ── product data ─────────────────────────────────────────────── */
 const PRODUCTS_DROPPED = [
-  { name: "Skull & Crossclubs",  price: "$58", was: "$78", img: "/polo-skull.png",           badge: "NEW DROP",   slug: "skull-crossclubs" },
-  { name: "The Range Wrangler",  price: "$50", was: "$75", img: "/product-hat.png",           badge: "BEST SELLER",slug: "range-wrangler" },
-  { name: "Retro Static",        price: "$58", was: "$78", img: "/polo-retro.png",            badge: "NEW DROP",   slug: "retro-static" },
-  { name: "Fly It 300",          price: "$50", was: "$75", img: "/product-womens.png",        badge: "",           slug: "fly-it-300" },
-  { name: "Flamingo Country",    price: "$58", was: "$78", img: "/polo-flamingo.png",         badge: "LIMITED",    slug: "flamingo-country" },
+  { name: "Skull & Crossclubs",  price: "$58", was: "$78", img: "/polo-skull.png",              badge: "NEW DROP",   slug: "skull-crossclubs" },
+  { name: "The Range Wrangler",  price: "$50", was: "$75", img: "/product-hat.png",              badge: "BEST SELLER",slug: "range-wrangler" },
+  { name: "Retro Static",        price: "$58", was: "$78", img: "/polo-retro.png",               badge: "NEW DROP",   slug: "retro-static" },
+  { name: "Fly It 300",          price: "$50", was: "$75", img: "/product-womens.png",           badge: "",           slug: "fly-it-300" },
+  { name: "Flamingo Country",    price: "$58", was: "$78", img: "/polo-flamingo.png",            badge: "LIMITED",    slug: "flamingo-country" },
 ];
 const PRODUCTS_COLLECTION = [
-  { name: "Skull & Crossclubs",  price: "$58", img: "/polo-skull.png",           badge: "",           slug: "skull-crossclubs-2" },
-  { name: "The Cool Crowd",      price: "$68", img: "/product-polo.png",         badge: "BEST SELLER",slug: "cool-crowd" },
-  { name: "Retro Static",        price: "$58", img: "/polo-retro.png",           badge: "",           slug: "retro-static-2" },
-  { name: "Scramble Specialist", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY", slug: "scramble-specialist-hat" },
-  { name: "Clubhouse Legend Cap",price: "$42", img: "/clubhouse-legend-hat.jpg", badge: "NEW",        slug: "clubhouse-legend-cap" },
+  { name: "Skull & Crossclubs",  price: "$58", img: "/polo-skull.png",              badge: "",           slug: "skull-crossclubs-2" },
+  { name: "The Cool Crowd",      price: "$68", img: "/product-polo.png",            badge: "BEST SELLER",slug: "cool-crowd" },
+  { name: "Retro Static",        price: "$58", img: "/polo-retro.png",              badge: "",           slug: "retro-static-2" },
+  { name: "Scramble Specialist", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY",    slug: "scramble-specialist-hat" },
+  { name: "Clubhouse Legend Cap",price: "$42", img: "/clubhouse-legend-hat.jpg",    badge: "NEW",        slug: "clubhouse-legend-cap" },
 ];
 
-/* ── product slider ───────────────────────────────────────────── */
-function ProductSlider({ products, title, href }: { products: typeof PRODUCTS_DROPPED; title: string; href: string }) {
-  const ref = useRef<HTMLDivElement>(null);
+/* ── SKEWED product row ───────────────────────────────────────── */
+function SkewedProductRow({
+  products,
+  title,
+  href,
+  watermark,
+}: {
+  products: typeof PRODUCTS_DROPPED;
+  title: string;
+  href: string;
+  watermark: string;
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const scroll = (d: "left" | "right") =>
-    ref.current?.scrollBy({ left: d === "right" ? 310 : -310, behavior: "smooth" });
+    scrollRef.current?.scrollBy({ left: d === "right" ? 400 : -400, behavior: "smooth" });
 
   return (
-    <section className="py-16 overflow-hidden">
-      <div className="px-6 lg:px-16 mb-2">
-        <AccentLine className="w-16 mb-5" />
-      </div>
-      <div className="px-6 lg:px-16 mb-6 flex items-end justify-between">
-        <a href={href} className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white hover:text-accent transition-colors leading-none">
-          {title}
-        </a>
-        <div className="flex gap-2">
-          {(["left", "right"] as const).map((d) => (
-            <button key={d} onClick={() => scroll(d)} className="w-11 h-11 flex items-center justify-center border border-white/20 text-white hover:border-accent hover:text-accent transition-colors">
-              {d === "left" ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-            </button>
+    <section className="relative py-16 overflow-hidden">
+      <GhostWord word={watermark} />
+
+      <div className="relative z-10">
+        <div className="px-6 lg:px-16 mb-2">
+          <AccentLine className="w-16 mb-5" />
+        </div>
+        <div className="px-6 lg:px-16 mb-8 flex items-end justify-between">
+          <a
+            href={href}
+            className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white hover:text-accent transition-colors leading-none"
+          >
+            {title}
+          </a>
+          <div className="flex gap-2">
+            {(["left", "right"] as const).map((d) => (
+              <button
+                key={d}
+                onClick={() => scroll(d)}
+                className="w-11 h-11 flex items-center justify-center border border-white/20 text-white hover:border-accent hover:text-accent transition-colors"
+              >
+                {d === "left" ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Scrollable row */}
+        <div
+          ref={scrollRef}
+          className="flex gap-1 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-6"
+          style={{ scrollSnapType: "x mandatory" }}
+        >
+          {products.map((p, i) => (
+            <Link
+              key={i}
+              href={`/product/${p.slug}`}
+              className="group flex-shrink-0 relative"
+              style={{ scrollSnapAlign: "start", width: "clamp(260px, 22vw, 360px)" }}
+            >
+              {/* Diagonal image */}
+              <div
+                className="relative overflow-hidden"
+                style={{
+                  height: "clamp(340px, 28vw, 480px)",
+                  clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0 100%)",
+                }}
+              >
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                  style={{ transform: "scale(1.08) skewX(0deg)" }}
+                />
+                {/* Hover orange wash */}
+                <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/20 transition-colors duration-400" />
+                {/* Bottom "Shop Now" slide-up */}
+                <div className="absolute bottom-0 left-0 right-0 py-3 bg-accent flex items-center justify-center translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <span className="text-white font-bold uppercase tracking-widest text-xs">Shop Now</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 ml-1.5 text-white" />
+                </div>
+              </div>
+
+              {/* Badge — sits above image, offset so it lands inside the clip area */}
+              {p.badge && (
+                <div className="absolute top-3 z-10 bg-accent text-white text-xs font-bold px-2.5 py-1 uppercase tracking-wider" style={{ left: "12%" }}>
+                  {p.badge}
+                </div>
+              )}
+
+              {/* Top-right corner accent (visible — parallelogram keeps top-right corner) */}
+              <div className="absolute top-0 right-0 w-0.5 h-12 bg-accent opacity-80 pointer-events-none" />
+              <div className="absolute top-0 right-0 w-10 h-0.5 bg-accent opacity-80 pointer-events-none" />
+
+              {/* Product info */}
+              <div className="mt-3 px-[9%]">
+                <p className="font-bold text-base text-white leading-tight group-hover:text-accent transition-colors">{p.name}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="font-bold text-white">{p.price}</span>
+                  {p.was && (
+                    <>
+                      <span className="text-white/35 line-through text-sm">{p.was}</span>
+                      <span className="text-accent text-xs font-bold">
+                        Save ${parseInt(p.was.replace("$", "")) - parseInt(p.price.replace("$", ""))}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
-      </div>
-      <div ref={ref} className="flex gap-3 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4" style={{ scrollSnapType: "x mandatory" }}>
-        {products.map((p, i) => (
-          <Link key={i} href={`/product/${p.slug}`} className="group flex-shrink-0 w-[260px] md:w-[290px]" style={{ scrollSnapAlign: "start" }}>
-            <div className="relative overflow-hidden bg-white/5" style={{ aspectRatio: "9.6/13" }}>
-              {p.badge && (
-                <div className="absolute top-3 left-3 z-10 bg-accent text-white text-xs font-bold px-2.5 py-1 uppercase tracking-wider">{p.badge}</div>
-              )}
-              <div className="w-full h-full" style={{ transform: "skewX(-15deg) translateX(18%)", transformOrigin: "center" }}>
-                <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" style={{ transform: "skewX(15deg) translateX(-18%)" }} />
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-accent">
-                <p className="text-white text-center font-bold uppercase tracking-wider text-sm">Quick Add</p>
-              </div>
-            </div>
-            <div className="mt-3 px-1">
-              <p className="font-bold text-base text-white leading-tight group-hover:text-accent transition-colors">{p.name}</p>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="font-bold text-white">{p.price}</span>
-                {p.was && <span className="text-white/35 line-through text-sm">{p.was}</span>}
-                {p.was && <span className="text-accent text-xs font-bold">Save ${parseInt(p.was.replace("$","")) - parseInt(p.price.replace("$",""))}</span>}
-              </div>
-            </div>
-          </Link>
-        ))}
       </div>
     </section>
   );
@@ -92,12 +167,12 @@ function ProductSlider({ products, title, href }: { products: typeof PRODUCTS_DR
 
 /* ── collab brands ────────────────────────────────────────────── */
 const COLLAB_BRANDS = [
-  { name: "BUDWEISER",      tag: "King of the Fairway",           accent: "#C8102E", bg: "#0a0a0a", img: "/polo-skull.png" },
-  { name: "JACK DANIEL'S",  tag: "Old No. 7 on the Back Nine",    accent: "#8B7355", bg: "#111111", img: "/polo-flamingo.png" },
-  { name: "COORS LIGHT",    tag: "Cold as Your Putting Game",     accent: "#0057A8", bg: "#0c1929", img: "/product-hat.png" },
-  { name: "TWISTED TEA",    tag: "Half & Half on Hole 9",         accent: "#5A8C3C", bg: "#0d1a0a", img: "/polo-retro.png" },
-  { name: "CAPTAIN MORGAN", tag: "Spiced. Structured. Snapback.", accent: "#B8860B", bg: "#1a1000", img: "/product-polo.png" },
-  { name: "WHITE CLAW",     tag: "Ain't No Laws on the Muni",     accent: "#7B2D8B", bg: "#0f0a14", img: "/product-womens.png" },
+  { name: "BUDWEISER",      tag: "King of the Fairway",            accent: "#C8102E", bg: "#0a0a0a", img: "/polo-skull.png" },
+  { name: "JACK DANIEL'S",  tag: "Old No. 7 on the Back Nine",     accent: "#8B7355", bg: "#111111", img: "/polo-flamingo.png" },
+  { name: "COORS LIGHT",    tag: "Cold as Your Putting Game",      accent: "#0057A8", bg: "#0c1929", img: "/product-hat.png" },
+  { name: "TWISTED TEA",    tag: "Half & Half on Hole 9",          accent: "#5A8C3C", bg: "#0d1a0a", img: "/polo-retro.png" },
+  { name: "CAPTAIN MORGAN", tag: "Spiced. Structured. Snapback.",  accent: "#B8860B", bg: "#1a1000", img: "/product-polo.png" },
+  { name: "WHITE CLAW",     tag: "Ain't No Laws on the Muni",      accent: "#7B2D8B", bg: "#0f0a14", img: "/product-womens.png" },
 ];
 
 function CollabBrands() {
@@ -106,53 +181,56 @@ function CollabBrands() {
     ref.current?.scrollBy({ left: d === "right" ? 370 : -370, behavior: "smooth" });
 
   return (
-    <section className="py-16 overflow-hidden">
-      <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
-      <div className="px-6 lg:px-16 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
-          <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none text-white">
-            ICONIC BRANDS.<br /><span className="text-accent">GOLF COURSE LOUD.</span>
-          </h2>
-          <p className="text-white/50 text-base mt-4 max-w-xl leading-relaxed">
-            From the cooler at the 19th hole to the legends on the label — we take the brands you already love and put them where they belong. On the polo.
-          </p>
+    <section className="relative py-16 overflow-hidden">
+      <GhostWord word="COLLABS" />
+      <div className="relative z-10">
+        <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
+        <div className="px-6 lg:px-16 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
+            <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none text-white">
+              ICONIC BRANDS.<br /><span className="text-accent">GOLF COURSE LOUD.</span>
+            </h2>
+            <p className="text-white/50 text-base mt-4 max-w-xl leading-relaxed">
+              From the cooler at the 19th hole to the legends on the label — we take the brands you already love and put them where they belong. On the polo.
+            </p>
+          </div>
+          <div className="flex gap-2 shrink-0">
+            {(["left", "right"] as const).map((d) => (
+              <button key={d} onClick={() => scroll(d)} className="w-11 h-11 flex items-center justify-center border border-white/20 text-white hover:border-accent hover:text-accent transition-colors">
+                {d === "left" ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="flex gap-2 shrink-0">
-          {(["left", "right"] as const).map((d) => (
-            <button key={d} onClick={() => scroll(d)} className="w-11 h-11 flex items-center justify-center border border-white/20 text-white hover:border-accent hover:text-accent transition-colors">
-              {d === "left" ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
-            </button>
+        <div ref={ref} className="flex gap-4 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4" style={{ scrollSnapType: "x mandatory" }}>
+          {COLLAB_BRANDS.map((brand, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
+              className="group flex-shrink-0 w-[300px] md:w-[340px] cursor-pointer" style={{ scrollSnapAlign: "start" }}>
+              <div className="relative overflow-hidden flex flex-col" style={{ height: "420px", background: brand.bg }}>
+                <div className="h-1.5 w-full" style={{ background: brand.accent }} />
+                <div className="px-6 pt-5 pb-3 z-10 relative">
+                  <p className="font-display font-black italic text-3xl uppercase tracking-tighter text-white leading-none">{brand.name}</p>
+                  <p className="text-white/50 text-xs mt-1 font-medium uppercase tracking-widest">{brand.tag}</p>
+                </div>
+                <div className="flex-1 relative overflow-hidden mx-6">
+                  <img src={brand.img} alt={brand.name} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div className="px-6 py-5 flex items-center justify-between border-t z-10" style={{ borderColor: `${brand.accent}30` }}>
+                  <span className="text-white font-bold uppercase tracking-widest text-xs">Shop the Collab</span>
+                  <div className="w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" style={{ color: brand.accent }}>
+                    <ArrowUpRight className="w-5 h-5" />
+                  </div>
+                </div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" style={{ background: brand.accent }} />
+              </div>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1" style={{ color: brand.accent, border: `1px solid ${brand.accent}40`, background: `${brand.accent}10` }}>Limited Drop</span>
+                <span className="text-white/30 text-xs uppercase tracking-wider">x Almost Elite</span>
+              </div>
+            </motion.div>
           ))}
         </div>
-      </div>
-      <div ref={ref} className="flex gap-4 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4" style={{ scrollSnapType: "x mandatory" }}>
-        {COLLAB_BRANDS.map((brand, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
-            className="group flex-shrink-0 w-[300px] md:w-[340px] cursor-pointer" style={{ scrollSnapAlign: "start" }}>
-            <div className="relative overflow-hidden flex flex-col" style={{ height: "420px", background: brand.bg }}>
-              <div className="h-1.5 w-full" style={{ background: brand.accent }} />
-              <div className="px-6 pt-5 pb-3 z-10 relative">
-                <p className="font-display font-black italic text-3xl uppercase tracking-tighter text-white leading-none">{brand.name}</p>
-                <p className="text-white/50 text-xs mt-1 font-medium uppercase tracking-widest">{brand.tag}</p>
-              </div>
-              <div className="flex-1 relative overflow-hidden mx-6">
-                <img src={brand.img} alt={brand.name} className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div className="px-6 py-5 flex items-center justify-between border-t z-10" style={{ borderColor: `${brand.accent}30` }}>
-                <span className="text-white font-bold uppercase tracking-widest text-xs">Shop the Collab</span>
-                <div className="w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" style={{ color: brand.accent }}>
-                  <ArrowUpRight className="w-5 h-5" />
-                </div>
-              </div>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" style={{ background: brand.accent }} />
-            </div>
-            <div className="mt-3 flex items-center gap-2">
-              <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1" style={{ color: brand.accent, border: `1px solid ${brand.accent}40`, background: `${brand.accent}10` }}>Limited Drop</span>
-              <span className="text-white/30 text-xs uppercase tracking-wider">x Almost Elite</span>
-            </div>
-          </motion.div>
-        ))}
       </div>
     </section>
   );
@@ -160,11 +238,11 @@ function CollabBrands() {
 
 /* ── shop by category ─────────────────────────────────────────── */
 const SHOP_CATEGORIES = [
-  { label: "MENS",         sub: "Polos with Personality",            img: "/lifestyle-muni.jpg",        href: "/men" },
-  { label: "WOMENS",       sub: "Bold. Breathable. Yours.",          img: "/lifestyle-womens.jpg",      href: "/women" },
-  { label: "YOUTH",        sub: "Future Municipal Legends",         img: "/insta-2.png",               href: "/youth" },
-  { label: "HIS & HERS",   sub: "Matching Energy. Different Scores.",img: "/classic-vibe-fairway.jpg",  href: "/his-hers" },
-  { label: "FATHER & SON", sub: "Pass Down the Legend",             img: "/insta-3.png",               href: "/father-son" },
+  { label: "MENS",         sub: "Polos with Personality",             img: "/lifestyle-muni.jpg",         href: "/men" },
+  { label: "WOMENS",       sub: "Bold. Breathable. Yours.",           img: "/lifestyle-womens.jpg",        href: "/women" },
+  { label: "YOUTH",        sub: "Future Municipal Legends",          img: "/insta-2.png",                href: "/youth" },
+  { label: "HIS & HERS",   sub: "Matching Energy. Different Scores.", img: "/classic-vibe-fairway.jpg",   href: "/his-hers" },
+  { label: "FATHER & SON", sub: "Pass Down the Legend",              img: "/insta-3.png",                href: "/father-son" },
 ];
 
 function ShopByCategory() {
@@ -172,9 +250,11 @@ function ShopByCategory() {
   return (
     <section className="h-[80vh] flex overflow-hidden">
       {SHOP_CATEGORIES.map((cat, i) => (
-        <div key={i} className="relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
+        <div key={i}
+          className="relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
           style={{ flex: active === i ? "4 0 0%" : "1 0 0%" }}
-          onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(0)}>
+          onMouseEnter={() => setActive(i)} onMouseLeave={() => setActive(0)}
+        >
           <img src={cat.img} alt={cat.label} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700" style={{ transform: active === i ? "scale(1.05)" : "scale(1)" }} />
           <div className="absolute inset-0 transition-opacity duration-500" style={{ background: active === i ? "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%)" : "linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 100%)" }} />
           <div className="absolute inset-0 flex items-end justify-center pb-8 transition-opacity duration-300" style={{ opacity: active === i ? 0 : 1 }}>
@@ -222,10 +302,10 @@ export default function Home() {
                 Performance-ready gear. Municipal-approved attitude.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button size="lg" data-testid="button-shop-drop" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
+                <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
                   Shop The Drop
                 </Button>
-                <Button size="lg" variant="outline" data-testid="button-find-out-more" className="border-white/50 text-white hover:bg-white hover:text-black rounded-none h-14 px-12 text-base uppercase font-bold bg-transparent transition-colors">
+                <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white hover:text-black rounded-none h-14 px-12 text-base uppercase font-bold bg-transparent transition-colors">
                   Find Out More
                 </Button>
               </motion.div>
@@ -237,7 +317,7 @@ export default function Home() {
         <div className="bg-accent overflow-hidden py-3.5">
           <div className="whitespace-nowrap flex font-display font-bold italic text-xl tracking-widest uppercase">
             <motion.div className="flex gap-6 items-center" animate={{ x: [0, -1200] }} transition={{ repeat: Infinity, ease: "linear", duration: 16 }}>
-              {["ALMOST ELITE", "•", "MUNICIPAL LEGENDS WELCOME", "•", "THE CREW > THE SCORE", "•", "PLAY HARD. LAUGH HARDER.", "•", "NOT FOR THE TOUR. FOR THE ROUND.", "•", "ALMOST ELITE", "•", "MUNICIPAL LEGENDS WELCOME", "•", "THE CREW > THE SCORE", "•"].map((t, i) => (
+              {["ALMOST ELITE","•","MUNICIPAL LEGENDS WELCOME","•","THE CREW > THE SCORE","•","PLAY HARD. LAUGH HARDER.","•","NOT FOR THE TOUR. FOR THE ROUND.","•","ALMOST ELITE","•","MUNICIPAL LEGENDS WELCOME","•","THE CREW > THE SCORE","•"].map((t, i) => (
                 <span key={i} className="text-white">{t}</span>
               ))}
             </motion.div>
@@ -247,10 +327,10 @@ export default function Home() {
         {/* ── SPLIT PANEL ───────────────────────────────────────── */}
         <section className="grid grid-cols-1 md:grid-cols-2 h-[78vh]">
           {[
-            { title: "On Course",  sub: "What you wear when you're actually out there.",             cta: "Shop Apparel",   img: "/lifestyle-swing.jpg", href: "/men",         testId: "link-on-course" },
-            { title: "In the Bag", sub: "Hats, gloves, and gear from tee box to clubhouse.",        cta: "Shop Essentials", img: "/product-hat.png",    href: "/accessories", testId: "link-in-the-bag" },
+            { title: "On Course",  sub: "What you wear when you're actually out there.",      cta: "Shop Apparel",    img: "/lifestyle-swing.jpg", href: "/men" },
+            { title: "In the Bag", sub: "Hats, gloves, and gear from tee box to clubhouse.", cta: "Shop Essentials", img: "/product-hat.png",     href: "/accessories" },
           ].map((panel, i) => (
-            <Link key={i} href={panel.href} data-testid={panel.testId} className="group relative overflow-hidden flex items-end pb-10 px-10">
+            <Link key={i} href={panel.href} className="group relative overflow-hidden flex items-end pb-10 px-10">
               <div className="absolute inset-0">
                 <img src={panel.img} alt={panel.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/5" />
@@ -267,20 +347,15 @@ export default function Home() {
           ))}
         </section>
 
-        {/* ── JUST DROPPED ──────────────────────────────────────── */}
-        <ProductSlider products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" />
+        {/* ── JUST DROPPED — skewed images ──────────────────────── */}
+        <SkewedProductRow products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" watermark="DROP" />
 
         {/* ── COLLAB BRANDS ─────────────────────────────────────── */}
         <CollabBrands />
 
-        {/* ── MUNICIPAL LEGENDS — floating, no box ──────────────── */}
+        {/* ── MUNICIPAL LEGENDS ─────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          {/* Giant watermark behind */}
-          <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none">
-            <span className="font-display font-black italic uppercase text-white/[0.03]" style={{ fontSize: "22vw", lineHeight: 1, whiteSpace: "nowrap" }}>
-              MUNICIPAL
-            </span>
-          </div>
+          <GhostWord word="MUNICIPAL" />
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -297,19 +372,17 @@ export default function Home() {
                   And that's exactly where the best rounds happen. Almost Elite is built for the golfers who show up week after week — chasing better shots, better rounds, and better stories for the clubhouse after.
                 </motion.p>
                 <motion.div variants={fadeInUp}>
-                  <Button size="lg" data-testid="button-shop-muni" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
+                  <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
                     Shop Muni Gear
                   </Button>
                 </motion.div>
               </motion.div>
 
-              {/* Photo with diagonal cut */}
               <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
                 className="relative" style={{ height: "560px" }}>
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0 100%)" }}>
                   <img src="/drop-editorial.png" alt="Golfers on the fairway" className="w-full h-full object-cover object-center" />
                 </div>
-                {/* Orange corner accent */}
                 <div className="absolute bottom-0 left-0 w-1 h-24 bg-accent" />
                 <div className="absolute bottom-0 left-0 w-24 h-1 bg-accent" />
               </motion.div>
@@ -318,8 +391,9 @@ export default function Home() {
         </section>
 
         {/* ── STATS BAR ─────────────────────────────────────────── */}
-        <div className="border-y border-white/10 py-2">
-          <div className="container mx-auto px-6 lg:px-16">
+        <div className="relative border-y border-white/10 py-2 overflow-hidden">
+          <GhostWord word="STATS" className="justify-center" />
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-3 divide-x divide-white/10">
               {[
                 { num: "10K+",  label: "Municipal Legends" },
@@ -336,9 +410,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── BRAND PILLARS — numbered, no box ──────────────────── */}
-        <section className="py-24">
-          <div className="container mx-auto px-6 lg:px-16">
+        {/* ── BRAND PILLARS ─────────────────────────────────────── */}
+        <section className="relative py-24 overflow-hidden">
+          <GhostWord word="BUILT" />
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-12">
               <AccentLine className="w-16 mb-5" />
               <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-white">
@@ -367,17 +442,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── SHOP THE COLLECTION ───────────────────────────────── */}
-        <ProductSlider products={PRODUCTS_COLLECTION} title="SHOP THE COLLECTION" href="/men" />
+        {/* ── SHOP THE COLLECTION — skewed ──────────────────────── */}
+        <SkewedProductRow products={PRODUCTS_COLLECTION} title="SHOP THE COLLECTION" href="/men" watermark="COLLECTION" />
 
         {/* ── SHOP BY CATEGORY ──────────────────────────────────── */}
         <ShopByCategory />
 
-        {/* ── BRAND STORY — full photo ──────────────────────────── */}
+        {/* ── BRAND STORY ───────────────────────────────────────── */}
         <section className="relative py-28 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img src="/hero.png" alt="For players who love the game" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/82 via-black/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
+          </div>
+          {/* Watermark overlaid on photo */}
+          <div className="absolute inset-0 z-[1] flex items-end overflow-hidden pointer-events-none select-none">
+            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 18vw, 18rem)", opacity: 0.055 }}>
+              LEGENDS
+            </span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} className="max-w-3xl">
@@ -396,14 +477,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── CHARITY ROUNDS — floating, diagonal photo ─────────── */}
+        {/* ── CHARITY ROUNDS ────────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          {/* Giant watermark */}
-          <div className="absolute inset-0 flex items-center justify-end overflow-hidden pointer-events-none select-none">
-            <span className="font-display font-black italic uppercase text-white/[0.03]" style={{ fontSize: "14vw", lineHeight: 1, whiteSpace: "nowrap", marginRight: "-2vw" }}>
-              CHARITY ROUNDS
-            </span>
-          </div>
+          <GhostWord word="CHARITY" className="justify-end" />
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -413,10 +489,8 @@ export default function Home() {
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(0 0, 92% 0, 100% 100%, 0 100%)" }}>
                   <img src="/charity-outing-1.jpg" alt="Charity outing" className="w-full h-full object-cover object-top" />
                 </div>
-                {/* Orange corner accent */}
                 <div className="absolute top-0 right-0 w-1 h-20 bg-accent" />
                 <div className="absolute top-0 right-0 w-20 h-1 bg-accent" />
-                {/* Floating charity drop badge */}
                 <div className="absolute bottom-8 right-4 bg-accent px-4 py-3 z-10">
                   <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Scramble</p>
                   <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Specialist</p>
@@ -424,7 +498,6 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Text right */}
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                 <AccentLine className="w-16 mb-6" />
                 <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Almost Elite Charity Rounds</motion.p>
@@ -452,7 +525,7 @@ export default function Home() {
                   ))}
                 </div>
                 <motion.div variants={fadeInUp}>
-                  <Button size="lg" data-testid="button-charity-rounds" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
+                  <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
                     Join Charity Rounds <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </motion.div>
@@ -461,11 +534,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── FEATURED CHARITY EVENT — full photo ───────────────── */}
+        {/* ── FEATURED CHARITY EVENT ────────────────────────────── */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img src="/charity-outing-2.jpg" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65" />
+          </div>
+          {/* Watermark */}
+          <div className="absolute inset-0 z-[1] flex items-center justify-center overflow-hidden pointer-events-none select-none">
+            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 20vw, 20rem)", opacity: 0.07 }}>
+              FORE
+            </span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center">
@@ -482,16 +561,17 @@ export default function Home() {
               <p className="text-white/45 text-sm mb-10">
                 Supporting the <span className="text-white font-bold">Boys & Girls Clubs of America</span>
               </p>
-              <Button size="lg" data-testid="button-support-scramble" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors">
+              <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors">
                 Support The Scramble
               </Button>
             </div>
           </div>
         </section>
 
-        {/* ── SOCIAL PROOF — floating cards, no box ─────────────── */}
-        <section className="py-24">
-          <div className="container mx-auto px-6 lg:px-16">
+        {/* ── SOCIAL PROOF ──────────────────────────────────────── */}
+        <section className="relative py-24 overflow-hidden">
+          <GhostWord word="WORD" />
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-14">
               <AccentLine className="w-16 mb-5" />
               <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white">
@@ -504,12 +584,12 @@ export default function Home() {
                 { quote: "Finally, a brand that understands I'm just here for the experience. The gear makes me feel like I belong out there.", author: "Sarah J.", handicap: "Here for the cart" },
                 { quote: "My swing is still garbage, but at least my polo isn't. Municipal legend status unlocked.", author: "Dave R.", handicap: "22 Handicap" },
               ].map((r, i) => (
-                <motion.div key={i} data-testid={`card-review-${i}`} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
+                <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
                   className="relative p-8 border-l-4 border-accent bg-white/[0.04] border-t border-r border-b border-white/10">
                   <div className="flex text-accent mb-5">
                     {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 fill-current" />)}
                   </div>
-                  <p className="text-lg italic mb-6 text-white/80 flex-grow">"{r.quote}"</p>
+                  <p className="text-lg italic mb-6 text-white/80">"{r.quote}"</p>
                   <p className="font-bold uppercase tracking-wider text-sm text-white">{r.author}</p>
                   <p className="text-xs text-white/35 mt-0.5">{r.handicap}</p>
                   <div className="absolute top-4 right-6 font-display italic text-8xl text-white/[0.04] leading-none select-none">"</div>
@@ -525,13 +605,13 @@ export default function Home() {
             <AccentLine className="w-16 mb-5" />
             <div className="flex items-end justify-between mb-8">
               <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter text-white">FOLLOW THE CREW</h2>
-              <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" data-testid="link-instagram" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
+              <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0">
             {["/lifestyle-thumbsup.jpg","/insta-1.png","/clubhouse-legend-hat.jpg","/classic-vibe-drinks.jpg","/insta-3.png","/lifestyle-celebrating.jpg"].map((img, i) => (
-              <a key={i} href="#" data-testid={`link-instagram-post-${i}`} className="relative aspect-square group block overflow-hidden">
-                <img src={img} alt={`Almost Elite crew post ${i+1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <a key={i} href="#" className="relative aspect-square group block overflow-hidden">
+                <img src={img} alt={`Crew post ${i+1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-accent/85 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                   <span className="text-white font-bold tracking-widest uppercase text-xs border-b border-white/50 pb-0.5">View Post</span>
                 </div>
@@ -540,26 +620,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── NEWSLETTER — full photo ────────────────────────────── */}
+        {/* ── NEWSLETTER ────────────────────────────────────────── */}
         <section className="relative py-28 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img src="/classic-vibe-drinks.jpg" alt="Join the Almost Elite crew" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/55 to-black/35" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/35" />
+          </div>
+          <div className="absolute inset-0 z-[1] flex items-center overflow-hidden pointer-events-none select-none">
+            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.06 }}>
+              JOIN
+            </span>
           </div>
           <div className="relative z-10 container mx-auto px-4 max-w-4xl text-center">
             <AccentLine className="w-20 mx-auto mb-6" />
             <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
-            <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-6">
-              JOIN THE CREW
-            </h2>
+            <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-6">JOIN THE CREW</h2>
             <p className="text-lg text-white/65 mb-10 max-w-2xl mx-auto">
               Get 15% off your first order. Early access to drops, charity round announcements, and highly questionable golf tips.
             </p>
             <form className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-              <Input type="email" placeholder="ENTER YOUR EMAIL" data-testid="input-email-newsletter"
+              <Input type="email" placeholder="ENTER YOUR EMAIL"
                 className="h-14 rounded-none bg-white/10 border-white/20 text-white placeholder:text-white/35 focus-visible:ring-accent focus-visible:border-accent" required />
-              <Button type="submit" data-testid="button-newsletter-submit"
-                className="h-14 px-8 rounded-none bg-accent hover:bg-white hover:text-black text-white font-bold uppercase tracking-wider shrink-0 transition-colors">
+              <Button type="submit" className="h-14 px-8 rounded-none bg-accent hover:bg-white hover:text-black text-white font-bold uppercase tracking-wider shrink-0 transition-colors">
                 Sign Up <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
@@ -572,12 +654,17 @@ export default function Home() {
       <footer className="pt-20 pb-10 border-t border-white/10" style={{ background: PAGE_BG }}>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            <div className="md:col-span-1">
-              <Link href="/" className="font-display font-black italic text-4xl tracking-tighter block mb-2 text-white">ALMOST ELITE</Link>
+
+            {/* Logo column */}
+            <div className="md:col-span-1 flex flex-col items-start">
+              <img src="/logo-stacked.png" alt="Almost Elite" className="h-36 w-auto object-contain mb-4" />
               <AccentLine className="w-12 mb-4" />
-              <p className="text-white/40 mb-2 max-w-xs text-sm leading-relaxed">Golf apparel for the rest of us. Performance-ready gear. Municipal-approved attitude.</p>
+              <p className="text-white/40 max-w-xs text-sm leading-relaxed mb-2">
+                Golf apparel for the rest of us. Performance-ready gear. Municipal-approved attitude.
+              </p>
               <p className="text-white/25 text-xs italic">You might not be elite... But you're definitely Almost.</p>
             </div>
+
             {[
               { title: "Shop",           links: ["Men's Collection","Women's Collection","Headwear","Accessories","The Drop"] },
               { title: "Charity Rounds", links: ["About The Program","Partner With Us","Featured Events","Boys & Girls Club","Plan Your Drop"] },
@@ -592,6 +679,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/25">
             <p>&copy; {new Date().getFullYear()} Almost Elite™ — Golf for the Rest of Us.</p>
             <div className="flex gap-6">
