@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap, ArrowUpRight } from "lucide-react";
+import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap, ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
@@ -867,31 +867,155 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── NEWSLETTER ────────────────────────────────────────── */}
-        <section className="relative py-28 text-white overflow-hidden">
+        {/* ── JOIN THE CREW + REWARDS ───────────────────────────── */}
+        <section className="relative text-white overflow-hidden">
+          {/* Full-bleed background */}
           <div className="absolute inset-0 z-0">
             <img src="/classic-vibe-drinks.jpg" alt="Join the Almost Elite crew" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/35" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/95" />
           </div>
+
+          {/* Ghost word */}
           <div className="absolute inset-0 z-[1] flex items-center overflow-hidden pointer-events-none select-none">
-            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.06 }}>
-              JOIN
+            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap"
+              style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.045, letterSpacing: "-0.04em" }}>
+              CREW
             </span>
           </div>
-          <div className="relative z-10 container mx-auto px-4 max-w-4xl text-center">
-            <AccentLine className="w-20 mx-auto mb-6" />
-            <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
-            <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-6">JOIN THE CREW</h2>
-            <p className="text-lg text-white/65 mb-10 max-w-2xl mx-auto">
-              Get 15% off your first order. Early access to drops, charity round announcements, and highly questionable golf tips.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-              <Input type="email" placeholder="ENTER YOUR EMAIL"
-                className="h-14 rounded-none bg-white/10 border-white/20 text-white placeholder:text-white/35 focus-visible:ring-accent focus-visible:border-accent" required />
-              <Button type="submit" className="h-14 px-8 rounded-none bg-accent hover:bg-white hover:text-black text-white font-bold uppercase tracking-wider shrink-0 transition-colors">
-                Sign Up <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
+
+          <div className="relative z-10 container mx-auto px-4 max-w-6xl py-24">
+
+            {/* Header */}
+            <div className="text-center mb-16">
+              <AccentLine className="w-20 mx-auto mb-6" />
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
+              <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-5">JOIN THE CREW</h2>
+              <p className="text-lg text-white/55 max-w-2xl mx-auto">
+                Sign up. Earn points. Unlock perks. Every dollar you spend moves you closer to the top of the municipal food chain.
+              </p>
+            </div>
+
+            {/* Tier cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-px mb-16" style={{ background: "rgba(255,255,255,0.06)" }}>
+              {[
+                {
+                  name: "Almost Good",
+                  range: "0 – 499 pts",
+                  color: "#94a3b8",
+                  icon: "⛳",
+                  tagline: "Welcome to the muni.",
+                  perks: [
+                    "Early access to new drops",
+                    "5% member discount",
+                    "Monthly crew newsletter",
+                    "Community charity round invites",
+                  ],
+                },
+                {
+                  name: "Almost Better",
+                  range: "500 – 999 pts",
+                  color: "hsl(32 90% 55%)",
+                  icon: "🏌️",
+                  tagline: "Now we're talking.",
+                  featured: true,
+                  perks: [
+                    "10% member discount",
+                    "Free standard shipping",
+                    "VIP charity round access",
+                    "Priority restock alerts",
+                  ],
+                },
+                {
+                  name: "Almost Elite",
+                  range: "1,000+ pts",
+                  color: "#facc15",
+                  icon: "🏆",
+                  tagline: "You're basically a pro.",
+                  perks: [
+                    "15% member discount",
+                    "Free express shipping",
+                    "Exclusive drops — never public",
+                    "1 free accessory per season",
+                    "Featured on the Crew Wall",
+                  ],
+                },
+              ].map((tier, i) => (
+                <motion.div
+                  key={tier.name}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="relative p-8 flex flex-col"
+                  style={{
+                    background: tier.featured
+                      ? `linear-gradient(160deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%)`
+                      : "rgba(0,0,0,0.35)",
+                    borderTop: `2px solid ${tier.color}`,
+                  }}
+                >
+                  {tier.featured && (
+                    <div
+                      className="absolute top-0 right-6 -translate-y-1/2 text-[10px] font-black uppercase tracking-widest px-3 py-1"
+                      style={{ background: tier.color, color: "#0b1a14" }}
+                    >
+                      Most Popular
+                    </div>
+                  )}
+
+                  <div className="text-3xl mb-4">{tier.icon}</div>
+
+                  <div className="flex items-baseline gap-2 mb-1">
+                    <h3
+                      className="font-display font-black italic text-2xl uppercase tracking-tighter leading-none"
+                      style={{ color: tier.color }}
+                    >
+                      {tier.name}
+                    </h3>
+                  </div>
+                  <p className="text-white/30 text-[11px] font-bold uppercase tracking-widest mb-2">{tier.range}</p>
+                  <p className="text-white/50 text-sm italic mb-6">{tier.tagline}</p>
+
+                  <ul className="space-y-3 flex-1">
+                    {tier.perks.map((perk, j) => (
+                      <li key={j} className="flex items-start gap-3 text-sm text-white/70">
+                        <Check className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" style={{ color: tier.color }} />
+                        {perk}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Points bar decoration */}
+                  <div className="mt-6 h-px" style={{ background: `linear-gradient(to right, ${tier.color}60, transparent)` }} />
+                  <p className="mt-3 text-white/20 text-[10px] uppercase tracking-widest">
+                    $1 spent = 1 pt
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Email signup */}
+            <div className="max-w-md mx-auto text-center">
+              <p className="text-white/40 text-sm mb-4">Join free. Start earning from your first purchase.</p>
+              <form className="flex flex-col sm:flex-row gap-2" onSubmit={(e) => e.preventDefault()}>
+                <Input
+                  type="email"
+                  placeholder="ENTER YOUR EMAIL"
+                  className="h-14 rounded-none bg-white/10 border-white/20 text-white placeholder:text-white/35 focus-visible:ring-accent focus-visible:border-accent"
+                  required
+                />
+                <Button
+                  type="submit"
+                  className="h-14 px-8 rounded-none bg-accent hover:bg-white hover:text-black text-white font-bold uppercase tracking-wider shrink-0 transition-colors"
+                >
+                  Join Free <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </form>
+              <p className="text-white/20 text-xs mt-4 italic">
+                No spam. Only drops, perks, and the occasional bad golf tip.
+              </p>
+            </div>
+
           </div>
         </section>
 

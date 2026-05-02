@@ -9,6 +9,7 @@ import ProductDetail from "@/pages/product";
 import { MenPage, WomenPage, HatsPage, AccessoriesPage, DropPage } from "@/pages/shop";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/CartSidebar";
+import { RewardsBanner } from "@/components/RewardsBanner";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ function App() {
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <Router />
             <CartSidebar />
+            <RewardsBanner />
           </WouterRouter>
         </CartProvider>
         <Toaster />
