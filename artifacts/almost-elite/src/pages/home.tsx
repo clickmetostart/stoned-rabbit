@@ -355,6 +355,27 @@ function ShopByCategory() {
               </span>
             </div>
 
+            {/* Ghost watermark — bleeds from bottom-right on hover */}
+            <div
+              className="absolute bottom-0 right-[-5%] pointer-events-none select-none z-[2]"
+              style={{
+                opacity: active === i ? 1 : 0,
+                transition: "opacity 0.55s ease",
+              }}
+            >
+              <span
+                className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap block"
+                style={{
+                  fontSize: "clamp(4rem, 11vw, 13rem)",
+                  opacity: 0.12,
+                  transform: `skewX(${-SKEW}deg)`,
+                  transformOrigin: "bottom right",
+                }}
+              >
+                {cat.label}
+              </span>
+            </div>
+
             {/* Expanded: full content — counter-skewed */}
             <div
               className="absolute inset-0 flex flex-col justify-between z-10"
@@ -363,7 +384,7 @@ function ShopByCategory() {
                 left: "-8%",
                 right: "-8%",
                 width: "116%",
-                padding: "2rem 22% 2rem 18%",
+                padding: "2rem 22% 2.5rem 18%",
                 opacity: active === i ? 1 : 0,
                 transition: "opacity 0.3s ease",
                 pointerEvents: active === i ? "auto" : "none",
@@ -373,11 +394,11 @@ function ShopByCategory() {
                 <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">
                   Almost Elite
                 </p>
-                <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-white leading-none mb-3">
+                <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter text-white leading-none mb-3">
                   {cat.label}
                 </h2>
                 <div className="w-12 h-1 bg-accent mb-3" />
-                <p className="text-white/75 text-sm font-medium leading-snug max-w-[160px]">
+                <p className="text-white/75 text-sm font-medium leading-snug max-w-[180px]">
                   {cat.sub}
                 </p>
               </div>
