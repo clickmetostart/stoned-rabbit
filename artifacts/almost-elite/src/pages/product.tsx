@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "wouter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ShoppingCart, Heart, Share2, ChevronDown, ChevronUp, Star, Truck, RotateCcw, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import { SizeGuideModal } from "@/components/SizeGuideModal";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -49,6 +50,7 @@ export default function ProductDetail() {
   const [qty, setQty] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
   const [wishlisted, setWishlisted] = useState(false);
+  const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
 
   if (!product) {
     return (
@@ -210,7 +212,12 @@ export default function ProductDetail() {
                         {selectedSize || "Select a size"}
                       </span>
                     </p>
-                    <button className="text-xs text-accent underline font-medium uppercase tracking-wide">Size Guide</button>
+                    <button
+                      onClick={() => setSizeGuideOpen(true)}
+                      className="text-xs text-accent underline font-medium uppercase tracking-wide hover:text-white transition-colors"
+                    >
+                      Size Guide
+                    </button>
                   </div>
                   <div className="flex gap-2 flex-wrap">
                     {product.sizes.map((size) => (
@@ -358,6 +365,21 @@ export default function ProductDetail() {
           </div>
         </div>
       </main>
+
+      <AnimatePresence>
+        {sizeGuideOpen && (
+          <SizeGuideModal
+            onClose={() => setSizeGuideOpen(false)}
+            defaultTab={
+              product.category.toLowerCase().includes("headwear") || product.category.toLowerCase().includes("hat")
+                ? "hats"
+                : product.category.toLowerCase().includes("shorts") || product.category.toLowerCase().includes("bottom")
+                ? "bottoms"
+                : "polos"
+            }
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }
