@@ -766,9 +766,9 @@ export default function Home() {
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center">
               <AccentLine className="w-20 mx-auto mb-6" />
-              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event — Boy's &amp; Girls Charity</p>
               <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-6">
-                BOYS & GIRLS CLUB<br />CHARITY OUTING
+                FORE A<br />GOOD CAUSE.
               </h2>
               <p className="text-white/55 text-base mb-3 tracking-wider uppercase font-semibold">May 30th, 2026 — XYZ Golf Course</p>
               <p className="text-white/75 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
@@ -884,7 +884,7 @@ export default function Home() {
 
             {[
               { title: "Shop",           links: ["Men's Collection","Women's Collection","Headwear","Accessories","The Drop"] },
-              { title: "Charity Rounds", links: ["About The Program","Partner With Us","Featured Events","Boys & Girls Club","Plan Your Drop"] },
+              { title: "Charity Rounds", links: ["About The Program","Partner With Us","Featured Events","Fore A Good Cause","Plan Your Drop"] },
               { title: "Support",        links: ["FAQ","Shipping & Returns","Size Guide","Contact Us","Our Story"] },
             ].map((col, i) => (
               <div key={i}>

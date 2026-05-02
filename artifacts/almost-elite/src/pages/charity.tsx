@@ -118,7 +118,7 @@ export default function Charity() {
                   <div className="absolute top-8 left-12 right-8">
                     <div className="bg-black/80 backdrop-blur-sm border border-white/10 p-5">
                       <p className="text-accent text-xs font-bold uppercase tracking-widest mb-1">Coming Up</p>
-                      <p className="font-display font-black italic text-2xl uppercase text-white">Boys & Girls Club Outing</p>
+                      <p className="font-display font-black italic text-2xl uppercase text-white">Fore A Good Cause</p>
                       <p className="text-white/50 text-sm mt-1">May 30th, 2026 — XYZ Golf Course</p>
                       <a href="#featured" className="mt-3 inline-block text-accent text-xs font-bold uppercase tracking-wider hover:text-white transition-colors">
                         See Details →
@@ -213,10 +213,10 @@ export default function Charity() {
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
               <AccentLine className="w-16 mx-auto mb-8" />
               <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
-                About the Impact
+                Fore A Good Cause
               </motion.p>
               <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8 text-white">
-                GOLF HAS A WAY OF BRINGING PEOPLE TOGETHER.
+                GOLF HAS ALWAYS GIVEN BACK. NOW IT'S YOUR TURN.
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-xl text-white/65 leading-relaxed max-w-3xl mx-auto mb-6">
                 Many of the events we support benefit organizations like the <span className="text-accent font-bold">Boys & Girls Clubs of America</span>, helping young people gain access to mentorship, education, and safe spaces to grow.
@@ -285,9 +285,9 @@ export default function Charity() {
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-5xl mx-auto">
               <AccentLine className="w-16 mb-8" />
-              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event — Boy's &amp; Girls Charity</p>
               <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-6 text-white">
-                BOYS & GIRLS CLUB<br/>CHARITY OUTING
+                FORE A<br/>GOOD CAUSE.
               </h2>
               <p className="text-white/40 text-base mb-12 tracking-wider uppercase font-semibold">
                 May 30th, 2026 — XYZ Golf Course
@@ -430,7 +430,7 @@ export default function Charity() {
               <div>
                 <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-white/10 pb-2 text-sm text-white">Community</h4>
                 <ul className="space-y-3 text-white/45 text-sm">
-                  {["Charity Rounds","Municipal Legends","The Blog","Collab Drops","Ambassador Program"].map(l => (
+                  {["Fore A Good Cause","Municipal Legends","The Blog","Collab Drops","Ambassador Program"].map(l => (
                     <li key={l}><Link href="/charity" className="hover:text-accent transition-colors">{l}</Link></li>
                   ))}
                 </ul>
