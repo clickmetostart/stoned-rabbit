@@ -623,10 +623,10 @@ export default function Home() {
             <img src="/hero.png" alt="For players who love the game" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
           </div>
-          {/* Watermark overlaid on photo */}
-          <div className="absolute inset-0 z-[1] flex items-end overflow-hidden pointer-events-none select-none">
-            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 18vw, 18rem)", opacity: 0.055 }}>
-              LEGENDS
+          {/* Watermark overlaid on photo — bottom right */}
+          <div className="absolute bottom-0 right-0 z-[1] overflow-hidden pointer-events-none select-none leading-none">
+            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.055 }}>
+              ALMOST
             </span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
