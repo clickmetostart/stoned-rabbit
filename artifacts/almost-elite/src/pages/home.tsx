@@ -241,7 +241,7 @@ function CollabBrands() {
   return (
     <section className="relative py-16 overflow-hidden">
       <div className="absolute top-0 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
-        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>ICONIC</span>
+        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>ELITE</span>
       </div>
       <div className="relative z-10">
         <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
@@ -249,7 +249,7 @@ function CollabBrands() {
           <div>
             <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
             <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none text-white">
-              ICONIC BRANDS.<br /><span className="text-accent">GOLF COURSE LOUD.</span>
+              ELITE BRANDS.<br /><span className="text-accent">GOLF COURSE LOUD.</span>
             </h2>
             <p className="text-white/50 text-base mt-4 max-w-xl leading-relaxed">
               From the cooler at the 19th hole to the legends on the label — we take the brands you already love and put them where they belong. On the polo.
