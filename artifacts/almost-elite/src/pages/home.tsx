@@ -240,7 +240,9 @@ function CollabBrands() {
 
   return (
     <section className="relative py-16 overflow-hidden">
-      <GhostWord word="COLLABS" />
+      <div className="absolute top-0 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
+        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(4rem, 10vw, 10rem)", opacity: 0.05 }}>ICONIC</span>
+      </div>
       <div className="relative z-10">
         <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
         <div className="px-6 lg:px-16 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -320,8 +322,9 @@ function ShopByCategory() {
       </div>
 
       {/* Skewed floating panels */}
+      <div className="px-6 lg:px-16">
       <div
-        className="flex gap-2 px-6 lg:px-16"
+        className="flex gap-0.5 bg-accent"
         style={{ height: "72vh" }}
       >
         {SHOP_CATEGORIES.map((cat, i) => (
@@ -443,6 +446,7 @@ function ShopByCategory() {
           </div>
         ))}
       </div>
+      </div>
     </section>
   );
 }
@@ -486,9 +490,9 @@ export default function Home() {
         </section>
 
         {/* ── MARQUEE ───────────────────────────────────────────── */}
-        <div className="bg-accent overflow-hidden py-3.5">
-          <div className="whitespace-nowrap flex font-display font-bold italic text-xl tracking-widest uppercase">
-            <motion.div className="flex gap-6 items-center" animate={{ x: [0, -1200] }} transition={{ repeat: Infinity, ease: "linear", duration: 16 }}>
+        <div className="bg-accent overflow-hidden py-5">
+          <div className="whitespace-nowrap flex font-display font-black italic text-3xl md:text-4xl tracking-widest uppercase">
+            <motion.div className="flex gap-10 items-center" animate={{ x: [0, -1800] }} transition={{ repeat: Infinity, ease: "linear", duration: 18 }}>
               {["ALMOST ELITE","•","MUNICIPAL LEGENDS WELCOME","•","THE CREW > THE SCORE","•","PLAY HARD. LAUGH HARDER.","•","NOT FOR THE TOUR. FOR THE ROUND.","•","ALMOST ELITE","•","MUNICIPAL LEGENDS WELCOME","•","THE CREW > THE SCORE","•"].map((t, i) => (
                 <span key={i} className="text-white">{t}</span>
               ))}
@@ -527,7 +531,7 @@ export default function Home() {
 
         {/* ── MUNICIPAL LEGENDS ─────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <GhostWord word="MUNICIPAL" />
+          <GhostWord word="LEGENDARY" />
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -564,7 +568,6 @@ export default function Home() {
 
         {/* ── STATS BAR ─────────────────────────────────────────── */}
         <div className="relative border-y border-white/10 py-2 overflow-hidden">
-          <GhostWord word="STATS" className="justify-center" />
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-3 divide-x divide-white/10">
               {[
@@ -584,7 +587,9 @@ export default function Home() {
 
         {/* ── BRAND PILLARS ─────────────────────────────────────── */}
         <section className="relative py-24 overflow-hidden">
-          <GhostWord word="BUILT" />
+          <div className="absolute top-0 right-0 pointer-events-none select-none z-0 overflow-hidden leading-none">
+            <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(5rem, 14vw, 14rem)", opacity: 0.04 }}>CRAFTED</span>
+          </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-12">
               <AccentLine className="w-16 mb-5" />
@@ -742,7 +747,7 @@ export default function Home() {
 
         {/* ── SOCIAL PROOF ──────────────────────────────────────── */}
         <section className="relative py-24 overflow-hidden">
-          <GhostWord word="WORD" />
+          <GhostWord word="ALMOST ELITE" />
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-14">
               <AccentLine className="w-16 mb-5" />
