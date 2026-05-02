@@ -305,7 +305,7 @@ function ShopByCategory() {
 ═══════════════════════════════════════════════════════════════════ */
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white flex flex-col font-sans">
+    <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)" }}>
       <Navbar />
 
       <main className="flex-1">
@@ -384,8 +384,8 @@ export default function Home() {
         <CollabBrands />
 
         {/* ── Municipal Legends ─────────────────────────────────────── */}
-        {/* Skewed green panel — text left, photo right */}
-        <SkewPanel bg="linear-gradient(135deg, #1a3d25 0%, #0f2418 100%)" className="py-24">
+        {/* Skewed saturated green panel — pops against navy-green base */}
+        <SkewPanel bg="linear-gradient(135deg, #1f5035 0%, #164025 100%)" className="py-24">
           <div className="container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
