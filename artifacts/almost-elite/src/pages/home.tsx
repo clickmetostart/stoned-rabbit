@@ -1,10 +1,11 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { ShoppingCart, Search, User, Menu, Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap } from "lucide-react";
+import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import Navbar from "@/components/Navbar";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -123,34 +124,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
 
-      {/* Promotional Banner */}
-      <div className="bg-primary text-primary-foreground text-center py-2 text-xs font-bold tracking-widest uppercase">
-        Free Shipping on Orders Over $100&nbsp;&nbsp;•&nbsp;&nbsp;Municipal Legends Welcome&nbsp;&nbsp;•&nbsp;&nbsp;Play Hard. Laugh Harder.
-      </div>
-
-      {/* Sticky Navbar */}
-      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur border-b border-border">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4 lg:hidden">
-            <Button variant="ghost" size="icon" data-testid="button-menu-mobile"><Menu className="h-6 w-6" /></Button>
-            <Link href="/" className="font-display font-black italic text-2xl tracking-tighter">ALMOST ELITE</Link>
-          </div>
-          <nav className="hidden lg:flex items-center gap-8 font-semibold text-sm tracking-wide">
-            <Link href="/" className="font-display font-black italic text-3xl tracking-tighter mr-6">ALMOST ELITE</Link>
-            <Link href="/men" className="hover:text-primary transition-colors" data-testid="link-men">MEN</Link>
-            <Link href="/women" className="hover:text-primary transition-colors" data-testid="link-women">WOMEN</Link>
-            <Link href="/hats" className="hover:text-primary transition-colors" data-testid="link-hats">HATS</Link>
-            <Link href="/accessories" className="hover:text-primary transition-colors" data-testid="link-accessories">ACCESSORIES</Link>
-            <Link href="/drop" className="text-accent hover:text-accent/80 transition-colors font-bold" data-testid="link-drop">THE DROP</Link>
-            <Link href="/charity" className="hover:text-primary transition-colors" data-testid="link-charity">CHARITY ROUNDS</Link>
-          </nav>
-          <div className="flex items-center gap-1">
-            <Button variant="ghost" size="icon" className="hidden sm:flex" data-testid="button-search"><Search className="h-5 w-5" /></Button>
-            <Button variant="ghost" size="icon" className="hidden sm:flex" data-testid="button-account"><User className="h-5 w-5" /></Button>
-            <Button variant="ghost" size="icon" data-testid="button-cart"><ShoppingCart className="h-5 w-5" /></Button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="flex-1">
 
