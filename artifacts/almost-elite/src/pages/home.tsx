@@ -99,7 +99,7 @@ function SkewedProductRow({
         <div
           ref={scrollRef}
           className="flex gap-1 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-6"
-          style={{ scrollSnapType: "x mandatory" }}
+          style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
         >
           {products.map((p, i) => (
             <Link
@@ -203,11 +203,11 @@ function CollabBrands() {
             ))}
           </div>
         </div>
-        <div ref={ref} className="flex gap-4 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4" style={{ scrollSnapType: "x mandatory" }}>
+        <div ref={ref} className="flex gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4" style={{ scrollSnapType: "x mandatory", scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}>
           {COLLAB_BRANDS.map((brand, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}
               className="group flex-shrink-0 w-[300px] md:w-[340px] cursor-pointer" style={{ scrollSnapAlign: "start" }}>
-              <div className="relative overflow-hidden flex flex-col" style={{ height: "420px", background: brand.bg }}>
+              <div className="relative overflow-hidden flex flex-col" style={{ height: "420px", background: brand.bg, clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0 100%)" }}>
                 <div className="h-1.5 w-full" style={{ background: brand.accent }} />
                 <div className="px-6 pt-5 pb-3 z-10 relative">
                   <p className="font-display font-black italic text-3xl uppercase tracking-tighter text-white leading-none">{brand.name}</p>
