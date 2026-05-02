@@ -36,20 +36,29 @@ function GhostWord({ word, className = "" }: { word: string; className?: string 
 }
 
 /* ── product data ─────────────────────────────────────────────── */
-const PRODUCTS_DROPPED = [
+const BASE_DROPPED = [
   { name: "Skull & Crossclubs",  price: "$58", was: "$78", img: "/polo-skull.png",              badge: "NEW DROP",   slug: "skull-crossclubs" },
   { name: "The Range Wrangler",  price: "$50", was: "$75", img: "/product-hat.png",              badge: "BEST SELLER",slug: "range-wrangler" },
   { name: "Retro Static",        price: "$58", was: "$78", img: "/polo-retro.png",               badge: "NEW DROP",   slug: "retro-static" },
   { name: "Fly It 300",          price: "$50", was: "$75", img: "/product-womens.png",           badge: "",           slug: "fly-it-300" },
   { name: "Flamingo Country",    price: "$58", was: "$78", img: "/polo-flamingo.png",            badge: "LIMITED",    slug: "flamingo-country" },
+  { name: "The Muni Special",    price: "$54", was: "$72", img: "/product-polo.png",             badge: "CLASSIC",    slug: "muni-special" },
+  { name: "Classic Vibe",        price: "$60", was: "$80", img: "/classic-vibe-fairway.jpg",     badge: "",           slug: "classic-vibe" },
+  { name: "Fairway Drip",        price: "$52", was: "$70", img: "/lifestyle-swing.jpg",          badge: "HOT",        slug: "fairway-drip" },
 ];
-const PRODUCTS_COLLECTION = [
+const PRODUCTS_DROPPED = [...BASE_DROPPED, ...BASE_DROPPED.map(p => ({ ...p, slug: p.slug + "-b" })), ...BASE_DROPPED.map(p => ({ ...p, slug: p.slug + "-c" }))];
+
+const BASE_COLLECTION = [
   { name: "Skull & Crossclubs",  price: "$58", img: "/polo-skull.png",              badge: "",           slug: "skull-crossclubs-2" },
   { name: "The Cool Crowd",      price: "$68", img: "/product-polo.png",            badge: "BEST SELLER",slug: "cool-crowd" },
   { name: "Retro Static",        price: "$58", img: "/polo-retro.png",              badge: "",           slug: "retro-static-2" },
   { name: "Scramble Specialist", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY",    slug: "scramble-specialist-hat" },
   { name: "Clubhouse Legend Cap",price: "$42", img: "/clubhouse-legend-hat.jpg",    badge: "NEW",        slug: "clubhouse-legend-cap" },
+  { name: "Flamingo Country",    price: "$58", img: "/polo-flamingo.png",           badge: "LIMITED",    slug: "flamingo-country-2" },
+  { name: "Fly It 300",          price: "$50", img: "/product-womens.png",          badge: "",           slug: "fly-it-300-2" },
+  { name: "The Range Wrangler",  price: "$50", img: "/product-hat.png",             badge: "CLASSIC",    slug: "range-wrangler-2" },
 ];
+const PRODUCTS_COLLECTION = [...BASE_COLLECTION, ...BASE_COLLECTION.map(p => ({ ...p, slug: p.slug + "-b" })), ...BASE_COLLECTION.map(p => ({ ...p, slug: p.slug + "-c" }))];
 
 /* ── SKEWED product row ───────────────────────────────────────── */
 function SkewedProductRow({
@@ -64,8 +73,26 @@ function SkewedProductRow({
   watermark: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const scroll = (d: "left" | "right") =>
-    scrollRef.current?.scrollBy({ left: d === "right" ? 400 : -400, behavior: "smooth" });
+  const scroll = (d: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const step = 400;
+    if (d === "right") {
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - step;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: step, behavior: "smooth" });
+      }
+    } else {
+      const atStart = el.scrollLeft <= step;
+      if (atStart) {
+        el.scrollTo({ left: el.scrollWidth, behavior: "smooth" });
+      } else {
+        el.scrollBy({ left: -step, behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <section className="relative py-16 overflow-hidden">
