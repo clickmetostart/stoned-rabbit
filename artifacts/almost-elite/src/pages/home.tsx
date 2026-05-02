@@ -239,8 +239,8 @@ function CollabBrands() {
     ref.current?.scrollBy({ left: d === "right" ? 370 : -370, behavior: "smooth" });
 
   return (
-    <section className="relative py-16 overflow-hidden">
-      <div className="absolute top-0 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
+    <section className="relative pt-32 pb-16 overflow-hidden">
+      <div className="absolute -top-16 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
         <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>ELITE</span>
       </div>
       <div className="relative z-10">
