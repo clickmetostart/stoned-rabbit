@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, Search, User, Menu, X, ChevronDown, ArrowUpRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
+import { SearchOverlay } from "@/components/SearchOverlay";
 
 const NAV_BG = "#0b1a14";
 const MENU_BG = "#0c1920";
@@ -113,6 +114,7 @@ export default function Navbar() {
   const { itemCount, setCartOpen } = useCart();
   const [activeMenu, setActiveMenu] = useState<MenuKey | "CHARITY" | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleEnter = (key: MenuKey | "CHARITY") => {
@@ -187,7 +189,12 @@ export default function Navbar() {
 
           {/* Icons */}
           <div className="flex items-center gap-0.5">
-            <Button variant="ghost" size="icon" className="hidden sm:flex text-white/70 hover:text-white hover:bg-white/10">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hidden sm:flex text-white/70 hover:text-white hover:bg-white/10"
+              onClick={() => setSearchOpen(true)}
+            >
               <Search className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon" className="hidden sm:flex text-white/70 hover:text-white hover:bg-white/10">
@@ -398,6 +405,11 @@ export default function Navbar() {
       </header>
 
       {/* ── MOBILE SLIDE-OUT ──────────────────────────────────── */}
+      {/* ── SEARCH OVERLAY ────────────────────────────────────── */}
+      <AnimatePresence>
+        {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
+      </AnimatePresence>
+
       <AnimatePresence>
         {mobileOpen && (
           <>
