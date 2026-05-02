@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Almost Elite"
+version = "1.0.0"
+id = "artifacts/almost-elite"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26175
+
+[services.development]
+run = "pnpm --filter @workspace/almost-elite run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/almost-elite", "run", "build" ]
+publicDir = "artifacts/almost-elite/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26175"
+BASE_PATH = "/"

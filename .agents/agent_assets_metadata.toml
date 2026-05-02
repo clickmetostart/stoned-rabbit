@@ -1,0 +1,50 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "cnpFRCupzZkRou0jBIPgr"
+uri = "file://artifacts/almost-elite/public/hero.png"
+type = "image"
+title = "Friends golfing casual lifestyle"
+
+[[generated]]
+id = "LT4I-DTgAa4pibx4JIE9o"
+uri = "file://artifacts/almost-elite/public/drop-editorial.png"
+type = "image"
+title = "Golfer at clubhouse bar"
+
+[[generated]]
+id = "AG_ZlqTAvyTqOJf3nfyq0"
+uri = "file://artifacts/almost-elite/public/product-polo.png"
+type = "image"
+title = "Mens polo product shot"
+
+[[generated]]
+id = "awYdhis07gX0g9UQ5tM8R"
+uri = "file://artifacts/almost-elite/public/product-womens.png"
+type = "image"
+title = "Womens tee product shot"
+
+[[generated]]
+id = "SWrX7VMDg0VI3OqZgKpKF"
+uri = "file://artifacts/almost-elite/public/product-hat.png"
+type = "image"
+title = "Golf hat product shot"
+
+[[generated]]
+id = "OjfhHPmtvGatkgd9Kpku5"
+uri = "file://artifacts/almost-elite/public/insta-1.png"
+type = "image"
+title = "Golf cart lifestyle shot"
+
+[[generated]]
+id = "LJGooEQBsW_7wm533rOB5"
+uri = "file://artifacts/almost-elite/public/insta-2.png"
+type = "image"
+title = "Laughing on the green"
+
+[[generated]]
+id = "mJK_JhZBG9fmllLnz3iek"
+uri = "file://artifacts/almost-elite/public/insta-3.png"
+type = "image"
+title = "Cheers at the bar"
