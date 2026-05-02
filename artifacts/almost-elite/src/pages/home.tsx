@@ -569,7 +569,7 @@ export default function Home() {
         {/* ── STATS BAR ─────────────────────────────────────────── */}
         <div className="relative border-y border-white/10 py-2 overflow-hidden">
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
-            <div className="grid grid-cols-3 divide-x divide-white/10">
+            <div className="grid grid-cols-3">
               {[
                 { to: 10000, prefix: "",  suffix: "+", label: "Municipal Legends",  delay: 0 },
                 { to: 47,    prefix: "",  suffix: "",  label: "States Represented", delay: 200 },
@@ -587,8 +587,8 @@ export default function Home() {
 
         {/* ── BRAND PILLARS ─────────────────────────────────────── */}
         <section className="relative py-24 overflow-hidden">
-          <div className="absolute top-0 right-0 pointer-events-none select-none z-0 overflow-hidden leading-none">
-            <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(5rem, 14vw, 14rem)", opacity: 0.04 }}>CRAFTED</span>
+          <div className="absolute bottom-0 right-0 pointer-events-none select-none z-0 overflow-hidden leading-none">
+            <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>CRAFTED</span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-12">
