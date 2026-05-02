@@ -124,37 +124,37 @@ const SHOP_CATEGORIES = [
   {
     label: "MENS",
     sub: "Polos with Personality",
-    img: "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=900&q=85",
+    img: "/product-polo.png",
     href: "/men",
-    accentColor: "rgba(242,140,10,0.30)",
+    active: true,
   },
   {
     label: "WOMENS",
     sub: "Bold. Breathable. Yours.",
-    img: "https://images.unsplash.com/photo-1547751613-efd3e0e7a9f5?auto=format&fit=crop&w=900&q=85",
+    img: "/product-womens.png",
     href: "/women",
-    accentColor: "rgba(30,94,47,0.45)",
+    active: false,
   },
   {
     label: "YOUTH",
     sub: "Future Municipal Legends",
-    img: "https://images.unsplash.com/photo-1576858574144-9ae1ebcf5ae5?auto=format&fit=crop&w=900&q=85",
+    img: "/insta-2.png",
     href: "/youth",
-    accentColor: "rgba(242,140,10,0.30)",
+    active: false,
   },
   {
     label: "HIS & HERS",
     sub: "Matching Energy. Different Scores.",
-    img: "https://images.unsplash.com/photo-1569017388730-020b5f80a004?auto=format&fit=crop&w=900&q=85",
+    img: "/insta-3.png",
     href: "/his-hers",
-    accentColor: "rgba(30,94,47,0.45)",
+    active: false,
   },
   {
     label: "FATHER & SON",
     sub: "Pass Down the Legend",
-    img: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=900&q=85",
+    img: "/drop-editorial.png",
     href: "/father-son",
-    accentColor: "rgba(242,140,10,0.30)",
+    active: false,
   },
 ];
 
@@ -162,15 +162,12 @@ function ShopByCategory() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="h-[80vh] flex overflow-hidden">
+    <section className="h-[70vh] flex overflow-hidden">
       {SHOP_CATEGORIES.map((cat, i) => (
         <div
           key={i}
-          className="relative overflow-hidden cursor-pointer"
-          style={{
-            flex: active === i ? "4.5 0 0%" : "1 0 0%",
-            transition: "flex 0.55s cubic-bezier(0.25, 1, 0.5, 1)",
-          }}
+          className="relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
+          style={{ flex: active === i ? "4 0 0%" : "1 0 0%" }}
           onMouseEnter={() => setActive(i)}
           onMouseLeave={() => setActive(0)}
         >
@@ -178,74 +175,56 @@ function ShopByCategory() {
           <img
             src={cat.img}
             alt={cat.label}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            style={{ transform: active === i ? "scale(1.05)" : "scale(1)" }}
+          />
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 transition-opacity duration-500"
             style={{
-              transform: active === i ? "scale(1.06)" : "scale(1)",
-              transition: "transform 0.7s ease",
+              background: active === i
+                ? "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%)"
+                : "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 100%)",
             }}
           />
 
-          {/* Base dark layer — lighter so image shows */}
-          <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.28)" }} />
-
-          {/* Color tint layer — brand amber or green on active */}
+          {/* Collapsed label (vertical, non-active) */}
           <div
-            className="absolute inset-0"
-            style={{
-              background: active === i ? cat.accentColor : "rgba(0,0,0,0)",
-              transition: "background 0.45s ease",
-            }}
-          />
-
-          {/* Bottom gradient for text legibility */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.15) 45%, transparent 100%)",
-            }}
-          />
-
-          {/* Collapsed label — vertical bold text */}
-          <div
-            className="absolute inset-0 flex items-end justify-center pb-10"
-            style={{
-              opacity: active === i ? 0 : 1,
-              transition: "opacity 0.25s ease",
-            }}
+            className="absolute inset-0 flex items-end justify-center pb-8 transition-opacity duration-300"
+            style={{ opacity: active === i ? 0 : 1 }}
           >
             <span
-              className="font-display font-black italic text-white text-2xl uppercase tracking-[0.12em] select-none drop-shadow-lg"
+              className="font-display font-black italic text-white text-xl uppercase tracking-widest select-none"
               style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
             >
               {cat.label}
             </span>
           </div>
 
-          {/* Expanded content */}
+          {/* Expanded content (active) */}
           <div
-            className="absolute inset-0 flex flex-col justify-end p-10"
-            style={{
-              opacity: active === i ? 1 : 0,
-              transform: active === i ? "translateY(0)" : "translateY(12px)",
-              transition: "opacity 0.3s ease, transform 0.4s ease",
-              pointerEvents: active === i ? "auto" : "none",
-            }}
+            className="absolute inset-0 flex flex-col justify-between p-8 transition-opacity duration-300"
+            style={{ opacity: active === i ? 1 : 0, pointerEvents: active === i ? "auto" : "none" }}
           >
-            <div className="mb-6">
-              <h2 className="font-display font-black italic text-7xl md:text-8xl uppercase tracking-tighter text-white leading-none mb-3 drop-shadow-2xl">
+            <div>
+              <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white leading-none mb-2">
                 {cat.label}
               </h2>
-              <div className="w-14 h-1 bg-accent mb-4" />
-              <p className="text-white/90 text-lg font-semibold tracking-wide">{cat.sub}</p>
+              <div className="w-16 h-0.5 bg-accent mb-3" />
+              <p className="text-white/80 text-base font-medium">{cat.sub}</p>
             </div>
             <a
               href={cat.href}
-              className="inline-flex items-center gap-3 bg-accent text-white font-black uppercase tracking-widest text-sm px-8 py-4 w-fit hover:bg-white hover:text-black transition-colors duration-200 group"
+              className="inline-block bg-white text-black font-bold uppercase tracking-widest text-sm px-7 py-3 w-fit hover:bg-accent hover:text-white transition-colors duration-200"
             >
               Shop now
-              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
             </a>
           </div>
+
+          {/* Thin divider line between panels */}
+          {i < SHOP_CATEGORIES.length - 1 && (
+            <div className="absolute top-0 right-0 w-px h-full bg-white/10 z-10" />
+          )}
         </div>
       ))}
     </section>
@@ -313,31 +292,29 @@ export default function Home() {
               title: "On Course",
               sub: "What you wear when you're actually out there.",
               cta: "Shop Apparel",
-              img: "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1000&q=85",
-              overlay: "linear-gradient(to top, rgba(15,40,20,0.92) 0%, rgba(15,40,20,0.3) 55%, rgba(0,0,0,0) 100%)",
+              img: "/product-polo.png",
               href: "/men",
               testId: "link-on-course"
             },
             {
               title: "In the Bag",
-              sub: "Hats, headcovers & gear that ride with you from tee box to the 19th hole.",
+              sub: "Hats, gloves, and gear that stay with you from tee box to clubhouse.",
               cta: "Shop Essentials",
-              img: "https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=1000&q=85",
-              overlay: "linear-gradient(to top, rgba(242,140,10,0.75) 0%, rgba(242,140,10,0.15) 45%, rgba(0,0,0,0) 100%)",
+              img: "/product-hat.png",
               href: "/accessories",
               testId: "link-in-the-bag"
             }
           ].map((panel, i) => (
-            <Link key={i} href={panel.href} data-testid={panel.testId} className="group relative overflow-hidden flex items-end pb-12 px-10">
+            <Link key={i} href={panel.href} data-testid={panel.testId} className="group relative overflow-hidden flex items-end pb-10 px-8">
               <div className="absolute inset-0">
                 <img src={panel.img} alt={panel.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0" style={{ background: panel.overlay }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
               </div>
               <div className="relative z-10 text-white">
-                <h2 className="font-display font-black italic text-6xl md:text-7xl uppercase tracking-tighter leading-none mb-3">{panel.title}</h2>
-                <p className="text-white/85 mb-6 text-base max-w-xs font-medium leading-snug">{panel.sub}</p>
-                <span className="inline-block bg-white text-black font-black uppercase tracking-widest text-sm px-7 py-3.5 group-hover:bg-accent group-hover:text-white transition-colors">
-                  {panel.cta} →
+                <h2 className="font-display font-black italic text-5xl uppercase tracking-tighter leading-none mb-2">{panel.title}</h2>
+                <p className="text-white/80 mb-5 text-base max-w-xs">{panel.sub}</p>
+                <span className="inline-block bg-primary text-primary-foreground font-bold uppercase tracking-widest text-sm px-6 py-3 group-hover:bg-accent transition-colors">
+                  {panel.cta}
                 </span>
               </div>
             </Link>
@@ -353,12 +330,8 @@ export default function Home() {
         />
 
         {/* Municipal Legends Section */}
-        <section className="relative py-24 text-white overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385?auto=format&fit=crop&w=1600&q=85" alt="Golf course" className="w-full h-full object-cover" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(10,28,14,0.97) 0%, rgba(10,28,14,0.85) 50%, rgba(10,28,14,0.4) 100%)" }} />
-          </div>
-          <div className="relative z-10 container mx-auto px-6 lg:px-16">
+        <section className="py-24 bg-zinc-950 text-white overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial="hidden"
@@ -446,19 +419,12 @@ export default function Home() {
         <ShopByCategory />
 
         {/* The Brand Story */}
-        <section className="relative min-h-[85vh] flex items-center text-white overflow-hidden">
+        <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img
-              src="https://images.unsplash.com/photo-1611462985328-9f3b6b6d7d26?auto=format&fit=crop&w=1800&q=85"
-              alt="For players who love the game"
-              className="w-full h-full object-cover"
-            />
-            {/* Lighter overlay — image breathes. Green tint fades to clear on right */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(10,28,14,0.95) 0%, rgba(10,28,14,0.78) 40%, rgba(242,140,10,0.18) 70%, rgba(0,0,0,0.1) 100%)" }} />
+            <img src="/insta-1.png" alt="For players who love the game" className="w-full h-full object-cover opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
           </div>
-          {/* Amber left-edge accent bar */}
-          <div className="absolute left-0 top-0 bottom-0 w-2 bg-accent z-10" />
-          <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24">
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -466,27 +432,21 @@ export default function Home() {
               variants={staggerContainer}
               className="max-w-4xl"
             >
-              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-[0.2em] uppercase text-sm mb-5 flex items-center gap-3">
-                <span className="inline-block w-8 h-px bg-accent" />
+              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
                 Built for the Rounds That Matter Most
               </motion.p>
-              <motion.h2 variants={fadeInUp} className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-[0.88] mb-8">
-                FOR PLAYERS<br/>WHO LOVE THE<br/><span className="text-accent">GAME.</span>
+              <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
+                FOR PLAYERS WHO LOVE THE GAME ENOUGH TO TAKE IT SERIOUSLY — AND THEMSELVES A LITTLE LESS.
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-xl text-white/90 leading-relaxed max-w-2xl mb-5">
+              <motion.p variants={fadeInUp} className="text-xl opacity-90 leading-relaxed max-w-3xl mb-6">
                 This isn't gear for tour vans and TV cameras. It's for early tee times, public courses, weekend groups, and the round that somehow turns into a few extra drinks afterward.
               </motion.p>
-              <motion.p variants={fadeInUp} className="text-lg text-white/70 leading-relaxed max-w-2xl mb-12">
+              <motion.p variants={fadeInUp} className="text-lg opacity-75 leading-relaxed max-w-3xl mb-10">
                 For the golfers who grind for par, celebrate bogey saves, and know the best part of the game isn't perfection — it's playing.
               </motion.p>
-              <motion.div variants={fadeInUp} className="flex items-center gap-4">
-                <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-black tracking-wider rounded-none h-14 px-10 text-base uppercase transition-colors">
-                  Shop The Drop →
-                </Button>
-                <p className="font-display font-black italic text-2xl uppercase tracking-wide text-white/40">
-                  You're definitely Almost.
-                </p>
-              </motion.div>
+              <motion.p variants={fadeInUp} className="font-display font-black italic text-3xl uppercase tracking-wide text-accent">
+                You might not be elite... But you're definitely Almost.
+              </motion.p>
             </motion.div>
           </div>
         </section>
@@ -561,34 +521,26 @@ export default function Home() {
         </section>
 
         {/* Featured Charity Event */}
-        <section className="relative overflow-hidden text-white">
-          {/* Full-bleed editorial image — much more visible */}
+        <section className="relative py-20 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1800&q=85"
-              alt="Boys & Girls Club Charity Outing"
-              className="w-full h-full object-cover"
-            />
-            {/* Amber-to-dark overlay — warm not grey */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(242,140,10,0.55) 0%, rgba(10,15,10,0.82) 60%, rgba(5,10,5,0.96) 100%)" }} />
+            <img src="/drop-editorial.png" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover opacity-35" />
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/85 via-zinc-950/70 to-zinc-950/90" />
           </div>
-          <div className="relative z-10 py-28 container mx-auto px-6 lg:px-16">
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-block bg-accent text-white font-black uppercase tracking-[0.2em] text-xs px-5 py-2 mb-6">
-                Featured Event — May 30th, 2026
-              </div>
-              <h2 className="font-display font-black italic text-5xl md:text-8xl uppercase tracking-tighter leading-[0.88] mb-4">
-                BOYS &amp; GIRLS<br/>CLUB CHARITY<br/><span className="text-accent">OUTING.</span>
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event</p>
+              <h2 className="font-display font-black italic text-4xl md:text-6xl uppercase tracking-tighter leading-none mb-6">
+                BOYS & GIRLS CLUB<br/>CHARITY OUTING
               </h2>
-              <p className="text-white/60 text-sm mb-8 tracking-widest uppercase font-bold">XYZ Golf Course · Scramble Format · Limited Edition Drop</p>
-              <p className="text-white/80 text-lg leading-relaxed max-w-3xl mx-auto mb-4">
-                Four-person teams. Shared swings. The kind of moments that never make it onto a scorecard — but always make it into the group chat. Almost Elite is bringing a limited-edition <span className="text-accent font-black">Scramble Specialist</span> drop to life.
+              <p className="text-white/60 text-base mb-2 tracking-wider uppercase font-semibold">May 30th, 2026 — XYZ Golf Course</p>
+              <p className="text-white/70 text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+                A day of golf built around four-person teams, shared swings, and the kind of moments that never quite make it onto a scorecard — but always make it into the group chat. Almost Elite is proud to bring a limited-edition <span className="text-accent font-bold">Scramble Specialist</span> drop to life. Designed before the first tee, picked up on game day, and worn long after the final putt drops.
               </p>
               <p className="text-white/50 text-base mb-10">
-                Supporting <span className="text-white font-bold">Boys &amp; Girls Clubs of America</span> — because golf has a way of giving something back.
+                Supporting the <span className="text-white font-bold">Boys & Girls Clubs of America</span> — because golf has a way of giving something back.
               </p>
-              <Button size="lg" data-testid="button-support-scramble" className="bg-accent hover:bg-white hover:text-black text-white font-black tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                Support The Scramble →
+              <Button size="lg" data-testid="button-support-scramble" className="bg-accent hover:bg-accent/90 text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase">
+                Support The Scramble
               </Button>
             </div>
           </div>
@@ -632,14 +584,7 @@ export default function Home() {
             <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" data-testid="link-instagram" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 border-y border-border">
-            {[
-              "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=400&h=400&q=80",
-              "https://images.unsplash.com/photo-1547751613-efd3e0e7a9f5?auto=format&fit=crop&w=400&h=400&q=80",
-              "https://images.unsplash.com/photo-1611462985328-9f3b6b6d7d26?auto=format&fit=crop&w=400&h=400&q=80",
-              "https://images.unsplash.com/photo-1569017388730-020b5f80a004?auto=format&fit=crop&w=400&h=400&q=80",
-              "https://images.unsplash.com/photo-1576858574144-9ae1ebcf5ae5?auto=format&fit=crop&w=400&h=400&q=80",
-              "https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&w=400&h=400&q=80",
-            ].map((img, i) => (
+            {["/insta-1.png", "/insta-2.png", "/product-hat.png", "/hero.png", "/insta-3.png", "/drop-editorial.png"].map((img, i) => (
               <a key={i} href="#" data-testid={`link-instagram-post-${i}`} className="relative aspect-square group block overflow-hidden">
                 <img src={img} alt={`Almost Elite crew post ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -651,40 +596,31 @@ export default function Home() {
         </section>
 
         {/* Join 10,000+ Municipal Legends / Newsletter */}
-        <section className="relative text-white overflow-hidden">
+        <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img
-              src="https://images.unsplash.com/photo-1566553453461-df79e16aace6?auto=format&fit=crop&w=1800&q=85"
-              alt="Join the Almost Elite crew"
-              className="w-full h-full object-cover"
-            />
-            {/* Green-to-dark fade — image clearly visible top, dark at bottom for form */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(10,28,14,0.4) 0%, rgba(10,28,14,0.75) 55%, rgba(5,15,8,0.97) 100%)" }} />
+            <img src="/hero.png" alt="Join the Almost Elite crew" className="w-full h-full object-cover opacity-30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/80 to-zinc-900/70" />
           </div>
-          <div className="relative z-10 py-32 container mx-auto px-4 max-w-4xl text-center">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <span className="w-10 h-px bg-accent" />
-              <p className="text-accent font-bold tracking-[0.2em] uppercase text-sm">10,000+ Municipal Legends Already In</p>
-              <span className="w-10 h-px bg-accent" />
-            </div>
-            <h2 className="font-display font-black italic text-6xl md:text-9xl uppercase tracking-tighter leading-[0.88] mb-6">
-              JOIN THE<br/><span className="text-accent">CREW.</span>
+          <div className="relative z-10 container mx-auto px-4 max-w-4xl text-center">
+            <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
+            <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter mb-4">
+              JOIN THE CREW
             </h2>
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Get 15% off your first order. Early access to drops, charity round announcements, and highly questionable golf tips.
+            <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto">
+              Get 15% off your first order. Early access to drops, charity round announcements, and highly questionable golf tips. No spam — just the good stuff.
             </p>
-            <form className="flex flex-col sm:flex-row gap-0 max-w-lg mx-auto border border-white/20" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
               <Input
                 type="email"
                 placeholder="ENTER YOUR EMAIL"
                 data-testid="input-email-newsletter"
-                className="h-16 rounded-none border-0 bg-white/10 text-white placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 text-base px-6 flex-1"
+                className="h-14 rounded-none bg-white/10 border-white/20 text-white placeholder:text-white/40 focus-visible:ring-accent focus-visible:border-accent"
                 required
               />
               <Button
                 type="submit"
                 data-testid="button-newsletter-submit"
-                className="h-16 px-10 rounded-none bg-accent hover:bg-white hover:text-black text-white font-black uppercase tracking-widest shrink-0 transition-colors"
+                className="h-14 px-8 rounded-none bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider shrink-0"
               >
                 Sign Up <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
