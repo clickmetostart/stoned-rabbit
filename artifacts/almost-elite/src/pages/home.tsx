@@ -241,7 +241,7 @@ function CollabBrands() {
   return (
     <section className="relative py-16 overflow-hidden">
       <div className="absolute top-0 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
-        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(4rem, 10vw, 10rem)", opacity: 0.05 }}>ICONIC</span>
+        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>ICONIC</span>
       </div>
       <div className="relative z-10">
         <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
