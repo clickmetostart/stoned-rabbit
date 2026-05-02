@@ -281,7 +281,18 @@ export default function Charity() {
 
         {/* ── FEATURED EVENT ────────────────────────────────────────── */}
         <section id="featured" className="relative py-24 overflow-hidden">
-          <GhostWord word="SCRAMBLE" />
+          <div className="absolute inset-0 flex items-center pointer-events-none select-none z-0" style={{ overflow: "visible" }}>
+            <span
+              className="font-display font-black italic uppercase text-white whitespace-nowrap leading-none"
+              style={{
+                fontSize: "clamp(6rem, 22vw, 22rem)",
+                opacity: 0.032,
+                marginLeft: "30%",
+              }}
+            >
+              REGISTER
+            </span>
+          </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-5xl mx-auto">
               <AccentLine className="w-16 mb-8" />
