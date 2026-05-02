@@ -1,6 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Link } from "wouter";
-import { ArrowRight, Star, Heart, Users, Trophy } from "lucide-react";
+import { ArrowRight, Star, Heart, Users, Trophy, X, ShoppingBag, MapPin, Calendar, ChevronDown } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 
@@ -40,7 +41,177 @@ const FEATURED_PRODUCTS = [
   { name: "Classic Vibe", price: "$50", was: "$75", img: "/polo-retro.png" },
 ];
 
+const SIZES = ["S/M", "L/XL", "XXL"];
+
+function RegisterModal({ onClose }: { onClose: () => void }) {
+  const [size, setSize] = useState<string | null>(null);
+  const [added, setAdded] = useState(false);
+
+  function handleClaim() {
+    if (!size) return;
+    setAdded(true);
+  }
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/85 backdrop-blur-sm" onClick={onClose} />
+
+      {/* Panel */}
+      <motion.div
+        className="relative z-10 w-full max-w-4xl overflow-hidden"
+        style={{ background: "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)", border: "1px solid rgba(255,255,255,0.08)" }}
+        initial={{ opacity: 0, y: 60, scale: 0.96 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 40, scale: 0.97 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {/* Orange top bar */}
+        <div className="h-1.5 bg-accent w-full" />
+
+        {/* Close */}
+        <button
+          onClick={onClose}
+          className="absolute top-5 right-5 z-20 text-white/40 hover:text-white transition-colors"
+        >
+          <X className="w-6 h-6" />
+        </button>
+
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          {/* LEFT — Hat */}
+          <div className="relative overflow-hidden bg-black/30" style={{ minHeight: 420 }}>
+            <img
+              src="/scramble-specialist-hat.jpg"
+              alt="Scramble Specialist Hat"
+              className="w-full h-full object-cover"
+              style={{ minHeight: 420 }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+
+            {/* Ghost */}
+            <div className="absolute bottom-0 right-0 pointer-events-none overflow-hidden leading-none">
+              <span
+                className="font-display font-black italic uppercase text-white whitespace-nowrap"
+                style={{ fontSize: "clamp(4rem, 12vw, 10rem)", opacity: 0.07 }}
+              >
+                HAT
+              </span>
+            </div>
+
+            <div className="absolute top-5 left-5">
+              <span className="bg-accent text-white text-xs font-black uppercase px-3 py-1.5 tracking-widest">
+                Event Only Drop
+              </span>
+            </div>
+            <div className="absolute bottom-6 left-6 right-6">
+              <p className="font-display font-black italic text-3xl uppercase text-white leading-tight mb-1">
+                Scramble Specialist
+              </p>
+              <p className="text-white/55 text-sm">Limited-edition · Boy's &amp; Girls Charity Outing</p>
+              <p className="text-accent font-black text-2xl mt-3">$50</p>
+            </div>
+          </div>
+
+          {/* RIGHT — Details + form */}
+          <div className="p-8 md:p-10 flex flex-col justify-between">
+            <div>
+              {/* Event header */}
+              <div className="mb-7">
+                <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">
+                  Fore A Good Cause — Boy's &amp; Girls Charity
+                </p>
+                <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter leading-none text-white mb-5">
+                  CLAIM YOUR<br />EVENT MERCH.
+                </h2>
+                <div className="space-y-2 text-white/50 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-accent flex-shrink-0" />
+                    <span>May 30th, 2026</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
+                    <span>XYZ Golf Course</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ShoppingBag className="w-4 h-4 text-accent flex-shrink-0" />
+                    <span>Delivered to you <span className="text-white font-semibold">at the event</span></span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-px bg-white/8 mb-7" />
+
+              {/* Description */}
+              <p className="text-white/55 text-sm leading-relaxed mb-7">
+                The <span className="text-accent font-bold">Scramble Specialist</span> trucker hat was built for this outing — and only this one. Order yours before the event, pick it up on game day. Part of every purchase supports the{" "}
+                <span className="text-white font-semibold">Boys &amp; Girls Clubs of America</span>.
+              </p>
+
+              {/* Size selector */}
+              <div className="mb-7">
+                <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-3">Select Size</p>
+                <div className="flex gap-2">
+                  {SIZES.map(s => (
+                    <button
+                      key={s}
+                      onClick={() => setSize(s)}
+                      className={`flex-1 h-11 border font-bold uppercase tracking-wider text-sm transition-all duration-150 ${
+                        size === s
+                          ? "border-accent bg-accent text-white"
+                          : "border-white/20 text-white/60 hover:border-white/50 hover:text-white"
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+                {!size && (
+                  <p className="text-white/30 text-xs mt-2">Choose a size to continue</p>
+                )}
+              </div>
+            </div>
+
+            {/* CTA */}
+            {!added ? (
+              <button
+                onClick={handleClaim}
+                disabled={!size}
+                className={`w-full h-14 font-black italic uppercase tracking-widest text-base flex items-center justify-center gap-2 transition-all duration-200 ${
+                  size
+                    ? "bg-accent text-white hover:bg-white hover:text-black cursor-pointer"
+                    : "bg-white/10 text-white/30 cursor-not-allowed"
+                }`}
+              >
+                Claim My Merch — $50 <ArrowRight className="w-4 h-4" />
+              </button>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="w-full h-14 bg-green-600/20 border border-green-500/40 flex items-center justify-center gap-2"
+              >
+                <span className="text-green-400 font-black uppercase tracking-widest text-sm">
+                  You're in — See you at the scramble!
+                </span>
+              </motion.div>
+            )}
+            <p className="text-white/25 text-xs text-center mt-4">
+              Your hat will be ready at check-in · No shipping required
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function Charity() {
+  const [registerOpen, setRegisterOpen] = useState(false);
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />
@@ -281,13 +452,13 @@ export default function Charity() {
 
         {/* ── FEATURED EVENT ────────────────────────────────────────── */}
         <section id="featured" className="relative py-24 overflow-hidden">
-          <div className="absolute inset-0 flex items-center pointer-events-none select-none z-0" style={{ overflow: "visible" }}>
+          <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none z-0">
             <span
               className="font-display font-black italic uppercase text-white whitespace-nowrap leading-none"
               style={{
                 fontSize: "clamp(6rem, 22vw, 22rem)",
                 opacity: 0.032,
-                marginLeft: "30%",
+                transform: "translateX(15%)",
               }}
             >
               REGISTER
@@ -329,11 +500,17 @@ export default function Charity() {
                     </p>
                   </div>
                   <div className="flex flex-col gap-3">
-                    <button className="w-full bg-accent text-white font-black italic uppercase tracking-widest h-14 text-base hover:bg-white hover:text-black transition-colors duration-200 flex items-center justify-center gap-2">
-                      Support The Scramble <ArrowRight className="w-4 h-4" />
+                    <button
+                      onClick={() => setRegisterOpen(true)}
+                      className="w-full bg-accent text-white font-black italic uppercase tracking-widest h-14 text-base hover:bg-white hover:text-black transition-colors duration-200 flex items-center justify-center gap-2"
+                    >
+                      Register for the Event <ArrowRight className="w-4 h-4" />
                     </button>
-                    <button className="w-full border border-white/20 text-white font-bold uppercase tracking-widest h-14 text-base hover:bg-white/10 transition-colors duration-200">
-                      Join the Round
+                    <button
+                      onClick={() => setRegisterOpen(true)}
+                      className="w-full border border-white/20 text-white font-bold uppercase tracking-widest h-14 text-base hover:bg-white/10 transition-colors duration-200"
+                    >
+                      Claim Event Merch
                     </button>
                   </div>
                 </div>
@@ -463,6 +640,10 @@ export default function Charity() {
         </footer>
 
       </main>
+
+      <AnimatePresence>
+        {registerOpen && <RegisterModal onClose={() => setRegisterOpen(false)} />}
+      </AnimatePresence>
     </div>
   );
 }
