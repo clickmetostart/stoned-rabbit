@@ -105,9 +105,9 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop: logo */}
-          <Link href="/" className="hidden lg:block mr-8 flex-shrink-0">
-            <img src="/logo-badge.png" alt="Almost Elite" className="h-12 w-12 object-contain" />
+          {/* Desktop: wordmark */}
+          <Link href="/" className="hidden lg:block font-display font-black italic text-3xl tracking-tighter mr-8 hover:text-primary transition-colors">
+            ALMOST ELITE
           </Link>
 
           {/* Desktop nav links */}
