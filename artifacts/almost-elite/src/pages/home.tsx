@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ShoppingCart, Search, User, Menu, Star, ArrowRight, CheckCircle2 } from "lucide-react";
+import { useRef } from "react";
+import { ShoppingCart, Search, User, Menu, Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -12,261 +13,241 @@ const fadeInUp = {
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
 };
+
+const PRODUCTS_DROPPED = [
+  { name: "Clubhouse Legend", price: "$50", was: "$75", img: "/product-polo.png", badge: "NEW DROP", slug: "clubhouse-legend" },
+  { name: "The Range Wrangler", price: "$50", was: "$75", img: "/product-hat.png", badge: "BEST SELLER", slug: "range-wrangler" },
+  { name: "Fly It 300", price: "$50", was: "$75", img: "/product-womens.png", badge: "NEW DROP", slug: "fly-it-300" },
+  { name: "Gollllfffff", price: "$50", was: "$75", img: "/drop-editorial.png", badge: "", slug: "gollllfffff" },
+  { name: "The Backwoods Fade", price: "$50", was: "$75", img: "/product-polo.png", badge: "LIMITED", slug: "backwoods-fade" },
+];
+
+const PRODUCTS_COLLECTION = [
+  { name: "Headcover Rebellion", price: "$45", img: "/product-hat.png", badge: "", slug: "headcover-rebellion" },
+  { name: "The Cool Crowd", price: "$68", img: "/product-polo.png", badge: "BEST SELLER", slug: "cool-crowd" },
+  { name: "Grip It & Rip It", price: "$50", img: "/product-womens.png", badge: "", slug: "grip-it-rip-it" },
+  { name: "Municipal Legend", price: "$55", img: "/drop-editorial.png", badge: "NEW", slug: "municipal-legend" },
+  { name: "Pints Over Pars", price: "$48", img: "/product-polo.png", badge: "", slug: "pints-over-pars" },
+];
+
+function ProductSlider({ products, title, href, gradient }: { products: typeof PRODUCTS_DROPPED; title: string; href: string; gradient?: string }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (dir: "left" | "right") => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: dir === "right" ? 300 : -300, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <section
+      className="py-16 overflow-hidden"
+      style={{ background: gradient || "hsl(var(--background))" }}
+    >
+      <div className="px-6 lg:px-16 mb-6 flex items-end justify-between">
+        <a href={href} className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-foreground hover:text-primary transition-colors leading-none">
+          {title}
+        </a>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => scroll("left")}
+            data-testid="slider-prev"
+            className="w-11 h-11 flex items-center justify-center border border-border bg-background hover:bg-secondary transition-colors"
+            aria-label="Previous"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            data-testid="slider-next"
+            className="w-11 h-11 flex items-center justify-center border border-border bg-background hover:bg-secondary transition-colors"
+            aria-label="Next"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="flex gap-3 overflow-x-auto scrollbar-hide px-6 lg:px-16 pb-4"
+        style={{ scrollSnapType: "x mandatory" }}
+      >
+        {products.map((p, i) => (
+          <Link
+            key={i}
+            href={`/product/${p.slug}`}
+            data-testid={`card-product-${p.slug}`}
+            className="group flex-shrink-0 w-[260px] md:w-[290px]"
+            style={{ scrollSnapAlign: "start" }}
+          >
+            <div className="relative overflow-hidden bg-secondary" style={{ aspectRatio: "9.6/13" }}>
+              {p.badge && (
+                <div className="absolute top-3 left-3 z-10 bg-accent text-white text-xs font-bold px-2.5 py-1 uppercase tracking-wider">
+                  {p.badge}
+                </div>
+              )}
+              <div
+                className="w-full h-full"
+                style={{ transform: "skewX(-15deg) translateX(18%)", transformOrigin: "center" }}
+              >
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ transform: "skewX(15deg) translateX(-18%)" }}
+                />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-primary">
+                <p className="text-primary-foreground text-center font-bold uppercase tracking-wider text-sm">Quick Add</p>
+              </div>
+            </div>
+            <div className="mt-3 px-1">
+              <p className="font-bold text-base leading-tight group-hover:text-primary transition-colors">{p.name}</p>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="font-bold text-foreground">{p.price}</span>
+                {p.was && <span className="text-muted-foreground line-through text-sm">{p.was}</span>}
+                {p.was && <span className="text-accent text-xs font-bold uppercase">Save {`$${parseInt(p.was.replace("$", "")) - parseInt(p.price.replace("$", ""))}`}</span>}
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
+
       {/* Promotional Banner */}
-      <div className="bg-primary text-primary-foreground text-center py-2 text-sm font-semibold tracking-wide">
-        FREE SHIPPING ON ORDERS OVER $100. WELCOME TO THE CREW.
+      <div className="bg-primary text-primary-foreground text-center py-2 text-xs font-bold tracking-widest uppercase">
+        Free Shipping on Orders Over $100&nbsp;&nbsp;•&nbsp;&nbsp;Municipal Legends Welcome&nbsp;&nbsp;•&nbsp;&nbsp;Play Hard. Laugh Harder.
       </div>
 
       {/* Sticky Navbar */}
-      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
+      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4 lg:hidden">
-            <Button variant="ghost" size="icon" className="text-foreground">
-              <Menu className="h-6 w-6" />
-            </Button>
-            <Link href="/" className="font-display font-bold italic text-2xl tracking-tighter">
-              ALMOST ELITE
-            </Link>
+            <Button variant="ghost" size="icon" data-testid="button-menu-mobile"><Menu className="h-6 w-6" /></Button>
+            <Link href="/" className="font-display font-black italic text-2xl tracking-tighter">ALMOST ELITE</Link>
           </div>
-
           <nav className="hidden lg:flex items-center gap-8 font-semibold text-sm tracking-wide">
-            <Link href="/" className="font-display font-bold italic text-3xl tracking-tighter mr-6">
-              ALMOST ELITE
-            </Link>
-            <Link href="/men" className="hover:text-primary transition-colors">MEN</Link>
-            <Link href="/women" className="hover:text-primary transition-colors">WOMEN</Link>
-            <Link href="/hats" className="hover:text-primary transition-colors">HATS</Link>
-            <Link href="/accessories" className="hover:text-primary transition-colors">ACCESSORIES</Link>
-            <Link href="/drop" className="text-accent hover:text-accent/80 transition-colors">THE DROP</Link>
+            <Link href="/" className="font-display font-black italic text-3xl tracking-tighter mr-6">ALMOST ELITE</Link>
+            <Link href="/men" className="hover:text-primary transition-colors" data-testid="link-men">MEN</Link>
+            <Link href="/women" className="hover:text-primary transition-colors" data-testid="link-women">WOMEN</Link>
+            <Link href="/hats" className="hover:text-primary transition-colors" data-testid="link-hats">HATS</Link>
+            <Link href="/accessories" className="hover:text-primary transition-colors" data-testid="link-accessories">ACCESSORIES</Link>
+            <Link href="/drop" className="text-accent hover:text-accent/80 transition-colors font-bold" data-testid="link-drop">THE DROP</Link>
+            <Link href="/charity" className="hover:text-primary transition-colors" data-testid="link-charity">CHARITY ROUNDS</Link>
           </nav>
-
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="hidden sm:flex text-foreground">
-              <Search className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="hidden sm:flex text-foreground">
-              <User className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="text-foreground">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" className="hidden sm:flex" data-testid="button-search"><Search className="h-5 w-5" /></Button>
+            <Button variant="ghost" size="icon" className="hidden sm:flex" data-testid="button-account"><User className="h-5 w-5" /></Button>
+            <Button variant="ghost" size="icon" data-testid="button-cart"><ShoppingCart className="h-5 w-5" /></Button>
           </div>
         </div>
       </header>
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden bg-zinc-900">
+
+        {/* Hero */}
+        <section className="relative h-[90vh] w-full flex items-end justify-center overflow-hidden bg-zinc-900 pb-16">
           <div className="absolute inset-0 z-0">
-            <img 
-              src="/hero.png" 
-              alt="Friends golfing casually" 
-              className="w-full h-full object-cover opacity-70"
-            />
+            <img src="/hero.png" alt="Almost Elite golfers" className="w-full h-full object-cover opacity-65" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           </div>
-          
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-              className="max-w-4xl mx-auto"
-            >
-              <motion.h1 
-                variants={fadeInUp}
-                className="font-display font-black italic text-6xl md:text-8xl lg:text-9xl uppercase leading-[0.85] tracking-tighter mb-6"
-              >
-                ALMOST ELITE.<br/>TOTALLY WORTH IT.
+            <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-5xl mx-auto">
+              <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-9xl uppercase leading-[0.85] tracking-tighter mb-4">
+                ALMOST ELITE.
               </motion.h1>
-              <motion.p 
-                variants={fadeInUp}
-                className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-medium"
-              >
-                Golf clothes that don't take themselves too seriously. Look sharp. Play loose. Have fun.
+              <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-9xl uppercase leading-[0.85] tracking-tighter mb-6 text-accent">
+                TOTALLY WORTH IT.
+              </motion.h1>
+              <motion.p variants={fadeInUp} className="text-lg md:text-xl text-white/85 mb-8 max-w-xl mx-auto">
+                Performance-ready gear. Municipal-approved attitude.
               </motion.p>
-              <motion.div variants={fadeInUp}>
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-bold tracking-wider rounded-none h-14 px-10 text-lg uppercase">
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button size="lg" data-testid="button-shop-drop" className="bg-accent hover:bg-accent/90 text-white font-bold tracking-wider rounded-none h-14 px-10 text-base uppercase">
                   Shop The Drop
+                </Button>
+                <Button size="lg" variant="outline" data-testid="button-find-out-more" className="border-white text-white hover:bg-white hover:text-foreground rounded-none h-14 px-10 text-base uppercase font-bold bg-transparent">
+                  Find Out More
                 </Button>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* Scrolling Text Marquee */}
-        <div className="bg-primary text-primary-foreground overflow-hidden py-4 border-y-4 border-primary-foreground/10">
-          <div className="whitespace-nowrap flex font-display font-bold italic text-3xl tracking-widest uppercase">
-            <motion.div 
+        {/* Scrolling Marquee */}
+        <div className="bg-primary text-primary-foreground overflow-hidden py-4 border-y-2 border-primary-foreground/10">
+          <div className="whitespace-nowrap flex font-display font-bold italic text-2xl tracking-widest uppercase">
+            <motion.div
               className="flex gap-8 items-center"
-              animate={{ x: [0, -1035] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
+              animate={{ x: [0, -1200] }}
+              transition={{ repeat: Infinity, ease: "linear", duration: 18 }}
             >
-              <span>ALMOST ELITE</span>
-              <span className="text-accent">•</span>
-              <span>NOT QUITE PRO</span>
-              <span className="text-accent">•</span>
-              <span>STILL LOOKING GOOD</span>
-              <span className="text-accent">•</span>
-              <span>THE CREW &gt; THE SCORE</span>
-              <span className="text-accent">•</span>
-              <span>ALMOST ELITE</span>
-              <span className="text-accent">•</span>
-              <span>NOT QUITE PRO</span>
-              <span className="text-accent">•</span>
-              <span>STILL LOOKING GOOD</span>
-              <span className="text-accent">•</span>
-              <span>THE CREW &gt; THE SCORE</span>
-              <span className="text-accent">•</span>
+              {["ALMOST ELITE", "MUNICIPAL LEGENDS WELCOME", "THE CREW > THE SCORE", "PLAY HARD. LAUGH HARDER.", "NOT FOR THE TOUR. FOR THE ROUND.", "ALMOST ELITE", "MUNICIPAL LEGENDS WELCOME", "THE CREW > THE SCORE", "PLAY HARD. LAUGH HARDER.", "NOT FOR THE TOUR. FOR THE ROUND."].map((t, i) => (
+                <span key={i} className={i % 2 === 0 ? "text-primary-foreground" : "text-accent"}>
+                  {i % 2 !== 0 ? "•" : ""} {t} {i % 2 !== 0 ? "•" : ""}
+                </span>
+              ))}
             </motion.div>
           </div>
         </div>
 
-        {/* Category Row */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-              {[
-                { title: "Men's Polos", img: "/product-polo.png" },
-                { title: "Women's Tees", img: "/product-womens.png" },
-                { title: "Hats", img: "/product-hat.png" },
-                { title: "Accessories", img: "/hero.png" }, // Fallback
-                { title: "New Arrivals", img: "/drop-editorial.png" }, // Fallback
-              ].map((cat, i) => (
-                <Link key={i} href={`/category/${cat.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} className="group block text-center">
-                  <div className="relative aspect-square overflow-hidden bg-secondary mb-4 rounded-none">
-                    <img src={cat.img} alt={cat.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
-                  </div>
-                  <h3 className="font-display font-bold italic text-xl uppercase tracking-wide group-hover:text-primary transition-colors">{cat.title}</h3>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Collection */}
-        <section className="py-20 bg-secondary/30">
-          <div className="container mx-auto px-4">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-              <div>
-                <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-foreground leading-none">
-                  THE COURSE-TO-BAR<br/>COLLECTION
-                </h2>
+        {/* Split Panel: On Course / In the Bag */}
+        <section className="grid grid-cols-1 md:grid-cols-2 h-[75vh]">
+          {[
+            {
+              title: "On Course",
+              sub: "What you wear when you're actually out there.",
+              cta: "Shop Apparel",
+              img: "/product-polo.png",
+              href: "/men",
+              testId: "link-on-course"
+            },
+            {
+              title: "In the Bag",
+              sub: "Hats, gloves, and gear that stay with you from tee box to clubhouse.",
+              cta: "Shop Essentials",
+              img: "/product-hat.png",
+              href: "/accessories",
+              testId: "link-in-the-bag"
+            }
+          ].map((panel, i) => (
+            <Link key={i} href={panel.href} data-testid={panel.testId} className="group relative overflow-hidden flex items-end pb-10 px-8">
+              <div className="absolute inset-0">
+                <img src={panel.img} alt={panel.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
               </div>
-              <Button variant="outline" className="rounded-none border-foreground/20 font-bold uppercase tracking-wider h-12 px-8">
-                View All
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { name: "The Mulliganeer Polo", price: "$68", img: "/product-polo.png", badge: "NEW DROP" },
-                { name: "Sunday Scaries Tee", price: "$45", img: "/product-womens.png", badge: "" },
-                { name: "19th Hole Snapback", price: "$35", img: "/product-hat.png", badge: "BEST SELLER" },
-                { name: "Fairway to Tavern Polo", price: "$68", img: "/product-polo.png", badge: "" },
-              ].map((product, i) => (
-                <Link key={i} href="#" className="group block bg-card">
-                  <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
-                    {product.badge && (
-                      <div className="absolute top-4 left-4 z-10 bg-accent text-accent-foreground text-xs font-bold px-3 py-1 uppercase tracking-wider">
-                        {product.badge}
-                      </div>
-                    )}
-                    <img src={product.img} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    
-                    {/* Quick Add Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-none font-bold uppercase tracking-wider">
-                        Quick Add
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="p-4 border border-t-0 border-border">
-                    <h3 className="font-bold text-lg leading-tight mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
-                    <p className="text-muted-foreground font-medium">{product.price}</p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+              <div className="relative z-10 text-white">
+                <h2 className="font-display font-black italic text-5xl uppercase tracking-tighter leading-none mb-2">{panel.title}</h2>
+                <p className="text-white/80 mb-5 text-base max-w-xs">{panel.sub}</p>
+                <span className="inline-block bg-primary text-primary-foreground font-bold uppercase tracking-widest text-sm px-6 py-3 group-hover:bg-accent transition-colors">
+                  {panel.cta}
+                </span>
+              </div>
+            </Link>
+          ))}
         </section>
 
-        {/* Brand Story */}
-        <section className="py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="text-center max-w-4xl mx-auto mb-20"
-            >
-              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
-                Why We Exist
-              </motion.p>
-              <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
-                THE INDUSTRY GOT IT<br/>BACKWARDS.
-              </motion.h2>
-              <motion.p variants={fadeInUp} className="text-xl opacity-90 font-medium max-w-3xl mx-auto leading-relaxed">
-                Golf brands built everything around who golfers are supposed to be — polished, performance-obsessed, chasing perfection. But most golfers aren't chasing a tour card. They're chasing a good time. Almost Elite exists for that golfer. The one who shows up for the experience, the friends, and the fun — and wants to look the part without the pretense.
-              </motion.p>
-            </motion.div>
+        {/* JUST DROPPED Slider */}
+        <ProductSlider
+          products={PRODUCTS_DROPPED}
+          title="JUST DROPPED"
+          href="/drop"
+          gradient="linear-gradient(107deg, hsl(var(--background)) 4%, hsl(var(--accent) / 0.08) 25%, hsl(var(--primary) / 0.08) 50%, hsl(var(--background)) 80%)"
+        />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-w-5xl mx-auto border border-primary-foreground/20">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center p-12 border-b md:border-b-0 md:border-r border-primary-foreground/20"
-              >
-                <div className="w-14 h-14 mx-auto bg-accent/20 text-accent flex items-center justify-center mb-6">
-                  <Star className="w-7 h-7 fill-accent" />
-                </div>
-                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Play for the Experience</h3>
-                <p className="opacity-75 leading-relaxed">You're not chasing perfection — you're chasing enjoyment. We make gear for that golfer, because that golfer is most golfers.</p>
-              </motion.div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center p-12 border-b md:border-b-0 md:border-r border-primary-foreground/20"
-              >
-                <div className="w-14 h-14 mx-auto bg-accent/20 text-accent flex items-center justify-center mb-6">
-                  <CheckCircle2 className="w-7 h-7" />
-                </div>
-                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Tee Box to Bar Stool</h3>
-                <p className="opacity-75 leading-relaxed">Apparel that moves with your whole day — not just the four hours you're on the course. Versatility isn't an afterthought. It's the point.</p>
-              </motion.div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeInUp}
-                className="text-center p-12"
-              >
-                <div className="w-14 h-14 mx-auto bg-accent/20 text-accent flex items-center justify-center mb-6">
-                  <User className="w-7 h-7" />
-                </div>
-                <h3 className="font-display font-bold italic text-2xl uppercase mb-3">Confident, Not Serious</h3>
-                <p className="opacity-75 leading-relaxed">Look put-together. Don't take yourself too seriously. That's the whole brief. "I care about how I show up — I just don't need anyone to know I tried this hard."</p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* The Flaw We Fixed */}
+        {/* Municipal Legends Section */}
         <section className="py-24 bg-zinc-950 text-white overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -274,35 +255,40 @@ export default function Home() {
                 variants={staggerContainer}
               >
                 <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
-                  The Gap We Closed
+                  For the Everyday Golfer
                 </motion.p>
-                <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none mb-8">
-                  BUILT FOR WHO<br/>YOU ACTUALLY ARE.
+                <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
+                  MUNICIPAL<br/>LEGENDS<br/>WELCOME.
                 </motion.h2>
-                <motion.p variants={fadeInUp} className="text-white/70 text-lg leading-relaxed mb-6">
-                  The golf apparel industry optimized for who golfers are supposed to be, not who they are. Everything — the products, the marketing, the messaging — centers on performance and prestige.
+                <motion.p variants={fadeInUp} className="text-white/70 text-lg leading-relaxed mb-4">
+                  Not every golfer plays private clubs. Most of us play where the tee sheets fill up early, the carts rattle a little, and the greens keeper is doing his best.
                 </motion.p>
-                <motion.p variants={fadeInUp} className="text-white/70 text-lg leading-relaxed">
-                  That works for some. But it leaves out a massive, growing group of players who approach the game as a social, laid-back experience. Players who still care about style and quality — but also want personality, humor, and a brand that actually gets the joke. That's who we're for.
+                <motion.p variants={fadeInUp} className="text-white/70 text-lg leading-relaxed mb-8">
+                  And that's exactly where the best rounds happen. Almost Elite is built for the golfers who show up week after week — chasing better shots, better rounds, and better stories for the clubhouse after.
                 </motion.p>
+                <motion.div variants={fadeInUp}>
+                  <Button size="lg" data-testid="button-shop-muni" className="bg-accent hover:bg-accent/90 text-white font-bold tracking-wider rounded-none h-14 px-10 text-base uppercase">
+                    Shop Muni Gear
+                  </Button>
+                </motion.div>
               </motion.div>
+
               <motion.div
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-                className="space-y-6"
+                transition={{ duration: 0.7 }}
+                className="grid grid-cols-2 gap-4"
               >
                 {[
-                  { label: "What the industry sells", value: "Aspiration", sub: "Who you're supposed to be" },
-                  { label: "What Almost Elite sells", value: "Authenticity", sub: "Who you actually are" },
-                  { label: "What they assume you want", value: "Prestige", sub: "Performance-first identity" },
-                  { label: "What you actually want", value: "Belonging", sub: "A brand that gets it" },
-                ].map((item, i) => (
-                  <div key={i} className={`p-6 border-l-4 ${i % 2 === 1 ? "border-accent bg-white/5" : "border-white/20 bg-white/[0.02]"}`}>
-                    <p className="text-white/50 text-xs uppercase tracking-widest mb-1">{item.label}</p>
-                    <p className={`font-display font-black italic text-3xl uppercase ${i % 2 === 1 ? "text-accent" : "text-white"}`}>{item.value}</p>
-                    <p className="text-white/60 text-sm mt-1">{item.sub}</p>
+                  { headline: "Golf Is Better With Friends", body: "The best rounds aren't always the lowest scores — they're the ones shared with the people you play with every weekend." },
+                  { headline: "Every Golfer Has a Story", body: "The drive that almost carried the bunker. The birdie that almost dropped. The round that almost broke 80." },
+                  { headline: "Wear the Story", body: "From Municipal Legend to Pints Over Pars, the gear should be part of the fun." },
+                  { headline: "Performance Where It Counts", body: "Breathable fabrics. Athletic fits. Comfort built for 18 holes and whatever happens after." },
+                ].map((card, i) => (
+                  <div key={i} className={`p-6 border ${i % 2 === 0 ? "border-white/10 bg-white/[0.03]" : "border-accent/30 bg-accent/[0.06]"}`}>
+                    <h3 className={`font-display font-bold italic text-xl uppercase mb-2 ${i % 2 === 0 ? "text-white" : "text-accent"}`}>{card.headline}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{card.body}</p>
                   </div>
                 ))}
               </motion.div>
@@ -310,41 +296,131 @@ export default function Home() {
           </div>
         </section>
 
-        {/* The Drop Editorial */}
+        {/* Brand Pillars */}
+        <section className="py-20 bg-secondary/40 border-y border-border">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
+              {[
+                { icon: <Shirt className="w-8 h-8" />, title: "The Look", body: "Intentional design. Quiet personality. Gear crafted to stand apart without trying too hard." },
+                { icon: <Zap className="w-8 h-8" />, title: "The Feel", body: "Soft enough for lounging. Built enough for playing. Performance without feeling like performance wear." },
+                { icon: <Heart className="w-8 h-8" />, title: "The Energy", body: "We don't just make polos, we make statements. Show up confident, comfortable, and unapologetically yourself." },
+              ].map((p, i) => (
+                <motion.div
+                  key={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                  className={`text-center p-12 ${i < 2 ? "border-b md:border-b-0 md:border-r border-border" : ""}`}
+                >
+                  <div className="w-14 h-14 mx-auto text-primary flex items-center justify-center mb-6">{p.icon}</div>
+                  <h3 className="font-display font-bold italic text-2xl uppercase tracking-wide mb-3">{p.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed max-w-xs mx-auto">{p.body}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Shop The Collection Slider */}
+        <ProductSlider
+          products={PRODUCTS_COLLECTION}
+          title="SHOP THE COLLECTION"
+          href="/men"
+          gradient="linear-gradient(107deg, hsl(var(--background)) 4%, hsl(var(--primary) / 0.06) 25%, hsl(var(--accent) / 0.06) 50%, hsl(var(--background)) 80%)"
+        />
+
+        {/* The Brand Story */}
+        <section className="py-24 bg-primary text-primary-foreground">
+          <div className="container mx-auto px-6 lg:px-16">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={staggerContainer}
+              className="max-w-4xl"
+            >
+              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
+                Built for the Rounds That Matter Most
+              </motion.p>
+              <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
+                FOR PLAYERS WHO LOVE THE GAME ENOUGH TO TAKE IT SERIOUSLY — AND THEMSELVES A LITTLE LESS.
+              </motion.h2>
+              <motion.p variants={fadeInUp} className="text-xl opacity-90 leading-relaxed max-w-3xl mb-6">
+                This isn't gear for tour vans and TV cameras. It's for early tee times, public courses, weekend groups, and the round that somehow turns into a few extra drinks afterward.
+              </motion.p>
+              <motion.p variants={fadeInUp} className="text-lg opacity-75 leading-relaxed max-w-3xl mb-10">
+                For the golfers who grind for par, celebrate bogey saves, and know the best part of the game isn't perfection — it's playing.
+              </motion.p>
+              <motion.p variants={fadeInUp} className="font-display font-black italic text-3xl uppercase tracking-wide text-accent">
+                You might not be elite... But you're definitely Almost.
+              </motion.p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Charity Rounds Section */}
         <section className="py-24 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                variants={fadeInUp}
-                className="relative aspect-[3/4] w-full max-w-md mx-auto lg:max-w-none"
+                transition={{ duration: 0.7 }}
+                className="relative"
               >
-                <img src="/drop-editorial.png" alt="Golfer at the bar" className="w-full h-full object-cover rounded-none" />
-                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent -z-10 hidden md:block" />
-                <div className="absolute -top-6 -left-6 w-48 h-48 border-2 border-primary -z-10 hidden md:block" />
+                <div className="aspect-square bg-secondary flex items-center justify-center p-16 relative overflow-hidden">
+                  <img src="/drop-editorial.png" alt="Charity Rounds" className="w-full h-full object-cover absolute inset-0 opacity-30" />
+                  <div className="relative z-10 text-center">
+                    <div className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter text-primary leading-none mb-4">
+                      ALMOST<br/>ELITE
+                    </div>
+                    <div className="font-display font-bold italic text-2xl uppercase tracking-widest text-accent">
+                      CHARITY ROUNDS
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-accent -z-10 hidden md:block" />
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerContainer}
-                className="max-w-xl"
               >
-                <motion.div variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase mb-4 text-sm">
-                  The Latest
-                </motion.div>
-                <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-6 text-foreground">
-                  THE 19TH HOLE<br/>COLLECTION
-                </motion.h2>
-                <motion.p variants={fadeInUp} className="text-lg text-muted-foreground mb-8">
-                  Our newest drop is inspired by the best part of the round: the part after the round. Earthy tones, relaxed fits, and fabrics that breathe. Don't overthink it.
+                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">
+                  Almost Elite Charity Rounds
                 </motion.p>
+                <motion.h2 variants={fadeInUp} className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-6">
+                  BECAUSE A GREAT CHARITY SCRAMBLE DESERVES BETTER MERCH THAN A SLEEVE OF BALLS.
+                </motion.h2>
+                <motion.p variants={fadeInUp} className="text-muted-foreground text-lg leading-relaxed mb-5">
+                  Golf has always been about more than the scorecard. It's the people, the stories, and the rounds that turn into something worth remembering.
+                </motion.p>
+                <motion.p variants={fadeInUp} className="text-muted-foreground text-lg leading-relaxed mb-8">
+                  We partner with golf tournaments, nonprofits, and community events to create limited-edition merchandise that helps raise more money, more engagement, and more meaning from every round played. This isn't corporate sponsorship — it's golf culture doing what it does best.
+                </motion.p>
+
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {[
+                    { step: "01", label: "Design The Gear", desc: "Custom hats and apparel built around your event's personality — not pulled from a catalog." },
+                    { step: "02", label: "Drop Before The 1st Shot", desc: "Merch drops early so players are part of the story before the first tee." },
+                    { step: "03", label: "Game Day Ready", desc: "Everything ready at check-in. Clean, organized, built for a smooth round ahead." },
+                    { step: "04", label: "Wear the Story", desc: "The campaign stays open after so players and supporters can still be part of it." },
+                  ].map((s, i) => (
+                    <motion.div key={i} variants={fadeInUp} className="p-4 border border-border">
+                      <p className="text-accent font-bold text-xs tracking-widest mb-1">{s.step}</p>
+                      <p className="font-bold uppercase text-sm mb-1">{s.label}</p>
+                      <p className="text-muted-foreground text-xs leading-relaxed">{s.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+
                 <motion.div variants={fadeInUp}>
-                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold tracking-wider rounded-none h-14 px-10 text-lg uppercase w-full sm:w-auto">
-                    Explore The Drop
+                  <Button size="lg" data-testid="button-charity-rounds" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold tracking-wider rounded-none h-14 px-10 text-base uppercase">
+                    Join Charity Rounds <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </motion.div>
               </motion.div>
@@ -352,31 +428,53 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Featured Charity Event */}
+        <section className="py-20 bg-zinc-950 text-white">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event</p>
+              <h2 className="font-display font-black italic text-4xl md:text-6xl uppercase tracking-tighter leading-none mb-6">
+                BOYS & GIRLS CLUB<br/>CHARITY OUTING
+              </h2>
+              <p className="text-white/60 text-base mb-2 tracking-wider uppercase font-semibold">May 30th, 2026 — XYZ Golf Course</p>
+              <p className="text-white/70 text-lg leading-relaxed max-w-3xl mx-auto mb-8">
+                A day of golf built around four-person teams, shared swings, and the kind of moments that never quite make it onto a scorecard — but always make it into the group chat. Almost Elite is proud to bring a limited-edition <span className="text-accent font-bold">Scramble Specialist</span> drop to life. Designed before the first tee, picked up on game day, and worn long after the final putt drops.
+              </p>
+              <p className="text-white/50 text-base mb-10">
+                Supporting the <span className="text-white font-bold">Boys & Girls Clubs of America</span> — because golf has a way of giving something back.
+              </p>
+              <Button size="lg" data-testid="button-support-scramble" className="bg-accent hover:bg-accent/90 text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase">
+                Support The Scramble
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Social Proof */}
-        <section className="py-24 bg-secondary border-y border-border">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="font-display font-black italic text-5xl uppercase tracking-tighter text-foreground mb-4">
+        <section className="py-24 bg-secondary/30 border-y border-border">
+          <div className="container mx-auto px-6 lg:px-16">
+            <div className="text-center mb-14">
+              <h2 className="font-display font-black italic text-5xl uppercase tracking-tighter text-foreground mb-2">
                 WORD ON THE FAIRWAY
               </h2>
+              <p className="text-muted-foreground">The players shaping modern golf culture — one round at a time.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 { quote: "Shot an 87, looked like a scratch golfer. Totally worth it.", author: "Mike T.", handicap: "15 Handicap" },
-                { quote: "Finally, a brand that understands I'm just here to drink beers and occasionally hit a ball.", author: "Sarah J.", handicap: "Here for the cart" },
-                { quote: "My swing is still garbage, but at least my polo isn't.", author: "Dave R.", handicap: "22 Handicap" },
-              ].map((review, i) => (
-                <div key={i} className="bg-card p-8 border border-border flex flex-col h-full relative">
-                  <div className="flex text-accent mb-4">
-                    {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-5 h-5 fill-current" />)}
+                { quote: "Finally, a brand that understands I'm just here for the experience. The gear makes me feel like I belong out there.", author: "Sarah J.", handicap: "Here for the cart" },
+                { quote: "My swing is still garbage, but at least my polo isn't. Municipal legend status unlocked.", author: "Dave R.", handicap: "22 Handicap" },
+              ].map((r, i) => (
+                <div key={i} data-testid={`card-review-${i}`} className="bg-card p-8 border border-border flex flex-col relative">
+                  <div className="flex text-accent mb-5">
+                    {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 fill-current" />)}
                   </div>
-                  <p className="text-lg italic mb-6 flex-grow">"{review.quote}"</p>
+                  <p className="text-lg italic mb-6 flex-grow">"{r.quote}"</p>
                   <div>
-                    <p className="font-bold uppercase tracking-wider">{review.author}</p>
-                    <p className="text-sm text-muted-foreground">{review.handicap}</p>
+                    <p className="font-bold uppercase tracking-wider text-sm">{r.author}</p>
+                    <p className="text-xs text-muted-foreground">{r.handicap}</p>
                   </div>
-                  {/* Decorative quote mark */}
-                  <div className="absolute top-4 right-6 font-display italic text-8xl text-secondary opacity-50 leading-none">"</div>
+                  <div className="absolute top-4 right-6 font-display italic text-8xl text-secondary opacity-40 leading-none select-none">"</div>
                 </div>
               ))}
             </div>
@@ -385,51 +483,51 @@ export default function Home() {
 
         {/* Instagram Grid */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4 text-center mb-10">
-            <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter mb-2">FOLLOW THE CREW</h2>
-            <a href="#" className="text-accent font-bold hover:underline tracking-widest uppercase">@ALMOSTELITE</a>
+          <div className="container mx-auto px-4 text-center mb-8">
+            <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter mb-1">FOLLOW THE CREW</h2>
+            <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" data-testid="link-instagram" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 border-y border-border">
-            {[
-              "/insta-1.png",
-              "/insta-2.png",
-              "/product-hat.png",
-              "/hero.png",
-              "/insta-3.png",
-              "/drop-editorial.png"
-            ].map((img, i) => (
-              <a key={i} href="#" className="relative aspect-square group block overflow-hidden">
-                <img src={img} alt="Instagram post" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            {["/insta-1.png", "/insta-2.png", "/product-hat.png", "/hero.png", "/insta-3.png", "/drop-editorial.png"].map((img, i) => (
+              <a key={i} href="#" data-testid={`link-instagram-post-${i}`} className="relative aspect-square group block overflow-hidden">
+                <img src={img} alt={`Almost Elite crew post ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold tracking-widest uppercase text-sm border-b-2 border-accent pb-1">View Post</span>
+                  <span className="text-primary-foreground font-bold tracking-widest uppercase text-xs border-b border-accent pb-0.5">View Post</span>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        {/* Newsletter */}
+        {/* Join 10,000+ Municipal Legends / Newsletter */}
         <section className="py-24 bg-zinc-900 text-white">
           <div className="container mx-auto px-4 max-w-4xl text-center">
+            <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
             <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter mb-4">
               JOIN THE CREW
             </h2>
-            <p className="text-lg md:text-xl text-white/70 mb-10 max-w-2xl mx-auto">
-              Get 15% off your first order. No spam, just the good stuff: new drops, early access, and highly questionable golf tips.
+            <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto">
+              Get 15% off your first order. Early access to drops, charity round announcements, and highly questionable golf tips. No spam — just the good stuff.
             </p>
             <form className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
-              <Input 
-                type="email" 
-                placeholder="ENTER YOUR EMAIL" 
+              <Input
+                type="email"
+                placeholder="ENTER YOUR EMAIL"
+                data-testid="input-email-newsletter"
                 className="h-14 rounded-none bg-white/10 border-white/20 text-white placeholder:text-white/40 focus-visible:ring-accent focus-visible:border-accent"
                 required
               />
-              <Button type="submit" className="h-14 px-8 rounded-none bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider shrink-0">
+              <Button
+                type="submit"
+                data-testid="button-newsletter-submit"
+                className="h-14 px-8 rounded-none bg-accent hover:bg-accent/90 text-white font-bold uppercase tracking-wider shrink-0"
+              >
                 Sign Up <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </form>
           </div>
         </section>
+
       </main>
 
       {/* Footer */}
@@ -437,52 +535,41 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="md:col-span-1">
-              <Link href="/" className="font-display font-black italic text-4xl tracking-tighter block mb-4">
-                ALMOST ELITE
-              </Link>
-              <p className="text-muted-foreground mb-6 max-w-xs">
-                Golf apparel for the rest of us. Look sharp, play loose, have fun.
-              </p>
+              <Link href="/" className="font-display font-black italic text-4xl tracking-tighter block mb-4">ALMOST ELITE</Link>
+              <p className="text-muted-foreground mb-2 max-w-xs text-sm leading-relaxed">Golf apparel for the rest of us. Performance-ready gear. Municipal-approved attitude.</p>
+              <p className="text-muted-foreground text-xs italic">You might not be elite... But you're definitely Almost.</p>
             </div>
-            
             <div>
-              <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-border pb-2">Shop</h4>
-              <ul className="space-y-4 text-muted-foreground">
-                <li><Link href="/men" className="hover:text-primary transition-colors">Men's Collection</Link></li>
-                <li><Link href="/women" className="hover:text-primary transition-colors">Women's Collection</Link></li>
-                <li><Link href="/hats" className="hover:text-primary transition-colors">Headwear</Link></li>
-                <li><Link href="/accessories" className="hover:text-primary transition-colors">Accessories</Link></li>
-                <li><Link href="/drop" className="hover:text-primary transition-colors text-accent font-medium">The Drop</Link></li>
+              <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-border pb-2 text-sm">Shop</h4>
+              <ul className="space-y-3 text-muted-foreground text-sm">
+                {["Men's Collection", "Women's Collection", "Headwear", "Accessories", "The Drop"].map((l, i) => (
+                  <li key={i}><Link href="#" className="hover:text-primary transition-colors">{l}</Link></li>
+                ))}
               </ul>
             </div>
-            
             <div>
-              <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-border pb-2">Support</h4>
-              <ul className="space-y-4 text-muted-foreground">
-                <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-                <li><Link href="/shipping" className="hover:text-primary transition-colors">Shipping & Returns</Link></li>
-                <li><Link href="/size-guide" className="hover:text-primary transition-colors">Size Guide</Link></li>
-                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact Us</Link></li>
+              <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-border pb-2 text-sm">Charity Rounds</h4>
+              <ul className="space-y-3 text-muted-foreground text-sm">
+                {["About The Program", "Partner With Us", "Featured Events", "Boys & Girls Club", "Plan Your Drop"].map((l, i) => (
+                  <li key={i}><Link href="#" className="hover:text-primary transition-colors">{l}</Link></li>
+                ))}
               </ul>
             </div>
-            
             <div>
-              <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-border pb-2">About</h4>
-              <ul className="space-y-4 text-muted-foreground">
-                <li><Link href="/story" className="hover:text-primary transition-colors">Our Story</Link></li>
-                <li><Link href="/ambassadors" className="hover:text-primary transition-colors">Ambassadors</Link></li>
-                <li><Link href="/blog" className="hover:text-primary transition-colors">The 19th Hole Blog</Link></li>
+              <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-border pb-2 text-sm">Support</h4>
+              <ul className="space-y-3 text-muted-foreground text-sm">
+                {["FAQ", "Shipping & Returns", "Size Guide", "Contact Us", "Our Story"].map((l, i) => (
+                  <li key={i}><Link href="#" className="hover:text-primary transition-colors">{l}</Link></li>
+                ))}
               </ul>
             </div>
           </div>
-          
           <Separator className="mb-8" />
-          
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} Almost Elite™. Golf for the Rest of Us.</p>
+            <p>&copy; {new Date().getFullYear()} Almost Elite™ | AlmostElite.com — Golf for the Rest of Us.</p>
             <div className="flex gap-6">
-              <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-primary transition-colors">Terms of Service</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
             </div>
           </div>
         </div>
