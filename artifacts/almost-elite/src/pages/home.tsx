@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Star, ArrowRight, ChevronLeft, ChevronRight, Heart, Shirt, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -116,6 +116,117 @@ function ProductSlider({ products, title, href, gradient }: { products: typeof P
           </Link>
         ))}
       </div>
+    </section>
+  );
+}
+
+const SHOP_CATEGORIES = [
+  {
+    label: "MENS",
+    sub: "Polos with Personality",
+    img: "/product-polo.png",
+    href: "/men",
+    active: true,
+  },
+  {
+    label: "WOMENS",
+    sub: "Bold. Breathable. Yours.",
+    img: "/product-womens.png",
+    href: "/women",
+    active: false,
+  },
+  {
+    label: "YOUTH",
+    sub: "Future Municipal Legends",
+    img: "/insta-2.png",
+    href: "/youth",
+    active: false,
+  },
+  {
+    label: "HIS & HERS",
+    sub: "Matching Energy. Different Scores.",
+    img: "/insta-3.png",
+    href: "/his-hers",
+    active: false,
+  },
+  {
+    label: "FATHER & SON",
+    sub: "Pass Down the Legend",
+    img: "/drop-editorial.png",
+    href: "/father-son",
+    active: false,
+  },
+];
+
+function ShopByCategory() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <section className="h-[70vh] flex overflow-hidden">
+      {SHOP_CATEGORIES.map((cat, i) => (
+        <div
+          key={i}
+          className="relative overflow-hidden cursor-pointer transition-all duration-500 ease-in-out"
+          style={{ flex: active === i ? "4 0 0%" : "1 0 0%" }}
+          onMouseEnter={() => setActive(i)}
+          onMouseLeave={() => setActive(0)}
+        >
+          {/* Background Image */}
+          <img
+            src={cat.img}
+            alt={cat.label}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
+            style={{ transform: active === i ? "scale(1.05)" : "scale(1)" }}
+          />
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 transition-opacity duration-500"
+            style={{
+              background: active === i
+                ? "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%)"
+                : "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 100%)",
+            }}
+          />
+
+          {/* Collapsed label (vertical, non-active) */}
+          <div
+            className="absolute inset-0 flex items-end justify-center pb-8 transition-opacity duration-300"
+            style={{ opacity: active === i ? 0 : 1 }}
+          >
+            <span
+              className="font-display font-black italic text-white text-xl uppercase tracking-widest select-none"
+              style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+            >
+              {cat.label}
+            </span>
+          </div>
+
+          {/* Expanded content (active) */}
+          <div
+            className="absolute inset-0 flex flex-col justify-between p-8 transition-opacity duration-300"
+            style={{ opacity: active === i ? 1 : 0, pointerEvents: active === i ? "auto" : "none" }}
+          >
+            <div>
+              <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white leading-none mb-2">
+                {cat.label}
+              </h2>
+              <div className="w-16 h-0.5 bg-accent mb-3" />
+              <p className="text-white/80 text-base font-medium">{cat.sub}</p>
+            </div>
+            <a
+              href={cat.href}
+              className="inline-block bg-white text-black font-bold uppercase tracking-widest text-sm px-7 py-3 w-fit hover:bg-accent hover:text-white transition-colors duration-200"
+            >
+              Shop now
+            </a>
+          </div>
+
+          {/* Thin divider line between panels */}
+          {i < SHOP_CATEGORIES.length - 1 && (
+            <div className="absolute top-0 right-0 w-px h-full bg-white/10 z-10" />
+          )}
+        </div>
+      ))}
     </section>
   );
 }
@@ -304,9 +415,16 @@ export default function Home() {
           gradient="linear-gradient(107deg, hsl(var(--background)) 4%, hsl(var(--primary) / 0.06) 25%, hsl(var(--accent) / 0.06) 50%, hsl(var(--background)) 80%)"
         />
 
+        {/* Shop By Category — Hover Expand Panels */}
+        <ShopByCategory />
+
         {/* The Brand Story */}
-        <section className="py-24 bg-primary text-primary-foreground">
-          <div className="container mx-auto px-6 lg:px-16">
+        <section className="relative py-24 text-white overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img src="/insta-1.png" alt="For players who love the game" className="w-full h-full object-cover opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -403,8 +521,12 @@ export default function Home() {
         </section>
 
         {/* Featured Charity Event */}
-        <section className="py-20 bg-zinc-950 text-white">
-          <div className="container mx-auto px-6 lg:px-16">
+        <section className="relative py-20 text-white overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img src="/drop-editorial.png" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover opacity-35" />
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/85 via-zinc-950/70 to-zinc-950/90" />
+          </div>
+          <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center">
               <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event</p>
               <h2 className="font-display font-black italic text-4xl md:text-6xl uppercase tracking-tighter leading-none mb-6">
@@ -474,8 +596,12 @@ export default function Home() {
         </section>
 
         {/* Join 10,000+ Municipal Legends / Newsletter */}
-        <section className="py-24 bg-zinc-900 text-white">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
+        <section className="relative py-24 text-white overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <img src="/hero.png" alt="Join the Almost Elite crew" className="w-full h-full object-cover opacity-30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/80 to-zinc-900/70" />
+          </div>
+          <div className="relative z-10 container mx-auto px-4 max-w-4xl text-center">
             <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
             <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter mb-4">
               JOIN THE CREW
