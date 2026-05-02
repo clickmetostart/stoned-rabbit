@@ -18,19 +18,19 @@ const staggerContainer = {
 };
 
 const PRODUCTS_DROPPED = [
-  { name: "Clubhouse Legend", price: "$50", was: "$75", img: "/product-polo.png", badge: "NEW DROP", slug: "clubhouse-legend" },
-  { name: "The Range Wrangler", price: "$50", was: "$75", img: "/product-hat.png", badge: "BEST SELLER", slug: "range-wrangler" },
-  { name: "Fly It 300", price: "$50", was: "$75", img: "/product-womens.png", badge: "NEW DROP", slug: "fly-it-300" },
-  { name: "Gollllfffff", price: "$50", was: "$75", img: "/drop-editorial.png", badge: "", slug: "gollllfffff" },
-  { name: "The Backwoods Fade", price: "$50", was: "$75", img: "/product-polo.png", badge: "LIMITED", slug: "backwoods-fade" },
+  { name: "Skull & Crossclubs", price: "$58", was: "$78", img: "/polo-skull.png", badge: "NEW DROP", slug: "skull-crossclubs" },
+  { name: "Scramble Specialist", price: "$45", was: "$65", img: "/scramble-specialist-hat.jpg", badge: "CHARITY DROP", slug: "scramble-specialist" },
+  { name: "Retro Static", price: "$58", was: "$78", img: "/polo-retro.png", badge: "BEST SELLER", slug: "retro-static" },
+  { name: "Flamingo Country", price: "$58", was: "$78", img: "/polo-flamingo.png", badge: "NEW DROP", slug: "flamingo-country" },
+  { name: "Clubhouse Legend", price: "$42", was: "$60", img: "/clubhouse-legend-hat.jpg", badge: "LIMITED", slug: "clubhouse-legend" },
 ];
 
 const PRODUCTS_COLLECTION = [
-  { name: "Headcover Rebellion", price: "$45", img: "/product-hat.png", badge: "", slug: "headcover-rebellion" },
-  { name: "The Cool Crowd", price: "$68", img: "/product-polo.png", badge: "BEST SELLER", slug: "cool-crowd" },
-  { name: "Grip It & Rip It", price: "$50", img: "/product-womens.png", badge: "", slug: "grip-it-rip-it" },
-  { name: "Municipal Legend", price: "$55", img: "/drop-editorial.png", badge: "NEW", slug: "municipal-legend" },
-  { name: "Pints Over Pars", price: "$48", img: "/product-polo.png", badge: "", slug: "pints-over-pars" },
+  { name: "Skull & Crossclubs", price: "$58", img: "/polo-skull.png", badge: "", slug: "skull-crossclubs-2" },
+  { name: "Flamingo Country", price: "$58", img: "/polo-flamingo.png", badge: "BEST SELLER", slug: "flamingo-country-2" },
+  { name: "Retro Static", price: "$58", img: "/polo-retro.png", badge: "", slug: "retro-static-2" },
+  { name: "Scramble Specialist Hat", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY", slug: "scramble-specialist-hat" },
+  { name: "Clubhouse Legend Cap", price: "$42", img: "/clubhouse-legend-hat.jpg", badge: "NEW", slug: "clubhouse-legend-cap" },
 ];
 
 function ProductSlider({ products, title, href, gradient }: { products: typeof PRODUCTS_DROPPED; title: string; href: string; gradient?: string }) {
@@ -124,35 +124,35 @@ const SHOP_CATEGORIES = [
   {
     label: "MENS",
     sub: "Polos with Personality",
-    img: "/product-polo.png",
+    img: "/lifestyle-muni.jpg",
     href: "/men",
     active: true,
   },
   {
     label: "WOMENS",
     sub: "Bold. Breathable. Yours.",
-    img: "/product-womens.png",
+    img: "/lifestyle-womens.jpg",
     href: "/women",
     active: false,
   },
   {
     label: "YOUTH",
     sub: "Future Municipal Legends",
-    img: "/insta-2.png",
+    img: "/charity-outing-1.jpg",
     href: "/youth",
     active: false,
   },
   {
     label: "HIS & HERS",
     sub: "Matching Energy. Different Scores.",
-    img: "/insta-3.png",
+    img: "/classic-vibe-fairway.jpg",
     href: "/his-hers",
     active: false,
   },
   {
     label: "FATHER & SON",
     sub: "Pass Down the Legend",
-    img: "/drop-editorial.png",
+    img: "/charity-outing-2.jpg",
     href: "/father-son",
     active: false,
   },
@@ -242,7 +242,7 @@ export default function Home() {
         {/* Hero */}
         <section className="relative h-[90vh] w-full flex items-end justify-center overflow-hidden bg-zinc-900 pb-16">
           <div className="absolute inset-0 z-0">
-            <img src="/hero.png" alt="Almost Elite golfers" className="w-full h-full object-cover opacity-65" />
+            <img src="/lifestyle-celebrating.jpg" alt="Almost Elite golfers" className="w-full h-full object-cover opacity-75" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
           </div>
           <div className="relative z-10 container mx-auto px-4 text-center text-white">
@@ -292,7 +292,7 @@ export default function Home() {
               title: "On Course",
               sub: "What you wear when you're actually out there.",
               cta: "Shop Apparel",
-              img: "/product-polo.png",
+              img: "/lifestyle-swing.jpg",
               href: "/men",
               testId: "link-on-course"
             },
@@ -300,7 +300,7 @@ export default function Home() {
               title: "In the Bag",
               sub: "Hats, gloves, and gear that stay with you from tee box to clubhouse.",
               cta: "Shop Essentials",
-              img: "/product-hat.png",
+              img: "/clubhouse-legend-hat.jpg",
               href: "/accessories",
               testId: "link-in-the-bag"
             }
@@ -363,19 +363,20 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7 }}
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-2 gap-2"
               >
-                {[
-                  { headline: "Golf Is Better With Friends", body: "The best rounds aren't always the lowest scores — they're the ones shared with the people you play with every weekend." },
-                  { headline: "Every Golfer Has a Story", body: "The drive that almost carried the bunker. The birdie that almost dropped. The round that almost broke 80." },
-                  { headline: "Wear the Story", body: "From Municipal Legend to Pints Over Pars, the gear should be part of the fun." },
-                  { headline: "Performance Where It Counts", body: "Breathable fabrics. Athletic fits. Comfort built for 18 holes and whatever happens after." },
-                ].map((card, i) => (
-                  <div key={i} className={`p-6 border ${i % 2 === 0 ? "border-white/10 bg-white/[0.03]" : "border-accent/30 bg-accent/[0.06]"}`}>
-                    <h3 className={`font-display font-bold italic text-xl uppercase mb-2 ${i % 2 === 0 ? "text-white" : "text-accent"}`}>{card.headline}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{card.body}</p>
-                  </div>
-                ))}
+                <div className="col-span-2 relative overflow-hidden" style={{ height: "220px" }}>
+                  <img src="/lifestyle-thumbsup.jpg" alt="Municipal legend on course" className="w-full h-full object-cover object-top" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
+                </div>
+                <div className="relative overflow-hidden" style={{ height: "200px" }}>
+                  <img src="/lifestyle-muni.jpg" alt="Almost Elite golfer" className="w-full h-full object-cover object-center" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" />
+                </div>
+                <div className="relative overflow-hidden" style={{ height: "200px" }}>
+                  <img src="/classic-vibe-fairway.jpg" alt="Golfers on fairway" className="w-full h-full object-cover object-center" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/50 to-transparent" />
+                </div>
               </motion.div>
             </div>
           </div>
@@ -421,7 +422,7 @@ export default function Home() {
         {/* The Brand Story */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/insta-1.png" alt="For players who love the game" className="w-full h-full object-cover opacity-40" />
+            <img src="/lifestyle-swing.jpg" alt="For players who love the game" className="w-full h-full object-cover opacity-45" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
@@ -462,14 +463,19 @@ export default function Home() {
                 transition={{ duration: 0.7 }}
                 className="relative"
               >
-                <div className="aspect-square bg-secondary flex items-center justify-center p-16 relative overflow-hidden">
-                  <img src="/drop-editorial.png" alt="Charity Rounds" className="w-full h-full object-cover absolute inset-0 opacity-30" />
-                  <div className="relative z-10 text-center">
-                    <div className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter text-primary leading-none mb-4">
-                      ALMOST<br/>ELITE
-                    </div>
-                    <div className="font-display font-bold italic text-2xl uppercase tracking-widest text-accent">
-                      CHARITY ROUNDS
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="col-span-2 relative overflow-hidden" style={{ height: "260px" }}>
+                    <img src="/charity-outing-1.jpg" alt="Charity outing golfers" className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div className="relative overflow-hidden" style={{ height: "200px" }}>
+                    <img src="/charity-outing-2.jpg" alt="Charity outing crew" className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div className="relative overflow-hidden flex items-center justify-center bg-zinc-950" style={{ height: "200px" }}>
+                    <img src="/scramble-specialist-hat.jpg" alt="Scramble Specialist hat" className="w-full h-full object-cover opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <p className="font-display font-black italic text-white text-xl uppercase leading-none">Scramble<br/>Specialist</p>
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mt-1">Charity Drop</p>
                     </div>
                   </div>
                 </div>
@@ -523,7 +529,7 @@ export default function Home() {
         {/* Featured Charity Event */}
         <section className="relative py-20 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/drop-editorial.png" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover opacity-35" />
+            <img src="/charity-outing-2.jpg" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover opacity-40" />
             <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/85 via-zinc-950/70 to-zinc-950/90" />
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
@@ -584,7 +590,7 @@ export default function Home() {
             <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" data-testid="link-instagram" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0 border-y border-border">
-            {["/insta-1.png", "/insta-2.png", "/product-hat.png", "/hero.png", "/insta-3.png", "/drop-editorial.png"].map((img, i) => (
+            {["/lifestyle-thumbsup.jpg", "/lifestyle-womens.jpg", "/clubhouse-legend-hat.jpg", "/classic-vibe-drinks.jpg", "/lifestyle-celebrating.jpg", "/classic-vibe-fairway.jpg"].map((img, i) => (
               <a key={i} href="#" data-testid={`link-instagram-post-${i}`} className="relative aspect-square group block overflow-hidden">
                 <img src={img} alt={`Almost Elite crew post ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -598,7 +604,7 @@ export default function Home() {
         {/* Join 10,000+ Municipal Legends / Newsletter */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/hero.png" alt="Join the Almost Elite crew" className="w-full h-full object-cover opacity-30" />
+            <img src="/classic-vibe-drinks.jpg" alt="Join the Almost Elite crew" className="w-full h-full object-cover opacity-50" />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/95 via-zinc-900/80 to-zinc-900/70" />
           </div>
           <div className="relative z-10 container mx-auto px-4 max-w-4xl text-center">
