@@ -379,7 +379,7 @@ function ShopByCategory() {
                 className="font-display font-black italic text-white text-3xl uppercase tracking-widest select-none"
                 style={{
                   writingMode: "vertical-rl",
-                  transform: `rotate(180deg) skewX(${-SKEW}deg)`,
+                  transform: "rotate(180deg)",
                 }}
               >
                 {cat.label}
