@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 import { RegisterModal } from "@/components/RegisterModal";
+import { ContactModal } from "@/components/ContactModal";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -444,6 +445,7 @@ function ShopByCategory() {
 ══════════════════════════════════════════════════════════════ */
 export default function Home() {
   const [registerOpen, setRegisterOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />
@@ -744,9 +746,11 @@ export default function Home() {
                   ))}
                 </div>
                 <motion.div variants={fadeInUp}>
-                  <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                    Join Charity Rounds <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <Link href="/charity">
+                    <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
+                      Join Charity Rounds <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
                 </motion.div>
               </motion.div>
             </div>
@@ -785,7 +789,7 @@ export default function Home() {
                 onClick={() => setRegisterOpen(true)}
                 className="bg-accent hover:bg-white hover:text-black text-white font-black italic tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors"
               >
-                Register for the Event
+                Claim Your Event Merch
               </Button>
             </div>
           </div>
@@ -915,6 +919,7 @@ export default function Home() {
 
       <AnimatePresence>
         {registerOpen && <RegisterModal onClose={() => setRegisterOpen(false)} />}
+        {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
       </AnimatePresence>
     </div>
   );

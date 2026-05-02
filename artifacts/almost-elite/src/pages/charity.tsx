@@ -5,6 +5,7 @@ import { ArrowRight, Star, Heart, Users, Trophy } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 import { RegisterModal } from "@/components/RegisterModal";
+import { ContactModal } from "@/components/ContactModal";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -44,6 +45,7 @@ const FEATURED_PRODUCTS = [
 
 export default function Charity() {
   const [registerOpen, setRegisterOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />
@@ -73,12 +75,18 @@ export default function Charity() {
                 We partner with golf tournaments, nonprofits, and community events to create limited-edition merchandise that raises more money, more engagement, and more meaning from every round played.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3">
-                <button className="inline-flex items-center gap-2 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200">
+                <button
+                  onClick={() => setContactOpen(true)}
+                  className="inline-flex items-center gap-2 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200"
+                >
                   Partner With Us <ArrowRight className="w-4 h-4" />
                 </button>
-                <button className="inline-flex items-center gap-2 border border-white/30 text-white font-bold uppercase tracking-widest px-10 h-14 text-base hover:bg-white/10 transition-colors duration-200">
+                <a
+                  href="#featured"
+                  className="inline-flex items-center gap-2 border border-white/30 text-white font-bold uppercase tracking-widest px-10 h-14 text-base hover:bg-white/10 transition-colors duration-200"
+                >
                   See Featured Events
-                </button>
+                </a>
               </motion.div>
             </motion.div>
           </div>
@@ -228,8 +236,11 @@ export default function Charity() {
                 This program makes sure golf also gives something back. Every round played helps extend that impact a little further.
               </motion.p>
               <motion.div variants={fadeInUp}>
-                <button className="inline-flex items-center gap-2 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200">
-                  Plan Your Event Drop <ArrowRight className="w-4 h-4" />
+                <button
+                  onClick={() => setContactOpen(true)}
+                  className="inline-flex items-center gap-2 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200"
+                >
+                  Register Your Next Event <ArrowRight className="w-4 h-4" />
                 </button>
               </motion.div>
             </motion.div>
@@ -419,7 +430,8 @@ export default function Charity() {
                 required
               />
               <button
-                type="submit"
+                type="button"
+                onClick={() => setContactOpen(true)}
                 className="h-14 px-8 bg-accent hover:bg-white hover:text-black text-white font-black italic uppercase tracking-widest transition-colors duration-200 flex items-center gap-2 whitespace-nowrap"
               >
                 Get Involved <ArrowRight className="w-4 h-4" />
@@ -475,6 +487,7 @@ export default function Charity() {
 
       <AnimatePresence>
         {registerOpen && <RegisterModal onClose={() => setRegisterOpen(false)} />}
+        {contactOpen && <ContactModal onClose={() => setContactOpen(false)} />}
       </AnimatePresence>
     </div>
   );
