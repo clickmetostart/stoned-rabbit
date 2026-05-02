@@ -518,9 +518,7 @@ export default function Home() {
 
         {/* ── MUNICIPAL LEGENDS ─────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <div className="absolute bottom-0 right-0 pointer-events-none select-none z-0 overflow-hidden leading-none">
-            <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>ALMOST</span>
-          </div>
+          <GhostWord word="LEGENDARY" />
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
