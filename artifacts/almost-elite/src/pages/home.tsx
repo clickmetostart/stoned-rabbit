@@ -487,31 +487,81 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── SPLIT PANEL ───────────────────────────────────────── */}
-        <section className="grid grid-cols-1 md:grid-cols-2 h-[78vh]">
-          {[
-            { title: "On Course",  sub: "What you wear when you're actually out there.",      cta: "Shop Apparel",    img: "/lifestyle-swing.jpg", href: "/men" },
-            { title: "In the Bag", sub: "Hats, gloves, and gear from tee box to clubhouse.", cta: "Shop Essentials", img: "/product-hat.png",     href: "/accessories" },
-          ].map((panel, i) => (
-            <Link key={i} href={panel.href} className="group relative overflow-hidden flex items-end pb-10 px-10">
-              <div className="absolute inset-0">
-                <img src={panel.img} alt={panel.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/5" />
-              </div>
-              <div className="relative z-10 text-white">
-                <div className="w-10 h-1 bg-accent mb-4 transition-all duration-300 group-hover:w-20" />
-                <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none mb-3">{panel.title}</h2>
-                <p className="text-white/75 mb-6 text-base max-w-xs">{panel.sub}</p>
-                <span className="inline-block bg-accent text-white font-bold uppercase tracking-widest text-sm px-7 py-3 group-hover:bg-white group-hover:text-black transition-colors">
-                  {panel.cta}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </section>
-
         {/* ── JUST DROPPED — skewed images ──────────────────────── */}
         <SkewedProductRow products={PRODUCTS_DROPPED} title="JUST DROPPED" href="/drop" watermark="DROP" />
+
+        {/* ── ON COURSE / IN THE BAG ────────────────────────────── */}
+        <section className="relative py-16 overflow-hidden">
+          <div className="relative z-10 px-6 lg:px-16 flex flex-col md:flex-row gap-4" style={{ minHeight: "80vh" }}>
+            {[
+              {
+                title: "On Course",
+                sub: "What you wear when you're actually out there.",
+                cta: "Shop Apparel",
+                img: "/lifestyle-swing.jpg",
+                href: "/men",
+                ghost: "COURSE",
+                align: "items-end",
+                clip: "polygon(0 0, 100% 0, 96% 100%, 0 100%)",
+              },
+              {
+                title: "In the Bag",
+                sub: "Hats, gloves, and gear from tee box to clubhouse.",
+                cta: "Shop Essentials",
+                img: "/product-hat.png",
+                href: "/accessories",
+                ghost: "BAG",
+                align: "items-end",
+                clip: "polygon(4% 0, 100% 0, 100% 100%, 0 100%)",
+              },
+            ].map((panel, i) => (
+              <Link
+                key={i}
+                href={panel.href}
+                className="group relative overflow-hidden flex-1 flex flex-col justify-end cursor-pointer"
+                style={{ minHeight: "72vh", clipPath: panel.clip }}
+              >
+                {/* Photo */}
+                <div className="absolute inset-0">
+                  <img
+                    src={panel.img}
+                    alt={panel.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/40 to-black/10" />
+                </div>
+
+                {/* Ghost watermark */}
+                <div className="absolute bottom-0 right-0 pointer-events-none select-none overflow-hidden leading-none z-[1]">
+                  <span
+                    className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap"
+                    style={{ fontSize: "clamp(5rem, 16vw, 16rem)", opacity: 0.07 }}
+                  >
+                    {panel.ghost}
+                  </span>
+                </div>
+
+                {/* Orange top accent bar on hover */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-1.5 bg-accent transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-10"
+                />
+
+                {/* Content */}
+                <div className="relative z-10 p-10 pb-12">
+                  <div className="w-10 h-1 bg-accent mb-5 transition-all duration-500 group-hover:w-24" />
+                  <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Almost Elite</p>
+                  <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-4 text-white">
+                    {panel.title}
+                  </h2>
+                  <p className="text-white/60 mb-8 text-base max-w-sm leading-relaxed">{panel.sub}</p>
+                  <span className="inline-block bg-accent text-white font-black italic uppercase tracking-widest text-sm px-8 py-3.5 group-hover:bg-white group-hover:text-black transition-colors duration-200">
+                    {panel.cta}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* ── COLLAB BRANDS ─────────────────────────────────────── */}
         <CollabBrands />
