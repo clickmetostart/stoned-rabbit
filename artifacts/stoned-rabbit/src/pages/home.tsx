@@ -466,11 +466,8 @@ export default function Home() {
           </div>
           <div className="relative z-10 container mx-auto px-4 text-center">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-5xl mx-auto">
-              <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-[10rem] uppercase leading-[0.82] tracking-tighter mb-4">
+              <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-[10rem] uppercase leading-[0.82] tracking-tighter mb-8">
                 STONED RABBIT.
-              </motion.h1>
-              <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-[10rem] uppercase leading-[0.82] tracking-tighter mb-8 text-accent">
-                FOR THOSE WHO KNOW.
               </motion.h1>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-white/80 mb-10 max-w-xl mx-auto">
                 Educated. Elevated. Unapologetically comfortable.
@@ -681,26 +678,13 @@ export default function Home() {
         <ShopByCategory />
 
         {/* ── BRAND STORY ─────────────────────────────────── */}
-        <section className="relative py-28 text-white overflow-hidden">
-          {/* Hero background image for For Those Who Know section */}
-          <div className="absolute inset-0 z-0 opacity-15">
+        <section className="relative py-32 text-white overflow-hidden flex items-center min-h-[60vh]">
+          {/* Full bleed background image - bright and clear */}
+          <div className="absolute inset-0 z-0">
             <img src="/Stoned Rabbit Hero 3.png" alt="For Those Who Know" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]" />
+            <div className="absolute inset-0 bg-black/35" /> {/* Lighter overlay for a brighter image */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-[#080808]/80" />
           </div>
-          {/* Dark base */}
-          <div className="absolute inset-0 z-0 bg-black/40" />
-          {/* Logo as hero graphic — right side */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center z-[1] overflow-hidden pointer-events-none select-none">
-            <img
-              src="/logo-stacked.png"
-              alt=""
-              className="w-full max-w-lg opacity-[0.12] object-contain"
-              style={{ filter: "blur(0px)", transform: "scale(1.1)" }}
-            />
-          </div>
-          {/* Accent glow behind logo */}
-          <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full z-0 pointer-events-none"
-            style={{ background: "radial-gradient(circle, rgba(255,0,153,0.08) 0%, transparent 70%)" }} />
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} className="max-w-3xl">
               <AccentLine className="w-16 mb-6" />
