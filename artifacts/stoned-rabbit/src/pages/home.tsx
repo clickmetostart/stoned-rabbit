@@ -672,31 +672,35 @@ export default function Home() {
         {/* ── SHOP BY CATEGORY ──────────────────────────────────── */}
         <ShopByCategory />
 
-        {/* ── BRAND STORY ───────────────────────────────────────── */}
+        {/* ── BRAND STORY ─────────────────────────────────── */}
         <section className="relative py-28 text-white overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img src="/hero.png" alt="For those who appreciate the culture" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
+          {/* Dark base — no golf photo */}
+          <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0d0d0d 100%)" }} />
+          {/* Logo as hero graphic — right side */}
+          <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center z-[1] overflow-hidden pointer-events-none select-none">
+            <img
+              src="/logo-stacked.png"
+              alt=""
+              className="w-full max-w-lg opacity-[0.12] object-contain"
+              style={{ filter: "blur(0px)", transform: "scale(1.1)" }}
+            />
           </div>
-          {/* Watermark overlaid on photo — bottom right */}
-          <div className="absolute bottom-0 right-0 z-[1] overflow-hidden pointer-events-none select-none leading-none">
-            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.055 }}>
-              RABBIT
-            </span>
-          </div>
+          {/* Accent glow behind logo */}
+          <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full z-0 pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(255,0,153,0.08) 0%, transparent 70%)" }} />
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} className="max-w-3xl">
               <AccentLine className="w-16 mb-6" />
-              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Built for the Nights That Matter Most</motion.p>
+              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">For Those Who Know</motion.p>
               <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
                 FOR THOSE WHO APPRECIATE THE ART — AND THE CULTURE.
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-lg text-white/80 leading-relaxed max-w-2xl mb-6">
-                  This isn't gear for people who need to announce themselves. It's for the ones who already know what they're about — and dress that way without making a production of it.
-                </motion.p>
+              <motion.p variants={fadeInUp} className="text-lg text-white/70 leading-relaxed max-w-2xl mb-6">
+                This isn't gear for people who need to announce themselves. It's for the ones who already know what they're about — and dress that way without making a production of it.
+              </motion.p>
               <motion.p variants={fadeInUp} className="font-display font-black italic text-3xl uppercase tracking-wide text-accent">
-                  Wear it comfortable. Live it quietly.
-                </motion.p>
+                Wear it comfortable. Live it quietly.
+              </motion.p>
             </motion.div>
           </div>
         </section>
@@ -772,12 +776,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── INSTAGRAM GRID ────────────────────────────────────── */}
+        {/* ── INSTAGRAM GRID ────────────────────────────────── */}
         <section className="pb-0">
           <div className="container mx-auto px-6 lg:px-16 py-12">
             <AccentLine className="w-16 mb-5" />
             <div className="flex items-end justify-between mb-8">
-              <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter text-white">FOLLOW THE CREW</h2>
+              <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter text-white">THE COLLECTION</h2>
               <a href="https://instagram.com/stonedrabbit" target="_blank" rel="noreferrer" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@STONEDRABBIT</a>
             </div>
           </div>
@@ -815,7 +819,7 @@ export default function Home() {
             <div className="text-center mb-16">
               <AccentLine className="w-20 mx-auto mb-6" />
               <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Legends Already In</p>
-              <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-5">JOIN THE WARREN</h2>
+              <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-5">JOIN THE CREW</h2>
               <p className="text-lg text-white/55 max-w-2xl mx-auto">
                 Sign up. Earn points. Unlock perks. Every dollar you spend moves you closer to the inner circle.
               </p>
@@ -957,15 +961,15 @@ export default function Home() {
               <img src="/logo-badge.png" alt="Stoned Rabbit" className="h-32 w-32 object-contain mb-4" />
               <AccentLine className="w-12 mb-4" />
               <p className="text-white/40 max-w-xs text-sm leading-relaxed mb-2">
-                Graffiti-inspired gear. Street-approved attitude. For those who appreciate the art and the culture.
+                For the educated smoker. The casual elite. People who know what they want and wear it without making a thing of it.
               </p>
-              <p className="text-white/25 text-xs italic">Graffiti. Glass. Good Vibes.</p>
+              <p className="text-white/25 text-xs italic">For those who know.</p>
             </div>
 
             {[
-              { title: "Shop",           links: ["Apparel","Headwear","Accessories","Glass","The Drop"] },
-              { title: "Community", links: ["About The Fund","Partner With Us","Featured Initiatives","Fight For Fairness","Expungement"] },
-              { title: "Support",        links: ["FAQ","Shipping & Returns","Size Guide","Contact Us","Our Story"] },
+              { title: "Shop",        links: ["Apparel","Headwear","Accessories","Glass","The Drop"] },
+              { title: "Explore",     links: ["Collections","The Vault","New Arrivals","Best Sellers","Collabs"] },
+              { title: "Support",     links: ["FAQ","Shipping & Returns","Size Guide","Contact Us","Our Story"] },
             ].map((col, i) => (
               <div key={i}>
                 <h4 className="font-bold uppercase tracking-wider mb-2 text-sm text-white">{col.title}</h4>
