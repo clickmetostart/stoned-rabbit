@@ -506,7 +506,8 @@ export default function Home() {
                 title: "On the Street",
                 sub: "What you wear when you're actually out there.",
                 cta: "Shop Apparel",
-                img: "/Stoned Rabbit Womens Hoodie and Hat.png",
+                img: "/Stoned Rabbit Hero Image 2.jfif",
+                pos: "object-center",
                 href: "/apparel",
                 ghost: "STREET",
                 align: "items-end",
@@ -516,7 +517,8 @@ export default function Home() {
                 title: "In the Stash",
                 sub: "Headwear, grinders, and gear from the shop to the session.",
                 cta: "Shop Essentials",
-                img: "/Stoned Rabbit Logo - hoodie 2 (women).png",
+                img: "/Stoned Rabbit Having Fun.png",
+                pos: "object-center",
                 href: "/accessories",
                 ghost: "STASH",
                 align: "items-end",
@@ -534,7 +536,7 @@ export default function Home() {
                   <img
                     src={panel.img}
                     alt={panel.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${panel.pos || ""}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/40 to-black/10" />
                 </div>

@@ -90,7 +90,7 @@ export const ALL_PRODUCTS: Product[] = [
     slug: "street-grinder",
     name: "SR Grinder",
     price: "$40",
-    img: "/classic_stash_jar.png",
+    img: "/street_grinder.png",
     badge: "BEST SELLER",
     category: "Accessories",
     collection: "everyday",
