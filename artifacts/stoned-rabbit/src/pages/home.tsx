@@ -230,7 +230,7 @@ function CollabBrands() {
 
   return (
     <section className="relative pt-32 pb-16 overflow-hidden">
-      <div className="absolute -top-16 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
+      <div className="absolute top-6 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
         <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>STREET</span>
       </div>
       <div className="relative z-10">
