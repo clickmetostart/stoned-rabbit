@@ -40,7 +40,7 @@ const WHY_IT_WORKS = [
 const FEATURED_PRODUCTS = [
   { name: "Stoned Rabbit Hoodie", price: "$85", was: "$100", img: "/Stoned Rabbit Logo - hoodie 1.png" },
   { name: "Freedom Tag", price: "$25", was: "$35", img: "/freedom_tag.png" },
-  { name: "Neon Dreams Tee", price: "$35", was: "$45", img: "/neon_dreams_tee.png" },
+  { name: "Stoned Rabbit Logo Tee", price: "$35", was: "$45", img: "/Stoned Rabbit womens teeshirt 1.png" },
 ];
 
 export default function Charity() {

@@ -52,7 +52,7 @@ const MEMBERS = [
     pts: "1,220 pts",
     quote: "Early morning sessions are where the real ideas start.",
     img: "/charity-outing-2.jpg",
-    gear: "Neon Dreams Tee",
+    gear: "Stoned Rabbit Logo Tee",
   },
   {
     name: "Marcus 'Slow Burn' Thompson",
@@ -79,7 +79,7 @@ const MEMBERS = [
     pts: "693 pts",
     quote: "Time is relative, especially after a sesh.",
     img: "/drop-editorial.png",
-    gear: "Neon Dreams Tee",
+    gear: "Stoned Rabbit Logo Tee",
   },
   {
     name: "Sofia 'Cloud Nine' Nascimento",

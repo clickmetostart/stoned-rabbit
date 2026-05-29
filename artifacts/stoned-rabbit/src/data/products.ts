@@ -18,25 +18,26 @@ export interface Product {
 
 export const ALL_PRODUCTS: Product[] = [
   {
-    slug: "neon-dreams-tee",
-    name: "Neon Dreams Tee",
+    slug: "stoned-rabbit-tee",
+    name: "Stoned Rabbit Logo Tee",
     price: "$35",
     was: "$45",
-    img: "/neon_dreams_tee.png",
+    img: "/Stoned Rabbit womens teeshirt 1.png",
     badge: "NEW DROP",
     category: "Apparel",
     collection: "nocturne",
-    shortDesc: "Heavyweight cotton with a UV-reactive rabbit print.",
-    description: "The Neon Dreams Tee is built for the ones who move when the city gets quiet. Thick 100% cotton, relaxed fit, UV-reactive rabbit mark on the back. Minimal on the front. Everything on the back.",
+    shortDesc: "Premium heavyweight ringspun cotton tee with the classic Stoned Rabbit graphic.",
+    description: "The Stoned Rabbit Logo Tee is a premium streetwear staple. Knit from 100% heavyweight ringspun cotton, it offers a relaxed boyfriend fit that holds its shape. Features the iconic Stoned Rabbit logo printed on the chest, blending street culture with minimal, elevated design.",
     details: [
       "100% heavyweight ringspun cotton",
-      "Relaxed, oversized fit",
-      "UV-reactive puff print",
+      "Relaxed streetwear boyfriend fit",
+      "High-quality screenprinted Stoned Rabbit logo on chest",
       "Pre-shrunk to minimize shrinkage",
       "Machine wash cold, air dry",
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
+      { name: "Vintage White", hex: "#f5f5f0" },
       { name: "Charcoal Black", hex: "#1a1a1a" },
     ],
     related: ["signature-hoodie", "classic-stash-jar", "rabbit-hole-cap", "street-grinder"],
@@ -63,7 +64,7 @@ export const ALL_PRODUCTS: Product[] = [
     colors: [
       { name: "Charcoal Black", hex: "#1a1a1a" },
     ],
-    related: ["neon-dreams-tee", "rabbit-hole-cap", "classic-stash-jar", "street-grinder"],
+    related: ["stoned-rabbit-tee", "rabbit-hole-cap", "classic-stash-jar", "street-grinder"],
   },
   {
     slug: "rabbit-hole-cap",
@@ -87,7 +88,7 @@ export const ALL_PRODUCTS: Product[] = [
       { name: "Black", hex: "#111111" },
       { name: "Ash", hex: "#3a3a3a" },
     ],
-    related: ["signature-hoodie", "neon-dreams-tee", "street-grinder", "classic-stash-jar"],
+    related: ["signature-hoodie", "stoned-rabbit-tee", "street-grinder", "classic-stash-jar"],
   },
   {
     slug: "street-grinder",
@@ -110,7 +111,7 @@ export const ALL_PRODUCTS: Product[] = [
     colors: [
       { name: "Matte Black", hex: "#1a1a1a" },
     ],
-    related: ["classic-stash-jar", "neon-dreams-tee", "rabbit-hole-cap", "signature-hoodie"],
+    related: ["classic-stash-jar", "stoned-rabbit-tee", "rabbit-hole-cap", "signature-hoodie"],
   },
   {
     slug: "classic-stash-jar",
@@ -131,7 +132,7 @@ export const ALL_PRODUCTS: Product[] = [
     colors: [
       { name: "Violet Glass", hex: "#2b00ff" },
     ],
-    related: ["street-grinder", "rabbit-hole-beanie", "acid-wash-hoodie", "neon-dreams-tee"],
+    related: ["street-grinder", "rabbit-hole-cap", "signature-hoodie", "stoned-rabbit-tee"],
   },
   {
     slug: "graffiti-bong",
@@ -155,7 +156,7 @@ export const ALL_PRODUCTS: Product[] = [
     colors: [
       { name: "Clear", hex: "#ffffff" },
     ],
-    related: ["street-grinder", "classic-stash-jar", "neon-dreams-tee", "signature-hoodie"],
+    related: ["street-grinder", "classic-stash-jar", "stoned-rabbit-tee", "signature-hoodie"],
   }
 ];
 
