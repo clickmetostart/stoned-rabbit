@@ -13,15 +13,15 @@ function AccentLine({ className = "" }: { className?: string }) {
 }
 
 const TIER_COLORS: Record<string, string> = {
-  "Almost Elite":  "#facc15",
-  "Almost Better": "hsl(32 90% 55%)",
+  "Stoned Rabbit":  "#facc15",
+  "Warren Member": "hsl(32 90% 55%)",
 };
 
 const MEMBERS = [
   {
     name: "Dave 'Double Bogey' Mercer",
     course: "Riverside Municipal GC, OH",
-    tier: "Almost Elite",
+    tier: "Stoned Rabbit",
     pts: "1,842 pts",
     quote: "I've never broken 90 but I've never looked bad doing it.",
     img: "/classic-vibe-drinks.jpg",
@@ -30,7 +30,7 @@ const MEMBERS = [
   {
     name: "Trina 'Sand Trap' Okafor",
     course: "Fairview Muni Links, TX",
-    tier: "Almost Elite",
+    tier: "Stoned Rabbit",
     pts: "1,604 pts",
     quote: "My handicap is 18. My drip is a zero.",
     img: "/product-womens.png",
@@ -39,7 +39,7 @@ const MEMBERS = [
   {
     name: "Carlos 'Mulligan' Reyes",
     course: "Desert Pines Public, AZ",
-    tier: "Almost Elite",
+    tier: "Stoned Rabbit",
     pts: "1,310 pts",
     quote: "The course is temporary. The fit is forever.",
     img: "/drop-editorial.png",
@@ -48,7 +48,7 @@ const MEMBERS = [
   {
     name: "Janelle 'Birdie Attempt' Wu",
     course: "Meadow Creek GC, WA",
-    tier: "Almost Elite",
+    tier: "Stoned Rabbit",
     pts: "1,220 pts",
     quote: "First tee nerves are real. My hat keeps them in check.",
     img: "/charity-outing-2.jpg",
@@ -57,7 +57,7 @@ const MEMBERS = [
   {
     name: "Marcus 'Lost Ball' Thompson",
     course: "Brackenfern Links, GA",
-    tier: "Almost Better",
+    tier: "Warren Member",
     pts: "892 pts",
     quote: "I found two balls in the rough. Neither were mine. Still counts.",
     img: "/product-polo.png",
@@ -66,7 +66,7 @@ const MEMBERS = [
   {
     name: "Pam 'Club Thrower' Delgado",
     course: "Lakeside Muni, FL",
-    tier: "Almost Better",
+    tier: "Warren Member",
     pts: "741 pts",
     quote: "I don't throw clubs anymore. I set them down aggressively.",
     img: "/product-womens.png",
@@ -75,7 +75,7 @@ const MEMBERS = [
   {
     name: "Jim 'Five-Hour Round' Kowalski",
     course: "North Shore Muni, IL",
-    tier: "Almost Better",
+    tier: "Warren Member",
     pts: "693 pts",
     quote: "Slow play is a lifestyle. Don't rush greatness.",
     img: "/drop-editorial.png",
@@ -84,7 +84,7 @@ const MEMBERS = [
   {
     name: "Sofia 'Chip Yip' Nascimento",
     course: "Pinecrest GC, CA",
-    tier: "Almost Better",
+    tier: "Warren Member",
     pts: "558 pts",
     quote: "Chipping is a mindset. A broken one, but still.",
     img: "/charity-outing-2.jpg",
@@ -93,8 +93,8 @@ const MEMBERS = [
 ];
 
 const PERKS = [
-  { tier: "Almost Better", color: "hsl(32 90% 55%)", label: "500+ pts", note: "Eligible to submit after 500 pts" },
-  { tier: "Almost Elite",  color: "#facc15",          label: "1,000+ pts", note: "Priority feature + gold badge" },
+  { tier: "Warren Member", color: "hsl(32 90% 55%)", label: "500+ pts", note: "Eligible to submit after 500 pts" },
+  { tier: "Stoned Rabbit",  color: "#facc15",          label: "1,000+ pts", note: "Priority feature + gold badge" },
 ];
 
 const fadeUp = {
@@ -127,14 +127,14 @@ export default function CrewWall() {
           <AccentLine className="w-16 mb-8" />
           <div className="flex items-start justify-between flex-wrap gap-6">
             <div>
-              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-3">Almost Elite Members Only</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-3">Stoned Rabbit Members Only</p>
               <h1 className="font-display font-black italic text-7xl md:text-[clamp(4rem,10vw,9rem)] uppercase tracking-tighter leading-none mb-5">
                 THE<br />
                 <span className="text-accent">CREW</span><br />
                 WALL.
               </h1>
               <p className="text-white/50 text-lg max-w-xl">
-                These are the real ones. Almost Better and Almost Elite members who earn their spot by spending on gear, showing up to charity rounds, and looking good doing it.
+                These are the real ones. Warren Member and Stoned Rabbit members who earn their spot by spending on gear, showing up to charity rounds, and looking good doing it.
               </p>
             </div>
             <div className="flex flex-col gap-4 pt-4">
@@ -174,8 +174,8 @@ export default function CrewWall() {
           <div className="flex gap-2">
             {[
               { label: "All",             active: true },
-              { label: "Almost Elite",    active: false },
-              { label: "Almost Better",   active: false },
+              { label: "Stoned Rabbit",   active: false },
+              { label: "Warren Member",   active: false },
             ].map(f => (
               <button
                 key={f.label}
@@ -224,7 +224,7 @@ export default function CrewWall() {
                   {/* Tier badge */}
                   <div
                     className="absolute top-3 left-[8%] text-[10px] font-black uppercase tracking-widest px-2.5 py-1 flex items-center gap-1.5"
-                    style={{ background: color, color: m.tier === "Almost Elite" ? "#0b1a14" : "white" }}
+                    style={{ background: color, color: m.tier === "Stoned Rabbit" ? "#0b1a14" : "white" }}
                   >
                     <Star className="w-2.5 h-2.5 fill-current" />
                     {m.tier}
@@ -277,7 +277,7 @@ export default function CrewWall() {
                 EARN YOUR<br />SPOT.
               </h2>
               <p className="text-white/50 text-base mb-8">
-                Reach Almost Better (500 pts) or Almost Elite (1,000 pts) status, then submit your photo, home course, and a one-liner. We'll feature you right here.
+                Reach Warren Member (500 pts) or Stoned Rabbit (1,000 pts) status, then submit your photo, home course, and a one-liner. We'll feature you right here.
               </p>
               <ul className="space-y-3.5">
                 {[
@@ -318,13 +318,13 @@ export default function CrewWall() {
                   </div>
                   <h3 className="font-display font-black italic text-3xl uppercase tracking-tighter mb-3">You're In.</h3>
                   <p className="text-white/50 text-sm">
-                    We'll review your submission and have you on the wall within 7 days. Stay Almost Elite.
+                    We'll review your submission and have you on the wall within 7 days. Stay Lifted.
                   </p>
                 </motion.div>
               ) : (
                 <>
                   <h3 className="font-display font-black italic text-2xl uppercase tracking-tight mb-1">Submit Your Spot</h3>
-                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-6">Almost Better & Elite members only</p>
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-6">Warren Member & Stoned Rabbit members only</p>
                   <form
                     className="space-y-4"
                     onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
@@ -349,7 +349,7 @@ export default function CrewWall() {
                       <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest block mb-1.5">Your One-Liner</label>
                       <textarea
                         required
-                        placeholder="Keep it honest. Keep it almost elite."
+                        placeholder="Keep it honest. Keep it real."
                         rows={3}
                         className="w-full rounded-none bg-white/[0.06] border border-white/15 text-white placeholder:text-white/20 focus:outline-none focus:border-accent p-3 text-sm resize-none"
                         style={{ fontFamily: "inherit" }}

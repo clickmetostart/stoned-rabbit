@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 import { RegisterModal } from "@/components/RegisterModal";
 import { ContactModal } from "@/components/ContactModal";
+import { ALL_PRODUCTS } from "@/data/products";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -56,29 +57,8 @@ function AccentLine({ className = "" }: { className?: string }) {
 }
 
 /* ── product data ─────────────────────────────────────────────── */
-const BASE_DROPPED = [
-  { name: "Skull & Crossclubs",  price: "$58", was: "$78", img: "/polo-skull.png",              badge: "NEW DROP",   slug: "skull-crossclubs" },
-  { name: "The Range Wrangler",  price: "$50", was: "$75", img: "/product-hat.png",              badge: "BEST SELLER",slug: "range-wrangler" },
-  { name: "Retro Static",        price: "$58", was: "$78", img: "/polo-retro.png",               badge: "NEW DROP",   slug: "retro-static" },
-  { name: "Fly It 300",          price: "$50", was: "$75", img: "/product-womens.png",           badge: "",           slug: "fly-it-300" },
-  { name: "Flamingo Country",    price: "$58", was: "$78", img: "/polo-flamingo.png",            badge: "LIMITED",    slug: "flamingo-country" },
-  { name: "The Muni Special",    price: "$54", was: "$72", img: "/product-polo.png",             badge: "CLASSIC",    slug: "muni-special" },
-  { name: "Classic Vibe",        price: "$60", was: "$80", img: "/classic-vibe-fairway.jpg",     badge: "",           slug: "classic-vibe" },
-  { name: "Fairway Drip",        price: "$52", was: "$70", img: "/lifestyle-swing.jpg",          badge: "HOT",        slug: "fairway-drip" },
-];
-const PRODUCTS_DROPPED = [...BASE_DROPPED, ...BASE_DROPPED.map(p => ({ ...p, slug: p.slug + "-b" })), ...BASE_DROPPED.map(p => ({ ...p, slug: p.slug + "-c" }))];
-
-const BASE_COLLECTION = [
-  { name: "Skull & Crossclubs",  price: "$58", img: "/polo-skull.png",              badge: "",           slug: "skull-crossclubs-2" },
-  { name: "The Cool Crowd",      price: "$68", img: "/product-polo.png",            badge: "BEST SELLER",slug: "cool-crowd" },
-  { name: "Retro Static",        price: "$58", img: "/polo-retro.png",              badge: "",           slug: "retro-static-2" },
-  { name: "Scramble Specialist", price: "$45", img: "/scramble-specialist-hat.jpg", badge: "CHARITY",    slug: "scramble-specialist-hat" },
-  { name: "Clubhouse Legend Cap",price: "$42", img: "/clubhouse-legend-hat.jpg",    badge: "NEW",        slug: "clubhouse-legend-cap" },
-  { name: "Flamingo Country",    price: "$58", img: "/polo-flamingo.png",           badge: "LIMITED",    slug: "flamingo-country-2" },
-  { name: "Fly It 300",          price: "$50", img: "/product-womens.png",          badge: "",           slug: "fly-it-300-2" },
-  { name: "The Range Wrangler",  price: "$50", img: "/product-hat.png",             badge: "CLASSIC",    slug: "range-wrangler-2" },
-];
-const PRODUCTS_COLLECTION = [...BASE_COLLECTION, ...BASE_COLLECTION.map(p => ({ ...p, slug: p.slug + "-b" })), ...BASE_COLLECTION.map(p => ({ ...p, slug: p.slug + "-c" }))];
+const PRODUCTS_DROPPED = [...ALL_PRODUCTS, ...ALL_PRODUCTS.map(p => ({ ...p, slug: p.slug + "-b" })), ...ALL_PRODUCTS.map(p => ({ ...p, slug: p.slug + "-c" }))];
+const PRODUCTS_COLLECTION = [...ALL_PRODUCTS.slice().reverse(), ...ALL_PRODUCTS.slice().reverse().map(p => ({ ...p, slug: p.slug + "-b" }))];
 
 /* ── SKEWED product row ───────────────────────────────────────── */
 function SkewedProductRow({
@@ -295,7 +275,7 @@ function CollabBrands() {
               </div>
               <div className="mt-3 flex items-center gap-2">
                 <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1" style={{ color: brand.accent, border: `1px solid ${brand.accent}40`, background: `${brand.accent}10` }}>Limited Drop</span>
-                <span className="text-white/30 text-xs uppercase tracking-wider">x Almost Elite</span>
+                <span className="text-white/30 text-xs uppercase tracking-wider">x Stoned Rabbit</span>
               </div>
             </motion.div>
           ))}
@@ -435,7 +415,7 @@ function ShopByCategory() {
             >
               <div>
                 <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">
-                  Almost Elite
+                  Stoned Rabbit
                 </p>
                 <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter text-white leading-none mb-3">
                   {cat.label}
@@ -474,19 +454,19 @@ export default function Home() {
         {/* ── HERO ──────────────────────────────────────────────── */}
         <section className="relative h-[92vh] w-full flex items-end justify-center overflow-hidden pb-16">
           <div className="absolute inset-0 z-0">
-            <img src="/lifestyle-celebrating.jpg" alt="Almost Elite golfers" className="w-full h-full object-cover" />
+            <img src="/lifestyle-celebrating.jpg" alt="Stoned Rabbit golfers" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
           </div>
           <div className="relative z-10 container mx-auto px-4 text-center">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-5xl mx-auto">
               <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-[10rem] uppercase leading-[0.82] tracking-tighter mb-4">
-                ALMOST ELITE.
+                STONED RABBIT.
               </motion.h1>
               <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-[10rem] uppercase leading-[0.82] tracking-tighter mb-8 text-accent">
                 TOTALLY WORTH IT.
               </motion.h1>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-white/80 mb-10 max-w-xl mx-auto">
-                Performance-ready gear. Municipal-approved attitude.
+                Graffiti-inspired gear. Street-approved attitude.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
@@ -504,7 +484,7 @@ export default function Home() {
         <div className="bg-accent overflow-hidden py-5">
           <div className="whitespace-nowrap flex font-display font-black italic text-3xl md:text-4xl tracking-widest uppercase">
             <motion.div className="flex gap-10 items-center" animate={{ x: [0, -1800] }} transition={{ repeat: Infinity, ease: "linear", duration: 18 }}>
-              {["ALMOST ELITE","•","MUNICIPAL LEGENDS WELCOME","•","THE CREW > THE SCORE","•","PLAY HARD. LAUGH HARDER.","•","NOT FOR THE TOUR. FOR THE ROUND.","•","ALMOST ELITE","•","MUNICIPAL LEGENDS WELCOME","•","THE CREW > THE SCORE","•"].map((t, i) => (
+              {["STONED RABBIT","•","GRAFFITI. GLASS. GOOD VIBES.","•","THE WARREN > THE SCORE","•","STAY LIFTED. STAY GROUNDED.","•","NOT FOR EVERYONE. FOR US.","•","STONED RABBIT","•","GRAFFITI. GLASS. GOOD VIBES.","•","THE WARREN > THE SCORE","•"].map((t, i) => (
                 <span key={i} className="text-white">{t}</span>
               ))}
             </motion.div>
@@ -519,22 +499,22 @@ export default function Home() {
           <div className="relative z-10 px-6 lg:px-16 flex flex-col md:flex-row gap-4" style={{ minHeight: "80vh" }}>
             {[
               {
-                title: "On Course",
+                title: "On the Street",
                 sub: "What you wear when you're actually out there.",
                 cta: "Shop Apparel",
-                img: "/lifestyle-swing.jpg",
-                href: "/men",
-                ghost: "COURSE",
+                img: "/acid_wash_hoodie.png",
+                href: "/apparel",
+                ghost: "STREET",
                 align: "items-end",
                 clip: "polygon(0 0, 100% 0, 96% 100%, 0 100%)",
               },
               {
-                title: "In the Bag",
-                sub: "Hats, gloves, and gear from tee box to clubhouse.",
+                title: "In the Stash",
+                sub: "Headwear, grinders, and gear from the shop to the session.",
                 cta: "Shop Essentials",
-                img: "/product-hat.png",
+                img: "/rabbit_hole_beanie.png",
                 href: "/accessories",
-                ghost: "BAG",
+                ghost: "STASH",
                 align: "items-end",
                 clip: "polygon(4% 0, 100% 0, 100% 100%, 0 100%)",
               },
@@ -573,7 +553,7 @@ export default function Home() {
                 {/* Content */}
                 <div className="relative z-10 p-10 pb-12">
                   <div className="w-10 h-1 bg-accent mb-5 transition-all duration-500 group-hover:w-24" />
-                  <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Almost Elite</p>
+                  <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit</p>
                   <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-4 text-white">
                     {panel.title}
                   </h2>
@@ -590,27 +570,27 @@ export default function Home() {
         {/* ── COLLAB BRANDS ─────────────────────────────────────── */}
         <CollabBrands />
 
-        {/* ── MUNICIPAL LEGENDS ─────────────────────────────────── */}
+        {/* ── THE WARREN ─────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <GhostWord word="LEGENDARY" />
+          <GhostWord word="THE WARREN" />
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                 <AccentLine className="w-16 mb-6" />
-                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">For the Everyday Golfer</motion.p>
+                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">For the Night Owls</motion.p>
                 <motion.h2 variants={fadeInUp} className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-8">
-                  MUNICIPAL<br />LEGENDS<br />WELCOME.
+                  THE WARREN<br />WELCOMES<br />YOU.
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-white/65 text-lg leading-relaxed mb-4">
-                  Not every golfer plays private clubs. Most of us play where the tee sheets fill up early, the carts rattle a little, and the greens keeper is doing his best.
+                  Not everyone fits in the mainstream. Most of us thrive where the lights are neon, the music is loud, and the session is just getting started.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white/65 text-lg leading-relaxed mb-10">
-                  And that's exactly where the best rounds happen. Almost Elite is built for the golfers who show up week after week — chasing better shots, better rounds, and better stories for the clubhouse after.
+                  And that's exactly where the best stories happen. Stoned Rabbit is built for the crew that shows up night after night — chasing better vibes, better art, and better connections.
                 </motion.p>
                 <motion.div variants={fadeInUp}>
                   <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                    Shop Muni Gear
+                    Enter The Warren
                   </Button>
                 </motion.div>
               </motion.div>
@@ -632,9 +612,9 @@ export default function Home() {
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-3">
               {[
-                { to: 10000, prefix: "",  suffix: "+", label: "Municipal Legends",  delay: 0 },
-                { to: 47,    prefix: "",  suffix: "",  label: "States Represented", delay: 200 },
-                { to: 250,   prefix: "$", suffix: "K+",label: "Raised for Charity", delay: 400 },
+                { to: 10000, prefix: "",  suffix: "+", label: "Stoned Rabbits",  delay: 0 },
+                { to: 47,    prefix: "",  suffix: "",  label: "Cities Represented", delay: 200 },
+                { to: 250,   prefix: "$", suffix: "K+",label: "Expungement Funds", delay: 400 },
               ].map((s, i) => (
                 <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
                   className="text-center py-10 px-4">
@@ -698,29 +678,29 @@ export default function Home() {
           {/* Watermark overlaid on photo — bottom right */}
           <div className="absolute bottom-0 right-0 z-[1] overflow-hidden pointer-events-none select-none leading-none">
             <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.055 }}>
-              ALMOST
+              RABBIT
             </span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer} className="max-w-3xl">
               <AccentLine className="w-16 mb-6" />
-              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Built for the Rounds That Matter Most</motion.p>
+              <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Built for the Nights That Matter Most</motion.p>
               <motion.h2 variants={fadeInUp} className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-8">
-                FOR PLAYERS WHO LOVE THE GAME — AND THEMSELVES A LITTLE LESS.
+                FOR THOSE WHO APPRECIATE THE ART — AND THE CULTURE.
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-white/80 leading-relaxed max-w-2xl mb-6">
-                This isn't gear for tour vans and TV cameras. It's for early tee times, public courses, weekend groups, and the round that somehow turns into a few extra drinks afterward.
+                This isn't gear for corporate boardrooms and country clubs. It's for late nights, underground shows, weekend sessions, and the hangout that somehow turns into a core memory.
               </motion.p>
               <motion.p variants={fadeInUp} className="font-display font-black italic text-3xl uppercase tracking-wide text-accent">
-                You might not be elite... But you're definitely Almost.
+                You might not be famous... But you're definitely a legend in The Warren.
               </motion.p>
             </motion.div>
           </div>
         </section>
 
-        {/* ── CHARITY ROUNDS ────────────────────────────────────── */}
+        {/* ── COMMUNITY INITIATIVE ────────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <GhostWord word="CHARITY" className="justify-end" />
+          <GhostWord word="COMMUNITY" className="justify-end" />
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -728,35 +708,35 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
                 className="relative" style={{ height: "580px" }}>
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(0 0, 92% 0, 100% 100%, 0 100%)" }}>
-                  <img src="/charity-outing-1.jpg" alt="Charity outing" className="w-full h-full object-cover object-top" />
+                  <img src="/charity-outing-1.jpg" alt="Community support" className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="absolute top-0 right-0 w-1 h-20 bg-accent" />
                 <div className="absolute top-0 right-0 w-20 h-1 bg-accent" />
                 <div className="absolute bottom-8 right-4 bg-accent px-4 py-3 z-10">
-                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Scramble</p>
-                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Specialist</p>
-                  <p className="text-white/80 text-xs uppercase tracking-widest mt-1">Charity Drop</p>
+                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Expungement</p>
+                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Support</p>
+                  <p className="text-white/80 text-xs uppercase tracking-widest mt-1">Community Fund</p>
                 </div>
               </motion.div>
 
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                 <AccentLine className="w-16 mb-6" />
-                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Almost Elite Charity Rounds</motion.p>
+                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Stoned Rabbit Community Fund</motion.p>
                 <motion.h2 variants={fadeInUp} className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-6">
-                  BECAUSE A GREAT CHARITY SCRAMBLE DESERVES BETTER MERCH THAN A SLEEVE OF BALLS.
+                  BECAUSE THE CULTURE DESERVES MORE THAN JUST MERCH.
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-white/60 text-lg leading-relaxed mb-5">
-                  Golf has always been about more than the scorecard. It's the people, the stories, and the rounds that turn into something worth remembering.
+                  We believe in giving back to the community that inspired us. The war on drugs disproportionately affected our neighborhoods, and it's time to help make it right.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white/60 text-lg leading-relaxed mb-8">
-                  We partner with tournaments and nonprofits to create limited-edition merchandise that helps raise more money, more engagement, and more meaning from every round played.
+                  We partner with expungement nonprofits to dedicate a portion of every drop toward clearing records and giving people their lives back.
                 </motion.p>
                 <div className="grid grid-cols-2 gap-3 mb-8">
                   {[
-                    { step: "01", label: "Design The Gear",       desc: "Custom apparel built around your event's personality." },
-                    { step: "02", label: "Drop Before Tee Time",  desc: "Merch ready before the first shot is taken." },
-                    { step: "03", label: "Game Day Ready",        desc: "Everything clean and organized at check-in." },
-                    { step: "04", label: "Wear the Story",        desc: "Campaign stays open after for ongoing support." },
+                    { step: "01", label: "Buy Gear",       desc: "A portion of every sale goes to the fund." },
+                    { step: "02", label: "Fund Legal Teams",  desc: "We sponsor pro-bono lawyers for expungement." },
+                    { step: "03", label: "Clear Records",        desc: "Helping individuals get a clean slate." },
+                    { step: "04", label: "Wear the Story",        desc: "You represent a movement, not just a brand." },
                   ].map((s, i) => (
                     <motion.div key={i} variants={fadeInUp} className="p-4 border-l-2 border-accent/40 bg-white/[0.03]">
                       <p className="text-accent font-bold text-xs tracking-widest mb-1">{s.step}</p>
@@ -766,9 +746,9 @@ export default function Home() {
                   ))}
                 </div>
                 <motion.div variants={fadeInUp}>
-                  <Link href="/charity">
+                  <Link href="/community">
                     <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                      Join Charity Rounds <ArrowRight className="ml-2 h-4 w-4" />
+                      Learn About The Fund <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 </motion.div>
@@ -780,36 +760,36 @@ export default function Home() {
         {/* ── FEATURED CHARITY EVENT ────────────────────────────── */}
         <section className="relative py-24 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/charity-outing-2.jpg" alt="Boys & Girls Club Charity Outing" className="w-full h-full object-cover" />
+            <img src="/charity-outing-2.jpg" alt="Community Outing" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65" />
           </div>
-          {/* Watermark — REGISTER bleeds from center-right */}
+          {/* Watermark — JOIN bleeds from center-right */}
           <div className="absolute inset-0 z-[1] flex items-center overflow-hidden pointer-events-none select-none">
             <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 18vw, 18rem)", opacity: 0.06, marginLeft: "22%" }}>
-              REGISTER
+              JOIN
             </span>
           </div>
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="max-w-4xl mx-auto text-center">
               <AccentLine className="w-20 mx-auto mb-6" />
-              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Event — Boy's &amp; Girls Charity</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Initiative — Project Clean Slate</p>
               <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-6">
-                FORE A<br />GOOD CAUSE.
+                FIGHTING<br />FOR FAIRNESS.
               </h2>
-              <p className="text-white/55 text-base mb-3 tracking-wider uppercase font-semibold">May 30th, 2026 — XYZ Golf Course</p>
+              <p className="text-white/55 text-base mb-3 tracking-wider uppercase font-semibold">Ongoing — Nationwide</p>
               <p className="text-white/75 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-                A day of golf built around four-person teams, shared swings, and the kind of moments that never quite make it onto a scorecard. Almost Elite brings a limited-edition{" "}
-                <span className="text-accent font-bold">Scramble Specialist</span> drop to life — designed before the first tee, worn long after the final putt drops.
+                A nationwide push to fund legal representation for those with non-violent cannabis convictions. Stoned Rabbit brings a limited-edition{" "}
+                <span className="text-accent font-bold">Freedom Tag</span> drop to life — designed with purpose, worn with pride.
               </p>
               <p className="text-white/45 text-sm mb-10">
-                Supporting the <span className="text-white font-bold">Boys & Girls Clubs of America</span>
+                Supporting <span className="text-white font-bold">The Last Prisoner Project</span>
               </p>
               <Button
                 size="lg"
                 onClick={() => setRegisterOpen(true)}
                 className="bg-accent hover:bg-white hover:text-black text-white font-black italic tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors"
               >
-                Claim Your Event Merch
+                Claim Your Freedom Tag
               </Button>
             </div>
           </div>
@@ -817,19 +797,19 @@ export default function Home() {
 
         {/* ── SOCIAL PROOF ──────────────────────────────────────── */}
         <section className="relative py-24 overflow-hidden">
-          <GhostWord word="ALMOST ELITE" />
+          <GhostWord word="STONED RABBIT" />
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="mb-14">
               <AccentLine className="w-16 mb-5" />
               <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter text-white">
-                WORD ON<br />THE FAIRWAY.
+                WORD ON<br />THE STREET.
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { quote: "Shot an 87, looked like a scratch golfer. Totally worth it.", author: "Mike T.", handicap: "15 Handicap" },
-                { quote: "Finally, a brand that understands I'm just here for the experience. The gear makes me feel like I belong out there.", author: "Sarah J.", handicap: "Here for the cart" },
-                { quote: "My swing is still garbage, but at least my polo isn't. Municipal legend status unlocked.", author: "Dave R.", handicap: "22 Handicap" },
+                { quote: "The quality of the hoodie is insane. Thick, heavy, and the embroidery pops perfectly.", author: "Mike T.", handicap: "Verified Buyer" },
+                { quote: "Finally, a brand that actually represents the culture without feeling cheesy.", author: "Sarah J.", handicap: "Day One" },
+                { quote: "The stash jar works perfectly. And the grinder? Smoothest I've ever owned.", author: "Dave R.", handicap: "Collector" },
               ].map((r, i) => (
                 <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
                   className="relative p-8 border-l-4 border-accent bg-white/[0.04] border-t border-r border-b border-white/10">
@@ -852,7 +832,7 @@ export default function Home() {
             <AccentLine className="w-16 mb-5" />
             <div className="flex items-end justify-between mb-8">
               <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter text-white">FOLLOW THE CREW</h2>
-              <a href="https://instagram.com/almostelite" target="_blank" rel="noreferrer" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@ALMOSTELITE</a>
+              <a href="https://instagram.com/stonedrabbit" target="_blank" rel="noreferrer" className="text-accent font-bold hover:underline tracking-widest uppercase text-sm">@STONEDRABBIT</a>
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0">
@@ -871,7 +851,7 @@ export default function Home() {
         <section className="relative text-white overflow-hidden">
           {/* Full-bleed background */}
           <div className="absolute inset-0 z-0">
-            <img src="/classic-vibe-drinks.jpg" alt="Join the Almost Elite crew" className="w-full h-full object-cover" />
+            <img src="/classic-vibe-drinks.jpg" alt="Join the Stoned Rabbit crew" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/95" />
           </div>
 
@@ -888,10 +868,10 @@ export default function Home() {
             {/* Header */}
             <div className="text-center mb-16">
               <AccentLine className="w-20 mx-auto mb-6" />
-              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Municipal Legends Already In</p>
-              <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-5">JOIN THE CREW</h2>
+              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">10,000+ Legends Already In</p>
+              <h2 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter mb-5">JOIN THE WARREN</h2>
               <p className="text-lg text-white/55 max-w-2xl mx-auto">
-                Sign up. Earn points. Unlock perks. Every dollar you spend moves you closer to the top of the municipal food chain.
+                Sign up. Earn points. Unlock perks. Every dollar you spend moves you closer to the inner circle.
               </p>
             </div>
 
@@ -899,44 +879,44 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px mb-16" style={{ background: "rgba(255,255,255,0.06)" }}>
               {[
                 {
-                  name: "Almost Good",
+                  name: "The Looker",
                   range: "0 – 499 pts",
                   color: "#94a3b8",
-                  icon: "⛳",
-                  tagline: "Welcome to the muni.",
+                  icon: "👀",
+                  tagline: "Welcome to the crew.",
                   perks: [
                     "Early access to new drops",
                     "5% member discount",
-                    "Monthly crew newsletter",
-                    "Community charity round invites",
+                    "Monthly newsletter",
+                    "Community updates",
                   ],
                 },
                 {
-                  name: "Almost Better",
+                  name: "The Regular",
                   range: "500 – 999 pts",
                   color: "hsl(32 90% 55%)",
-                  icon: "🏌️",
+                  icon: "🔥",
                   tagline: "Now we're talking.",
                   featured: true,
                   perks: [
                     "10% member discount",
                     "Free standard shipping",
-                    "VIP charity round access",
+                    "VIP drop access",
                     "Priority restock alerts",
                   ],
                 },
                 {
-                  name: "Almost Elite",
+                  name: "The Legend",
                   range: "1,000+ pts",
                   color: "#facc15",
-                  icon: "🏆",
-                  tagline: "You're basically a pro.",
+                  icon: "👑",
+                  tagline: "Inner circle status.",
                   perks: [
                     "15% member discount",
                     "Free express shipping",
                     "Exclusive drops — never public",
                     "1 free accessory per season",
-                    "Featured on the Crew Wall",
+                    "Featured in The Warren",
                   ],
                 },
               ].map((tier, i) => (
@@ -1012,7 +992,7 @@ export default function Home() {
                 </Button>
               </form>
               <p className="text-white/20 text-xs mt-4 italic">
-                No spam. Only drops, perks, and the occasional bad golf tip.
+                No spam. Only drops, perks, and the occasional graffiti piece.
               </p>
             </div>
 
@@ -1028,17 +1008,17 @@ export default function Home() {
 
             {/* Logo column */}
             <div className="md:col-span-1 flex flex-col items-start">
-              <img src="/logo-badge.png" alt="Almost Elite" className="h-32 w-32 object-contain mb-4" />
+              <img src="/logo-badge.png" alt="Stoned Rabbit" className="h-32 w-32 object-contain mb-4" />
               <AccentLine className="w-12 mb-4" />
               <p className="text-white/40 max-w-xs text-sm leading-relaxed mb-2">
-                Golf apparel for the rest of us. Performance-ready gear. Municipal-approved attitude.
+                Graffiti-inspired gear. Street-approved attitude. For those who appreciate the art and the culture.
               </p>
-              <p className="text-white/25 text-xs italic">You might not be elite... But you're definitely Almost.</p>
+              <p className="text-white/25 text-xs italic">Graffiti. Glass. Good Vibes.</p>
             </div>
 
             {[
-              { title: "Shop",           links: ["Men's Collection","Women's Collection","Headwear","Accessories","The Drop"] },
-              { title: "Charity Rounds", links: ["About The Program","Partner With Us","Featured Events","Fore A Good Cause","Plan Your Drop"] },
+              { title: "Shop",           links: ["Apparel","Headwear","Accessories","Glass","The Drop"] },
+              { title: "Community", links: ["About The Fund","Partner With Us","Featured Initiatives","Fight For Fairness","Expungement"] },
               { title: "Support",        links: ["FAQ","Shipping & Returns","Size Guide","Contact Us","Our Story"] },
             ].map((col, i) => (
               <div key={i}>
@@ -1052,7 +1032,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/25">
-            <p>&copy; {new Date().getFullYear()} Almost Elite™ — Golf for the Rest of Us.</p>
+            <p>&copy; {new Date().getFullYear()} Stoned Rabbit™ — The Culture.</p>
             <div className="flex gap-6">
               <Link href="#" className="hover:text-accent transition-colors">Privacy Policy</Link>
               <Link href="#" className="hover:text-accent transition-colors">Terms of Service</Link>

@@ -4,9 +4,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
-import Charity from "@/pages/charity";
+import Community from "@/pages/community";
 import ProductDetail from "@/pages/product";
-import { MenPage, WomenPage, HatsPage, AccessoriesPage, DropPage } from "@/pages/shop";
+import { ApparelPage, HeadwearPage, AccessoriesPage, GlassPage, DropPage } from "@/pages/shop";
 import CrewWall from "@/pages/crew-wall";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/CartSidebar";
@@ -18,18 +18,18 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/charity" component={Charity} />
+      <Route path="/community" component={Community} />
       <Route path="/product/:slug" component={ProductDetail} />
-      <Route path="/men" component={MenPage} />
-      <Route path="/women" component={WomenPage} />
-      <Route path="/hats" component={HatsPage} />
+      <Route path="/apparel" component={ApparelPage} />
+      <Route path="/headwear" component={HeadwearPage} />
       <Route path="/accessories" component={AccessoriesPage} />
+      <Route path="/glass" component={GlassPage} />
       <Route path="/drop" component={DropPage} />
-      <Route path="/men/:sub" component={MenPage} />
-      <Route path="/women/:sub" component={WomenPage} />
-      <Route path="/hats/:sub" component={HatsPage} />
+      <Route path="/apparel/:sub" component={ApparelPage} />
+      <Route path="/headwear/:sub" component={HeadwearPage} />
       <Route path="/accessories/:sub" component={AccessoriesPage} />
-      <Route path="/crew-wall" component={CrewWall} />
+      <Route path="/glass/:sub" component={GlassPage} />
+      <Route path="/the-warren" component={CrewWall} />
       <Route component={NotFound} />
     </Switch>
   );

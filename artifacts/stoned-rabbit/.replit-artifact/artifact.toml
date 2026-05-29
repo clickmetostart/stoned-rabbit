@@ -1,8 +1,8 @@
 kind = "web"
 previewPath = "/"
-title = "Almost Elite"
+title = "Stoned Rabbit"
 version = "1.0.0"
-id = "artifacts/almost-elite"
+id = "artifacts/stoned-rabbit"
 router = "path"
 
 [[integratedSkills]]
@@ -15,11 +15,11 @@ paths = [ "/" ]
 localPort = 26175
 
 [services.development]
-run = "pnpm --filter @workspace/almost-elite run dev"
+run = "pnpm --filter @workspace/stoned-rabbit run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/almost-elite", "run", "build" ]
-publicDir = "artifacts/almost-elite/dist/public"
+build = [ "pnpm", "--filter", "@workspace/stoned-rabbit", "run", "build" ]
+publicDir = "artifacts/stoned-rabbit/dist/public"
 serve = "static"
 
 [[services.production.rewrites]]

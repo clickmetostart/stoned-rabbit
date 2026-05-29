@@ -67,7 +67,7 @@ export default function Charity() {
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-5xl">
               <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-6">
-                Almost Elite Charity Rounds
+                Stoned Rabbit Charity Rounds
               </motion.p>
               <motion.h1 variants={fadeInUp} className="font-display font-black italic text-6xl md:text-8xl uppercase leading-[0.85] tracking-tighter mb-6 text-white">
                 BECAUSE A GREAT<br />CHARITY SCRAMBLE<br />DESERVES BETTER<br />MERCH.
@@ -104,7 +104,7 @@ export default function Charity() {
                   GOLF HAS ALWAYS BEEN ABOUT MORE THAN THE SCORECARD.
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-white/55 text-lg leading-relaxed mb-5">
-                  It's the people, the stories, and the rounds that turn into something worth remembering. Almost Elite Charity Rounds exists to take that idea and turn it into impact.
+                  It's the people, the stories, and the rounds that turn into something worth remembering. Stoned Rabbit Charity Rounds exists to take that idea and turn it into impact.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white/55 text-lg leading-relaxed mb-5">
                   This isn't corporate sponsorship. It's golf culture doing what it does best — showing up for something bigger than itself.
@@ -284,7 +284,7 @@ export default function Charity() {
                   Four-person teams. Shared swings. Mulligans that somehow feel strategic. And a scoreboard nobody fully agrees on by the end of the round.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white/55 text-lg leading-relaxed mb-5">
-                  Almost Elite designs merchandise that fits right into that world. Not generic. Not forgettable. Something people actually wear after the event ends.
+                  Stoned Rabbit designs merchandise that fits right into that world. Not generic. Not forgettable. Something people actually wear after the event ends.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white font-bold text-lg">
                   Because when the gear is right, the memory lasts longer.
@@ -337,7 +337,7 @@ export default function Charity() {
                       A day of golf built around four-person teams, shared swings, and the kind of moments that never quite make it onto a scorecard — but always make it into the group chat.
                     </p>
                     <p className="text-white/65 text-lg leading-relaxed mb-5">
-                      Almost Elite is proud to bring a limited-edition <span className="text-accent font-bold">Scramble Specialist</span> drop to life. Designed before the first tee, picked up on game day, and worn long after the final putt drops.
+                      Stoned Rabbit is proud to bring a limited-edition <span className="text-accent font-bold">Scramble Specialist</span> drop to life. Designed before the first tee, picked up on game day, and worn long after the final putt drops.
                     </p>
                     <p className="text-white/45 text-base leading-relaxed mb-8">
                       Supporting the <span className="text-white font-bold">Boys & Girls Clubs of America</span> — because golf has a way of giving something back.
@@ -371,7 +371,7 @@ export default function Charity() {
               <AccentLine className="w-16 mb-6" />
               <p className="text-accent font-bold tracking-widest uppercase text-sm mb-2">Keep The Round Going</p>
               <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-white">
-                SHOP ALMOST ELITE.
+                SHOP STONED RABBIT.
               </h2>
               <p className="text-white/45 mt-3 max-w-xl">
                 The round might be finished, but the feeling doesn't leave.
@@ -418,7 +418,7 @@ export default function Charity() {
             <AccentLine className="w-16 mx-auto mb-8" />
             <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Running a Charity Event?</p>
             <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter mb-6 text-white">
-              PARTNER WITH<br />ALMOST ELITE.
+              PARTNER WITH<br />STONED RABBIT.
             </h2>
             <p className="text-lg text-white/55 mb-10 max-w-2xl mx-auto">
               Running a charity scramble, nonprofit outing, or upcoming golf event? We help organizers create custom hats and apparel made specifically for their players.
@@ -447,10 +447,10 @@ export default function Charity() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
               <div className="md:col-span-1">
                 <Link href="/">
-                  <img src="/logo-badge.png" alt="Almost Elite" className="w-16 h-16 object-contain mb-4" />
+                  <img src="/logo-badge.png" alt="Stoned Rabbit" className="w-16 h-16 object-contain mb-4" />
                 </Link>
-                <p className="text-white/45 mb-2 max-w-xs text-sm leading-relaxed">Golf apparel for the rest of us. Performance-ready gear. Municipal-approved attitude.</p>
-                <p className="text-white/30 text-xs italic">You might not be elite... But you're definitely Almost.</p>
+                <p className="text-white/45 mb-2 max-w-xs text-sm leading-relaxed">Graffiti-inspired gear. Street-approved attitude. Good vibes only.</p>
+                <p className="text-white/30 text-xs italic">Stay lifted. Stay grounded.</p>
               </div>
               <div>
                 <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-white/10 pb-2 text-sm text-white">Shop</h4>
@@ -478,7 +478,7 @@ export default function Charity() {
               </div>
             </div>
             <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-white/30 text-xs uppercase tracking-widest">© 2026 Almost Elite. All rights reserved. Municipal Legends Welcome.</p>
+              <p className="text-white/30 text-xs uppercase tracking-widest">© 2026 Stoned Rabbit. All rights reserved. Good Vibes Welcome.</p>
               <p className="text-white/20 text-xs italic">Not affiliated with the PGA Tour. Not even a little.</p>
             </div>
           </div>

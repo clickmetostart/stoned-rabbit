@@ -74,7 +74,7 @@ export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () 
           <div className="flex items-center gap-3">
             <Ruler className="w-5 h-5 text-accent" />
             <div>
-              <p className="text-accent font-bold tracking-widest uppercase text-xs mb-0.5">Almost Elite</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-xs mb-0.5">Stoned Rabbit</p>
               <h2 className="font-display font-black italic text-3xl uppercase tracking-tighter leading-none text-white">
                 SIZE GUIDE
               </h2>
@@ -182,7 +182,7 @@ export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () 
               {activeTab === "hats" && (
                 <>
                   <p className="text-white/40 text-sm mb-6 leading-relaxed">
-                    All Almost Elite headwear uses adjustable snapback or strap closures. Most styles are one-size-fits-most. Use head circumference for best fit.
+                    All Stoned Rabbit headwear uses adjustable snapback or strap closures. Most styles are one-size-fits-most. Use head circumference for best fit.
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm min-w-[420px]">
@@ -237,9 +237,9 @@ export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () 
 
               {/* Fit note */}
               <div className="mt-6 p-4 bg-accent/[0.08] border border-accent/20">
-                <p className="text-accent font-bold uppercase tracking-widest text-xs mb-1">Almost Elite Fit</p>
+                <p className="text-accent font-bold uppercase tracking-widest text-xs mb-1">Stoned Rabbit Fit</p>
                 <p className="text-white/50 text-xs leading-relaxed">
-                  Our gear is built for the range of motion you need on the course — not a fashion runway. When in doubt, size up for a more relaxed swing-friendly fit.
+                  Our gear is built for full range of motion. Relaxed, comfortable, and session-ready. When in doubt, size up for a more relaxed fit.
                 </p>
               </div>
             </motion.div>

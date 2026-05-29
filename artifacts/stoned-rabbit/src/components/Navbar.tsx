@@ -10,84 +10,78 @@ const NAV_BG = "#0b1a14";
 const MENU_BG = "#0c1920";
 
 const MENUS = {
-  MEN: {
+  APPAREL: {
     featured: {
-      img: "/product-polo.png",
-      label: "The Range Wrangler",
-      sub: "Built for golfers who treat every round like they've got something to prove.",
-      href: "/men",
+      img: "/lifestyle-swing.jpg",
+      label: "The Canvas",
+      sub: "Graffiti-inspired tees and hoodies.",
+      href: "/apparel",
     },
     categories: [
       { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
-      { label: "Polos",        img: "/product-polo.png",    href: "/men" },
-      { label: "Pullovers",    img: "/product-womens.png",  href: "/men" },
-      { label: "Shorts",       img: "/product-hat.png",     href: "/men" },
+      { label: "Tees",         img: "/product-polo.png",    href: "/apparel" },
+      { label: "Hoodies",      img: "/product-womens.png",  href: "/apparel" },
+      { label: "Jackets",      img: "/product-hat.png",     href: "/apparel" },
     ],
     links: [
-      { label: "View All Men's",  href: "/men" },
+      { label: "View All Apparel",  href: "/apparel" },
       { label: "New Arrivals",    href: "/drop" },
-      { label: "Best Sellers",    href: "/men" },
-      { label: "Sale",            href: "/men" },
+      { label: "Best Sellers",    href: "/apparel" },
+      { label: "Sale",            href: "/apparel" },
     ],
   },
-  WOMEN: {
-    featured: {
-      img: "/product-womens.png",
-      label: "The Backwoods Fade",
-      sub: "Camo built for early tee times, questionable decisions, and rounds that drift off course in the best way.",
-      href: "/women",
-    },
-    categories: [
-      { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
-      { label: "Polos",        img: "/product-womens.png",  href: "/women" },
-      { label: "Pullovers",    img: "/product-polo.png",    href: "/women" },
-      { label: "Skorts",       img: "/product-hat.png",     href: "/women" },
-    ],
-    links: [
-      { label: "View All Women's", href: "/women" },
-      { label: "New Arrivals",     href: "/drop" },
-      { label: "Best Sellers",     href: "/women" },
-      { label: "Sale",             href: "/women" },
-    ],
-  },
-  HATS: {
+  HEADWEAR: {
     featured: {
       img: "/scramble-specialist-hat.jpg",
-      label: "Headcover Rebellion",
-      sub: "Golf doesn't have a dress code anymore. This is for the bags that don't behave.",
-      href: "/hats",
+      label: "Block the Lights",
+      sub: "Beanies and snapbacks for the late night runs.",
+      href: "/headwear",
     },
     categories: [
-      { label: "Snapbacks", img: "/scramble-specialist-hat.jpg",  href: "/hats" },
-      { label: "Fitted",    img: "/clubhouse-legend-hat.jpg",     href: "/hats" },
-      { label: "Visors",    img: "/product-polo.png",             href: "/hats" },
-      { label: "Beanies",   img: "/product-womens.png",           href: "/hats" },
+      { label: "Snapbacks", img: "/scramble-specialist-hat.jpg",  href: "/headwear" },
+      { label: "Beanies",   img: "/clubhouse-legend-hat.jpg",     href: "/headwear" },
+      { label: "Buckets",   img: "/product-polo.png",             href: "/headwear" },
     ],
     links: [
-      { label: "View All Hats",  href: "/hats" },
-      { label: "New Arrivals",   href: "/drop" },
-      { label: "Limited Runs",   href: "/hats" },
-      { label: "Sale",           href: "/hats" },
+      { label: "View All Headwear", href: "/headwear" },
+      { label: "New Arrivals",     href: "/drop" },
+      { label: "Limited Runs",     href: "/headwear" },
     ],
   },
   ACCESSORIES: {
     featured: {
       img: "/drop-editorial.png",
-      label: "Grip It & Rip It",
-      sub: "Hold it loose, swing it loud. For the ones who don't aim to be perfect — just dangerous.",
+      label: "Everyday Carry",
+      sub: "Grinders, trays, and lighters. Never leave home without it.",
       href: "/accessories",
     },
     categories: [
-      { label: "Gloves",       img: "/product-hat.png",     href: "/accessories" },
-      { label: "Towels",       img: "/product-polo.png",    href: "/accessories" },
-      { label: "Tees & Balls", img: "/product-womens.png",  href: "/accessories" },
-      { label: "Bags",         img: "/drop-editorial.png",  href: "/accessories" },
+      { label: "Grinders",  img: "/scramble-specialist-hat.jpg",  href: "/accessories" },
+      { label: "Trays",     img: "/clubhouse-legend-hat.jpg",     href: "/accessories" },
+      { label: "Lighters",  img: "/product-polo.png",             href: "/accessories" },
     ],
     links: [
-      { label: "View All Accessories", href: "/accessories" },
-      { label: "New Arrivals",         href: "/drop" },
-      { label: "Gift Ideas",           href: "/accessories" },
-      { label: "Sale",                 href: "/accessories" },
+      { label: "View All Accessories",  href: "/accessories" },
+      { label: "New Arrivals",   href: "/drop" },
+      { label: "Gift Ideas",   href: "/accessories" },
+    ],
+  },
+  GLASS: {
+    featured: {
+      img: "/drop-editorial.png",
+      label: "The Perfect Hit",
+      sub: "Premium bongs, rigs, and pipes.",
+      href: "/glass",
+    },
+    categories: [
+      { label: "Bongs",   img: "/product-hat.png",     href: "/glass" },
+      { label: "Pipes",   img: "/product-polo.png",    href: "/glass" },
+      { label: "Rigs",    img: "/product-womens.png",  href: "/glass" },
+    ],
+    links: [
+      { label: "View All Glass", href: "/glass" },
+      { label: "New Arrivals",   href: "/drop" },
+      { label: "Sale",           href: "/glass" },
     ],
   },
 };
@@ -97,17 +91,15 @@ type MenuKey = keyof typeof MENUS;
 const CHARITY_MENU = {
   featured: {
     img: "/charity-outing-2.jpg",
-    badge: "Featured Event",
-    title: "Boys & Girls Club Scramble",
-    date: "June 14, 2025 · Riverside Muni",
-    href: "/charity",
+    badge: "Community",
+    title: "Expungement Support",
+    date: "A portion of every drop",
+    href: "/community",
   },
   links: [
-    { label: "Register for the Event", href: "/charity" },
-    { label: "Partner With Us",        href: "/charity" },
-    { label: "Plan Your Event Drop",   href: "/charity" },
-    { label: "View All Events",        href: "/charity" },
-    { label: "The Crew Wall",          href: "/crew-wall" },
+    { label: "Learn About Our Mission", href: "/community" },
+    { label: "Partner With Us",        href: "/community" },
+    { label: "The Warren (Crew Wall)", href: "/the-warren" },
   ],
 };
 
@@ -133,7 +125,7 @@ export default function Navbar() {
     <>
       {/* ── PROMO BANNER ──────────────────────────────────────── */}
       <div className="bg-accent text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
-        Free Shipping on Orders Over $100&nbsp;&nbsp;•&nbsp;&nbsp;Municipal Legends Welcome&nbsp;&nbsp;•&nbsp;&nbsp;Play Hard. Laugh Harder.
+        Free Shipping over $100&nbsp;&nbsp;•&nbsp;&nbsp;Graffiti. Glass. Good Vibes.
       </div>
 
       {/* ── MAIN NAV ──────────────────────────────────────────── */}
@@ -148,15 +140,15 @@ export default function Navbar() {
               <Menu className="h-6 w-6" />
             </Button>
             <Link href="/">
-              <img src="/logo-badge.png" alt="Almost Elite" className="h-10 w-10 object-contain" />
+              <img src="/logo-badge.png" alt="Stoned Rabbit" className="h-10 w-10 object-contain" />
             </Link>
           </div>
 
           {/* Desktop: badge logo + wordmark */}
           <Link href="/" className="hidden lg:flex items-center gap-3 mr-8 group">
-            <img src="/logo-badge.png" alt="Almost Elite" className="h-11 w-11 object-contain transition-transform duration-300 group-hover:scale-105" />
+            <img src="/logo-badge.png" alt="Stoned Rabbit" className="h-11 w-11 object-contain transition-transform duration-300 group-hover:scale-105" />
             <span className="font-display font-black italic text-2xl tracking-tighter text-white group-hover:text-accent transition-colors leading-none">
-              ALMOST ELITE
+              STONED RABBIT
             </span>
           </Link>
 
@@ -183,7 +175,7 @@ export default function Navbar() {
                 charityOpen ? "text-accent" : "text-white/80 hover:text-accent"
               }`}
             >
-              CHARITY ROUNDS
+              COMMUNITY
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${charityOpen ? "rotate-180 text-accent" : ""}`} />
             </button>
           </nav>
@@ -395,7 +387,7 @@ export default function Navbar() {
                     <p className="text-white/40 text-xs leading-relaxed italic">
                       "Golf gives you the round. We make sure it gives something back."
                     </p>
-                    <p className="text-accent text-xs font-bold uppercase tracking-widest mt-2">— Almost Elite</p>
+                    <p className="text-accent text-xs font-bold uppercase tracking-widest mt-2">— Stoned Rabbit</p>
                   </div>
                 </div>
 
@@ -427,8 +419,8 @@ export default function Navbar() {
             >
               <div className="flex items-center justify-between p-5 border-b border-white/10">
                 <div className="flex items-center gap-3">
-                  <img src="/logo-badge.png" alt="Almost Elite" className="h-9 w-9 object-contain" />
-                  <span className="font-display font-black italic text-xl tracking-tighter text-white">ALMOST ELITE</span>
+                  <img src="/logo-badge.png" alt="Stoned Rabbit" className="h-9 w-9 object-contain" />
+                  <span className="font-display font-black italic text-xl tracking-tighter text-white">STONED RABBIT</span>
                 </div>
                 <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" onClick={() => setMobileOpen(false)}>
                   <X className="h-5 w-5" />
@@ -436,13 +428,13 @@ export default function Navbar() {
               </div>
               <nav className="flex-1 p-5 space-y-0.5">
                 {[
-                  { label: "MEN",            href: "/men" },
-                  { label: "WOMEN",          href: "/women" },
-                  { label: "HATS",           href: "/hats" },
+                  { label: "APPAREL",        href: "/apparel" },
+                  { label: "HEADWEAR",       href: "/headwear" },
                   { label: "ACCESSORIES",    href: "/accessories" },
+                  { label: "GLASS",          href: "/glass" },
                   { label: "THE DROP",       href: "/drop",       accent: true },
-                  { label: "CHARITY ROUNDS", href: "/charity" },
-                  { label: "CREW WALL",      href: "/crew-wall",  accent: true },
+                  { label: "COMMUNITY",      href: "/community" },
+                  { label: "THE WARREN",     href: "/the-warren", accent: true },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -458,7 +450,7 @@ export default function Navbar() {
                 ))}
               </nav>
               <div className="p-5 border-t border-white/10">
-                <p className="text-white/30 text-xs italic">You might not be elite... But you're definitely Almost.</p>
+                <p className="text-white/30 text-xs italic">Graffiti. Glass. Good Vibes.</p>
               </div>
             </motion.aside>
           </>

@@ -43,7 +43,7 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
           {!sent ? (
             <>
               <div className="mb-8">
-                <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Almost Elite Charity Rounds</p>
+                <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit Charity Rounds</p>
                 <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter leading-none text-white mb-4">
                   LET'S PLAN<br />YOUR EVENT.
                 </h2>
@@ -155,7 +155,7 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
               <p className="text-white/55 text-base leading-relaxed max-w-sm mx-auto mb-3">
                 We'll reach out to <span className="text-white font-semibold">{form.email}</span> to kick off your event merch drop.
               </p>
-              <p className="text-white/30 text-sm">Almost Elite — bringing something worth keeping to every round.</p>
+              <p className="text-white/30 text-sm">Stoned Rabbit — graffiti-inspired gear, street-approved attitude.</p>
             </motion.div>
           )}
         </div>

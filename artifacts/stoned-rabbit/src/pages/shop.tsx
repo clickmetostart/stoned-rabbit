@@ -166,20 +166,20 @@ export function ShopPage({ config }: { config: ShopConfig }) {
           </div>
         </section>
 
-        {/* ── CHARITY BAND ────────────────────────────────────── */}
+        {/* ── COMMUNITY BAND ────────────────────────────────────── */}
         <section className="relative overflow-hidden py-20" style={{ background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="container mx-auto px-6 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Almost Elite Charity Rounds</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit Community</p>
               <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-white leading-none mb-3">
-                FORE A GOOD CAUSE.
+                THE WARREN.
               </h2>
               <p className="text-white/45 text-sm leading-relaxed max-w-md">
-                Every limited drop supports the Boys & Girls Clubs of America. When you shop Almost Elite, your round gives back.
+                We believe in giving back. A portion of every drop goes towards cannabis expungement programs. Stay lifted, stay grounded.
               </p>
             </div>
             <Link
-              href="/charity"
+              href="/community"
               className="flex-shrink-0 inline-flex items-center gap-2 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200"
             >
               Learn More <ArrowRight className="w-4 h-4" />
@@ -193,10 +193,10 @@ export function ShopPage({ config }: { config: ShopConfig }) {
       <footer className="border-t border-white/10 py-12">
         <div className="container mx-auto px-6 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-3">
-            <img src="/logo-badge.png" alt="Almost Elite" className="h-9 w-9 object-contain" />
-            <span className="font-display font-black italic text-xl tracking-tighter text-white">ALMOST ELITE</span>
+            <img src="/logo-badge.png" alt="Stoned Rabbit" className="h-9 w-9 object-contain" />
+            <span className="font-display font-black italic text-xl tracking-tighter text-white">STONED RABBIT</span>
           </Link>
-          <p className="text-white/25 text-xs italic">You might not be elite... But you're definitely Almost.</p>
+          <p className="text-white/25 text-xs italic">Graffiti. Glass. Good vibes.</p>
         </div>
       </footer>
     </div>
@@ -205,50 +205,50 @@ export function ShopPage({ config }: { config: ShopConfig }) {
 
 /* ── Named page exports ───────────────────────────────────────── */
 
-export function MenPage() {
+export function ApparelPage() {
   return <ShopPage config={{
-    title: "MEN'S",
-    eyebrow: "Almost Elite — Men's Collection",
-    desc: "Performance-ready polos, pullovers, and shorts built for every municipal legend who shows up ready to play.",
-    ghost: "COURSE",
+    title: "APPAREL",
+    eyebrow: "Stoned Rabbit — Apparel",
+    desc: "Graffiti-inspired tees, heavy hoodies, and streetwear built for the sesh.",
+    ghost: "STREET",
     heroImg: "/lifestyle-swing.jpg",
-    filter: p => p.category.toLowerCase().includes("men"),
+    filter: p => p.category.toLowerCase().includes("apparel") || p.category.toLowerCase().includes("shirt") || p.category.toLowerCase().includes("hoodie"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
 }
 
-export function WomenPage() {
+export function HeadwearPage() {
   return <ShopPage config={{
-    title: "WOMEN'S",
-    eyebrow: "Almost Elite — Women's Collection",
-    desc: "For the golfers who outdrove everyone in the group and said nothing about it. Performance-ready, fashion-forward.",
-    ghost: "SWING",
-    heroImg: "/product-womens.png",
-    filter: p => p.category.toLowerCase().includes("women"),
-    badges: ["NEW DROP", "BEST SELLER"],
-  }} />;
-}
-
-export function HatsPage() {
-  return <ShopPage config={{
-    title: "HATS",
-    eyebrow: "Almost Elite — Headwear",
-    desc: "Snapbacks, fitted, and trucker hats for every round. Wear it from the tee box to the bar after.",
+    title: "HEADWEAR",
+    eyebrow: "Stoned Rabbit — Headwear",
+    desc: "Beanies, snapbacks, and buckets to keep the bright lights out.",
     ghost: "LIDS",
-    heroImg: "/scramble-specialist-hat.jpg",
-    filter: p => p.category.toLowerCase().includes("headwear") || p.category.toLowerCase().includes("hat"),
-    badges: ["NEW", "CHARITY DROP", "BEST SELLER"],
+    heroImg: "/product-womens.png",
+    filter: p => p.category.toLowerCase().includes("headwear") || p.category.toLowerCase().includes("hat") || p.category.toLowerCase().includes("beanie"),
+    badges: ["NEW DROP", "BEST SELLER"],
   }} />;
 }
 
 export function AccessoriesPage() {
   return <ShopPage config={{
     title: "ACCESSORIES",
-    eyebrow: "Almost Elite — Accessories",
-    desc: "Gloves, towels, tees, and bags. The gear that rides shotgun on every round.",
+    eyebrow: "Stoned Rabbit — Accessories",
+    desc: "Grinders, rolling trays, lighters, and everyday carry for the elevated individual.",
     ghost: "GEAR",
+    heroImg: "/scramble-specialist-hat.jpg",
+    filter: p => p.category.toLowerCase().includes("accessories") || p.category.toLowerCase().includes("accessory") || p.category.toLowerCase().includes("grinder"),
+    badges: ["NEW", "CHARITY DROP", "BEST SELLER"],
+  }} />;
+}
+
+export function GlassPage() {
+  return <ShopPage config={{
+    title: "GLASSWARE",
+    eyebrow: "Stoned Rabbit — Glass",
+    desc: "Premium bongs, pipes, and rigs for the perfect hit.",
+    ghost: "GLASS",
     heroImg: "/drop-editorial.png",
-    filter: p => p.category.toLowerCase().includes("accessories") || p.category.toLowerCase().includes("accessory"),
+    filter: p => p.category.toLowerCase().includes("glass") || p.category.toLowerCase().includes("bong"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
 }
@@ -257,7 +257,7 @@ export function DropPage() {
   return <ShopPage config={{
     title: "JUST DROPPED.",
     eyebrow: "The Drop — What's New",
-    desc: "Fresh off the rack. The latest Almost Elite gear before it sells out. You snooze, you lose.",
+    desc: "Fresh off the rack. The latest Stoned Rabbit gear before it sells out. You snooze, you lose.",
     ghost: "DROPPED",
     heroImg: "/drop-editorial.png",
     filter: p => !!p.badge,

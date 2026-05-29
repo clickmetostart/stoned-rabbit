@@ -27,19 +27,19 @@ export default function NotFound() {
           className="relative z-10 text-center px-6"
         >
           <p className="text-accent font-bold tracking-widest uppercase text-sm mb-6">
-            Almost Elite — But Not Quite This Page
+            Stoned Rabbit — But Not Quite This Page
           </p>
           <h1 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-6 text-white">
-            LOST ON<br />THE BACK NINE.
+            LOST IN<br />THE WARREN.
           </h1>
           <div className="w-16 h-1 bg-accent mx-auto mb-6" />
           <p className="text-white/50 text-lg max-w-md mx-auto mb-10 leading-relaxed">
-            That hole doesn't exist on this course. Take a mulligan and head back to the clubhouse.
+            Looks like you took a wrong turn. Take a breather and head back to the main shop.
           </p>
           <Link href="/">
             <button className="inline-flex items-center gap-3 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200">
               <ArrowLeft className="w-5 h-5" />
-              Back to the Clubhouse
+              Back to the Shop
             </button>
           </Link>
         </motion.div>

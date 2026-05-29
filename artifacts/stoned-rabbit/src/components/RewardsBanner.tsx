@@ -4,9 +4,9 @@ import { X, Star, ChevronUp } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const TIERS = [
-  { name: "Almost Good",   min: 0,    max: 499,  color: "#94a3b8" },
-  { name: "Almost Better", min: 500,  max: 999,  color: "hsl(32 90% 55%)" },
-  { name: "Almost Elite",  min: 1000, max: Infinity, color: "#facc15" },
+  { name: "Vibe Seeker",   min: 0,    max: 499,  color: "#94a3b8" },
+  { name: "Warren Member", min: 500,  max: 999,  color: "hsl(32 90% 55%)" },
+  { name: "Stoned Rabbit",  min: 1000, max: Infinity, color: "#facc15" },
 ];
 
 function getTier(pts: number) {
