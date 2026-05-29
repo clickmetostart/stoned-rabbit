@@ -800,7 +800,7 @@ export default function Home() {
         <section className="relative text-white overflow-hidden">
           {/* Full-bleed background */}
           <div className="absolute inset-0 z-0">
-            <img src="/classic-vibe-drinks.jpg" alt="Join the Stoned Rabbit crew" className="w-full h-full object-cover" />
+            <img src="/Stoned Rabbit Hero Image 4.png" alt="Join the Stoned Rabbit crew" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/75 to-black/95" />
           </div>
 

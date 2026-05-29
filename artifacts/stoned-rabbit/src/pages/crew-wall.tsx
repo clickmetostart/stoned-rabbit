@@ -34,7 +34,7 @@ const MEMBERS = [
     pts: "1,604 pts",
     quote: "Always chasing the next high, never the score.",
     img: "/lifestyle-womens.jpg",
-    gear: "Rabbit Hole Beanie",
+    gear: "Rabbit Hole Cap",
   },
   {
     name: "Carlos 'Munchies' Reyes",
@@ -88,7 +88,7 @@ const MEMBERS = [
     pts: "558 pts",
     quote: "Life is too short for bad glass.",
     img: "/charity-outing-2.jpg",
-    gear: "Rabbit Hole Beanie",
+    gear: "Rabbit Hole Cap",
   },
 ];
 

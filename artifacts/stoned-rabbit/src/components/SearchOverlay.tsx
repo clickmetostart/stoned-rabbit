@@ -4,7 +4,7 @@ import { X, Search, ArrowUpRight, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { ALL_PRODUCTS } from "@/data/products";
 
-const SUGGESTED = ["tee", "hoodie", "hat", "beanie", "grinder", "bong", "drop"];
+const SUGGESTED = ["tee", "hoodie", "hat", "cap", "grinder", "bong", "drop"];
 
 function highlight(text: string, query: string) {
   if (!query.trim()) return <>{text}</>;

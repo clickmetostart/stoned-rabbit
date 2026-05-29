@@ -21,7 +21,7 @@ const MENUS = {
       { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
       { label: "Tees",         img: "/Stoned Rabbit womens teeshirt 1.png",  href: "/apparel" },
       { label: "Hoodies",      img: "/Stoned Rabbit Logo - hoodie 1.png",    href: "/apparel" },
-      { label: "Beanies",      img: "/Stoned Rabbit Womens Hoodie and Hat.png",     href: "/headwear" },
+      { label: "Caps & Hats",  img: "/Stoned Rabbit Womens Hoodie and Hat.png",     href: "/headwear" },
     ],
     links: [
       { label: "View All Apparel",  href: "/apparel" },
@@ -33,12 +33,12 @@ const MENUS = {
     featured: {
       img: "/Stoned Rabbit Womens Hoodie and Hat.png",
       label: "Block the Lights",
-      sub: "Beanies and snapbacks for the late night runs.",
+      sub: "Caps and snapbacks for the late night runs.",
       href: "/headwear",
     },
     categories: [
       { label: "Snapbacks", img: "/Stoned Rabbit Womens Hoodie and Hat.png",  href: "/headwear" },
-      { label: "Beanies",   img: "/Stoned Rabbit Womens Hoodie and Hat.png",           href: "/headwear" },
+      { label: "Caps",      img: "/Stoned Rabbit Womens Hoodie and Hat.png",           href: "/headwear" },
     ],
     links: [
       { label: "View All Headwear", href: "/headwear" },

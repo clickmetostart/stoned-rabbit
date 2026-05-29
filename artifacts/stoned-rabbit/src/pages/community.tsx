@@ -33,12 +33,12 @@ const STEPS = [
 const WHY_IT_WORKS = [
   { headline: "It raises more for the cause", body: "Every sale contributes directly to legal clinics, making advocacy self-funding." },
   { headline: "It connects the community", body: "Custom street gear unites supporters, turning abstract activism into physical visibility." },
-  { headline: "It gives people gear they love", body: "Not boring handouts. High-end, premium hoodies, beanies, and accessories people actually want to wear." },
+  { headline: "It gives people gear they love", body: "Not boring handouts. High-end, premium hoodies, caps, and accessories people actually want to wear." },
   { headline: "It builds culture around the brand", body: "Our supporters don't just wear the merch — they represent a larger movement for justice." },
 ];
 
 const FEATURED_PRODUCTS = [
-  { name: "Acid Wash Pullover", price: "$85", was: "$100", img: "/acid_wash_hoodie.png" },
+  { name: "Stoned Rabbit Hoodie", price: "$85", was: "$100", img: "/Stoned Rabbit Logo - hoodie 1.png" },
   { name: "Freedom Tag", price: "$25", was: "$35", img: "/freedom_tag.png" },
   { name: "Neon Dreams Tee", price: "$35", was: "$45", img: "/neon_dreams_tee.png" },
 ];
