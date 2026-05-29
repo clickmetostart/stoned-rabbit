@@ -5,7 +5,7 @@ import { useCart } from "@/context/CartContext";
 
 const TIERS = [
   { name: "Vibe Seeker",   min: 0,    max: 499,  color: "#94a3b8" },
-  { name: "Warren Member", min: 500,  max: 999,  color: "hsl(32 90% 55%)" },
+  { name: "The Regular", min: 500,  max: 999,  color: "hsl(32 90% 55%)" },
   { name: "Stoned Rabbit",  min: 1000, max: Infinity, color: "#facc15" },
 ];
 

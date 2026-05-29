@@ -14,7 +14,7 @@ function AccentLine({ className = "" }: { className?: string }) {
 
 const TIER_COLORS: Record<string, string> = {
   "Stoned Rabbit":  "#facc15",
-  "Warren Member": "hsl(32 90% 55%)",
+  "The Regular": "hsl(32 90% 55%)",
 };
 
 const MEMBERS = [
@@ -29,7 +29,7 @@ const MEMBERS = [
   },
   {
     name: "Trina 'Sativa' Okafor",
-    course: "Austin Street Warren, TX",
+    course: "Austin Street Session Spot, TX",
     tier: "Stoned Rabbit",
     pts: "1,604 pts",
     quote: "Always chasing the next high, never the score.",
@@ -57,7 +57,7 @@ const MEMBERS = [
   {
     name: "Marcus 'Slow Burn' Thompson",
     course: "Atlanta Alley, GA",
-    tier: "Warren Member",
+    tier: "The Regular",
     pts: "892 pts",
     quote: "A clean bong is a happy crew.",
     img: "/lifestyle-swing.jpg",
@@ -66,7 +66,7 @@ const MEMBERS = [
   {
     name: "Pam 'Paper Roller' Delgado",
     course: "Miami Skyline, FL",
-    tier: "Warren Member",
+    tier: "The Regular",
     pts: "741 pts",
     quote: "I don't roll joints, I roll masterpieces.",
     img: "/lifestyle-womens.jpg",
@@ -75,7 +75,7 @@ const MEMBERS = [
   {
     name: "Jim 'Stoner Time' Kowalski",
     course: "Chicago Loop, IL",
-    tier: "Warren Member",
+    tier: "The Regular",
     pts: "693 pts",
     quote: "Time is relative, especially after a sesh.",
     img: "/drop-editorial.png",
@@ -84,7 +84,7 @@ const MEMBERS = [
   {
     name: "Sofia 'Cloud Nine' Nascimento",
     course: "Los Angeles Boardroom, CA",
-    tier: "Warren Member",
+    tier: "The Regular",
     pts: "558 pts",
     quote: "Life is too short for bad glass.",
     img: "/charity-outing-2.jpg",
@@ -93,7 +93,7 @@ const MEMBERS = [
 ];
 
 const PERKS = [
-  { tier: "Warren Member", color: "hsl(32 90% 55%)", label: "500+ pts", note: "Eligible to submit after 500 pts" },
+  { tier: "The Regular", color: "hsl(32 90% 55%)", label: "500+ pts", note: "Eligible to submit after 500 pts" },
   { tier: "Stoned Rabbit",  color: "#facc15",          label: "1,000+ pts", note: "Priority feature + gold badge" },
 ];
 
@@ -134,7 +134,7 @@ export default function CrewWall() {
                 WALL.
               </h1>
               <p className="text-white/50 text-lg max-w-xl">
-                These are the real ones. Warren Member and Stoned Rabbit members who earn their spot by spending on gear, representing the movement, and staying lifted.
+                These are the real ones. The Regular and Stoned Rabbit members who earn their spot by spending on gear, representing the movement, and staying lifted.
               </p>
             </div>
             <div className="flex flex-col gap-4 pt-4">
@@ -175,7 +175,7 @@ export default function CrewWall() {
             {[
               { label: "All",             active: true },
               { label: "Stoned Rabbit",   active: false },
-              { label: "Warren Member",   active: false },
+              { label: "The Regular",     active: false },
             ].map(f => (
               <button
                 key={f.label}
@@ -277,7 +277,7 @@ export default function CrewWall() {
                 EARN YOUR<br />SPOT.
               </h2>
               <p className="text-white/50 text-base mb-8">
-                Reach Warren Member (500 pts) or Stoned Rabbit (1,000 pts) status, then submit your photo, favorite session spot, and a one-liner. We'll feature you right here.
+                Reach The Regular (500 pts) or Stoned Rabbit (1,000 pts) status, then submit your photo, favorite session spot, and a one-liner. We'll feature you right here.
               </p>
               <ul className="space-y-3.5">
                 {[
@@ -324,7 +324,7 @@ export default function CrewWall() {
               ) : (
                 <>
                   <h3 className="font-display font-black italic text-2xl uppercase tracking-tight mb-1">Submit Your Spot</h3>
-                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-6">Warren Member & Stoned Rabbit members only</p>
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-6">The Regular & Stoned Rabbit members only</p>
                   <form
                     className="space-y-4"
                     onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}

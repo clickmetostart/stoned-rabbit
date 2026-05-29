@@ -463,7 +463,7 @@ export default function Charity() {
               <div>
                 <h4 className="font-bold uppercase tracking-wider mb-6 border-b border-white/10 pb-2 text-sm text-white">Community</h4>
                 <ul className="space-y-3 text-white/45 text-sm">
-                  {["Project Clean Slate","The Warren Crew","The Blog","Collab Drops","Advocacy Program"].map(l => (
+                  {["Project Clean Slate","The Stoned Rabbit Crew","The Blog","Collab Drops","Advocacy Program"].map(l => (
                     <li key={l}><Link href="/community" className="hover:text-accent transition-colors">{l}</Link></li>
                   ))}
                 </ul>

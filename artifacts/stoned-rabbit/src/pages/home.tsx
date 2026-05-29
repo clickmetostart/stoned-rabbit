@@ -830,7 +830,7 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-px mb-16" style={{ background: "rgba(255,255,255,0.06)" }}>
               {[
                 {
-                  name: "The Looker",
+                  name: "Vibe Seeker",
                   range: "0 – 499 pts",
                   color: "#94a3b8",
                   icon: "👀",
@@ -857,7 +857,7 @@ export default function Home() {
                   ],
                 },
                 {
-                  name: "The Legend",
+                  name: "Stoned Rabbit",
                   range: "1,000+ pts",
                   color: "#facc15",
                   icon: "👑",
@@ -867,7 +867,7 @@ export default function Home() {
                     "Free express shipping",
                     "Exclusive drops — never public",
                     "1 free accessory per season",
-                    "Featured in The Warren",
+                    "Featured on the Crew Wall",
                   ],
                 },
               ].map((tier, i) => (
