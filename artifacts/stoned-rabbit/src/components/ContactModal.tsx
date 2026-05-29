@@ -43,12 +43,12 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
           {!sent ? (
             <>
               <div className="mb-8">
-                <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit Charity Rounds</p>
+                <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit Collaborations</p>
                 <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter leading-none text-white mb-4">
-                  LET'S PLAN<br />YOUR EVENT.
+                  LET'S PLAN<br />YOUR DROP.
                 </h2>
                 <p className="text-white/50 text-sm leading-relaxed max-w-md">
-                  Tell us about your outing and we'll put together a custom merch drop that fits your event, your cause, and your crew.
+                  Tell us about your collab idea and we'll put together a custom merch drop that fits your brand, your cause, and your crew.
                 </p>
               </div>
 
@@ -73,7 +73,7 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
                       name="org"
                       value={form.org}
                       onChange={handleChange}
-                      placeholder="Boys & Girls Club Scramble"
+                      placeholder="Cannabis Legalization Rally"
                       className="w-full h-12 bg-white/[0.06] border border-white/15 text-white placeholder:text-white/25 px-4 focus:outline-none focus:border-accent text-sm transition-colors"
                     />
                   </div>
@@ -113,10 +113,10 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
                     className="w-full h-12 bg-white/[0.06] border border-white/15 text-white/70 px-4 focus:outline-none focus:border-accent text-sm transition-colors"
                   >
                     <option value="" className="bg-[#0f1f2e]">Select a range</option>
-                    <option value="under-20" className="bg-[#0f1f2e]">Under 20 players</option>
-                    <option value="20-50" className="bg-[#0f1f2e]">20–50 players</option>
-                    <option value="50-100" className="bg-[#0f1f2e]">50–100 players</option>
-                    <option value="100+" className="bg-[#0f1f2e]">100+ players</option>
+                    <option value="under-20" className="bg-[#0f1f2e]">Under 20 crew</option>
+                    <option value="20-50" className="bg-[#0f1f2e]">20–50 crew</option>
+                    <option value="50-100" className="bg-[#0f1f2e]">50–100 crew</option>
+                    <option value="100+" className="bg-[#0f1f2e]">100+ crew</option>
                   </select>
                 </div>
 
@@ -127,7 +127,7 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
                     value={form.notes}
                     onChange={handleChange}
                     rows={3}
-                    placeholder="Charity scramble, corporate outing, fundraiser... give us the vibe."
+                    placeholder="Collab drop, street takeover, popup event... give us the vibe."
                     className="w-full bg-white/[0.06] border border-white/15 text-white placeholder:text-white/25 px-4 py-3 focus:outline-none focus:border-accent text-sm resize-none transition-colors"
                   />
                 </div>

@@ -19,69 +19,62 @@ const MENUS = {
     },
     categories: [
       { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
-      { label: "Tees",         img: "/product-polo.png",    href: "/apparel" },
-      { label: "Hoodies",      img: "/product-womens.png",  href: "/apparel" },
-      { label: "Jackets",      img: "/product-hat.png",     href: "/apparel" },
+      { label: "Tees",         img: "/product-womens.png",  href: "/apparel" },
+      { label: "Hoodies",      img: "/product-polo.png",    href: "/apparel" },
+      { label: "Beanies",      img: "/product-hat.png",     href: "/headwear" },
     ],
     links: [
       { label: "View All Apparel",  href: "/apparel" },
       { label: "New Arrivals",    href: "/drop" },
       { label: "Best Sellers",    href: "/apparel" },
-      { label: "Sale",            href: "/apparel" },
     ],
   },
   HEADWEAR: {
     featured: {
-      img: "/scramble-specialist-hat.jpg",
+      img: "/clubhouse-legend-hat.jpg",
       label: "Block the Lights",
       sub: "Beanies and snapbacks for the late night runs.",
       href: "/headwear",
     },
     categories: [
-      { label: "Snapbacks", img: "/scramble-specialist-hat.jpg",  href: "/headwear" },
-      { label: "Beanies",   img: "/clubhouse-legend-hat.jpg",     href: "/headwear" },
-      { label: "Buckets",   img: "/product-polo.png",             href: "/headwear" },
+      { label: "Snapbacks", img: "/clubhouse-legend-hat.jpg",  href: "/headwear" },
+      { label: "Beanies",   img: "/product-hat.png",           href: "/headwear" },
     ],
     links: [
       { label: "View All Headwear", href: "/headwear" },
       { label: "New Arrivals",     href: "/drop" },
-      { label: "Limited Runs",     href: "/headwear" },
     ],
   },
   ACCESSORIES: {
     featured: {
-      img: "/drop-editorial.png",
+      img: "/street_grinder.png",
       label: "Everyday Carry",
       sub: "Grinders, trays, and lighters. Never leave home without it.",
       href: "/accessories",
     },
     categories: [
-      { label: "Grinders",  img: "/scramble-specialist-hat.jpg",  href: "/accessories" },
-      { label: "Trays",     img: "/clubhouse-legend-hat.jpg",     href: "/accessories" },
-      { label: "Lighters",  img: "/product-polo.png",             href: "/accessories" },
+      { label: "Grinders",  img: "/street_grinder.png",  href: "/accessories" },
+      { label: "Stash Jars", img: "/classic_stash_jar.png", href: "/accessories" },
     ],
     links: [
       { label: "View All Accessories",  href: "/accessories" },
       { label: "New Arrivals",   href: "/drop" },
-      { label: "Gift Ideas",   href: "/accessories" },
     ],
   },
   GLASS: {
     featured: {
-      img: "/drop-editorial.png",
+      img: "/graffiti_bong.png",
       label: "The Perfect Hit",
       sub: "Premium bongs, rigs, and pipes.",
       href: "/glass",
     },
     categories: [
-      { label: "Bongs",   img: "/product-hat.png",     href: "/glass" },
-      { label: "Pipes",   img: "/product-polo.png",    href: "/glass" },
-      { label: "Rigs",    img: "/product-womens.png",  href: "/glass" },
+      { label: "Bongs",   img: "/graffiti_bong.png",     href: "/glass" },
+      { label: "Stash Jars", img: "/classic_stash_jar.png", href: "/glass" },
     ],
     links: [
       { label: "View All Glass", href: "/glass" },
       { label: "New Arrivals",   href: "/drop" },
-      { label: "Sale",           href: "/glass" },
     ],
   },
 };
@@ -289,10 +282,10 @@ export default function Navbar() {
                   </ul>
 
                   <div className="mt-8 p-4 border-l-4 border-accent bg-white/[0.04]">
-                    <p className="font-display font-bold italic text-lg uppercase tracking-tight text-white mb-1">Charity Rounds</p>
-                    <p className="text-white/50 text-xs leading-relaxed mb-3">Custom event merch for your next charity scramble.</p>
+                    <p className="font-display font-bold italic text-lg uppercase tracking-tight text-white mb-1">Collaborations</p>
+                    <p className="text-white/50 text-xs leading-relaxed mb-3">Custom drop campaigns and limited editions.</p>
                     <Link
-                      href="/charity"
+                      href="/community"
                       className="text-accent text-xs font-bold uppercase tracking-widest hover:underline flex items-center gap-1"
                       onClick={() => setActiveMenu(null)}
                     >
@@ -341,28 +334,28 @@ export default function Navbar() {
                   </div>
                 </Link>
 
-                {/* Scramble Specialist hat teaser */}
+                {/* Freedom Tag teaser */}
                 <div className="col-span-3">
-                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-4">Event Merch</p>
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-4">Charity Drop</p>
                   <Link
-                    href="/product/scramble-specialist-hat"
+                    href="/community"
                     className="group block relative overflow-hidden mb-4"
                     style={{ aspectRatio: "4/3", clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)" }}
                     onClick={() => setActiveMenu(null)}
                   >
-                    <img src="/scramble-specialist-hat.jpg" alt="Scramble Specialist" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img src="/freedom_tag.png" alt="Freedom Tag" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     <div className="absolute bottom-3 left-4">
-                      <p className="text-white font-display font-bold italic text-base uppercase tracking-tight leading-none">Scramble Specialist</p>
-                      <p className="text-accent text-xs font-bold uppercase tracking-widest mt-0.5">$45 · Charity Drop</p>
+                      <p className="text-white font-display font-bold italic text-base uppercase tracking-tight leading-none">Freedom Tag</p>
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mt-0.5">$25 · Charity Drop</p>
                     </div>
                   </Link>
                   <Link
-                    href="/product/scramble-specialist-hat"
+                    href="/community"
                     className="w-full h-10 bg-accent text-white font-black italic uppercase tracking-widest text-xs flex items-center justify-center gap-1.5 hover:bg-white hover:text-black transition-colors duration-200"
                     onClick={() => setActiveMenu(null)}
                   >
-                    Claim Your Merch <ArrowUpRight className="w-3.5 h-3.5" />
+                    Claim Your Tag <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
 
@@ -385,7 +378,7 @@ export default function Navbar() {
                   </ul>
                   <div className="p-4 bg-white/[0.04] border-l-4 border-accent">
                     <p className="text-white/40 text-xs leading-relaxed italic">
-                      "Golf gives you the round. We make sure it gives something back."
+                      "Stay lifted. Stay grounded. The culture is built on good vibes."
                     </p>
                     <p className="text-accent text-xs font-bold uppercase tracking-widest mt-2">— Stoned Rabbit</p>
                   </div>

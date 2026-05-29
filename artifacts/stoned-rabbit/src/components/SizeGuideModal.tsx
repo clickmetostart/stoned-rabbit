@@ -2,15 +2,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Ruler } from "lucide-react";
 
-type Tab = "polos" | "bottoms" | "hats";
+type Tab = "tops" | "bottoms" | "hats";
 
 const TABS: { id: Tab; label: string }[] = [
-  { id: "polos",   label: "Polos & Tops" },
-  { id: "bottoms", label: "Shorts & Bottoms" },
+  { id: "tops",    label: "Tees & Hoodies" },
+  { id: "bottoms", label: "Sweats & Bottoms" },
   { id: "hats",    label: "Hats & Headwear" },
 ];
 
-const POLO_SIZES = [
+const TOP_SIZES = [
   { size: "XS", chest: '32–34"', waist: '26–28"', hip: '34–36"', length: '26"' },
   { size: "S",  chest: '34–36"', waist: '28–30"', hip: '36–38"', length: '27"' },
   { size: "M",  chest: '38–40"', waist: '31–33"', hip: '39–41"', length: '28"' },
@@ -42,7 +42,7 @@ const tips = [
   { label: "Head", tip: "Wrap the tape just above your ears and across your forehead." },
 ];
 
-export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () => void; defaultTab?: Tab }) {
+export function SizeGuideModal({ onClose, defaultTab = "tops" }: { onClose: () => void; defaultTab?: Tab }) {
   const [activeTab, setActiveTab] = useState<Tab>(defaultTab);
 
   return (
@@ -113,10 +113,10 @@ export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () 
               transition={{ duration: 0.2 }}
               className="p-8"
             >
-              {activeTab === "polos" && (
+              {activeTab === "tops" && (
                 <>
                   <p className="text-white/40 text-sm mb-6 leading-relaxed">
-                    Our polos run true to size with a slightly relaxed athletic fit. If you're between sizes, size up for more room through the shoulders.
+                    Our tees and hoodies run true to size with a relaxed, comfortable streetwear fit.
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm min-w-[480px]">
@@ -128,7 +128,7 @@ export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () 
                         </tr>
                       </thead>
                       <tbody>
-                        {POLO_SIZES.map((row, i) => (
+                        {TOP_SIZES.map((row, i) => (
                           <tr
                             key={row.size}
                             className={`border-b border-white/[0.05] ${i % 2 === 0 ? "bg-white/[0.02]" : ""}`}
@@ -149,7 +149,7 @@ export function SizeGuideModal({ onClose, defaultTab = "polos" }: { onClose: () 
               {activeTab === "bottoms" && (
                 <>
                   <p className="text-white/40 text-sm mb-6 leading-relaxed">
-                    Our shorts and bottoms are designed for full swing range of motion. Measure your natural waist — not where you wear your pants.
+                    Our sweats and bottoms are designed for maximum comfort and a clean street look.
                   </p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm min-w-[480px]">

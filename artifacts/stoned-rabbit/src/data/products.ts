@@ -107,7 +107,7 @@ export const ALL_PRODUCTS: Product[] = [
     slug: "classic-stash-jar",
     name: "UV Glass Stash Jar",
     price: "$20",
-    img: "/drop-editorial.png", // Fallback image since generation failed
+    img: "/classic_stash_jar.png",
     category: "Glass",
     shortDesc: "Keep it fresh. Keep it dark.",
     description: "Premium UV-resistant dark violet glass jar that blocks harmful light from degrading your stash. Airtight seal keeps odors locked in and freshness intact.",
@@ -127,7 +127,7 @@ export const ALL_PRODUCTS: Product[] = [
     slug: "graffiti-bong",
     name: "The Tag Beaker",
     price: "$120",
-    img: "/scramble-specialist-hat.jpg", // Fallback image
+    img: "/graffiti_bong.png",
     badge: "LIMITED",
     category: "Glass",
     shortDesc: "12-inch heavy beaker with custom sandblasted graffiti.",

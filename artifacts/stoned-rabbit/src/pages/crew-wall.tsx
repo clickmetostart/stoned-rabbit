@@ -19,76 +19,76 @@ const TIER_COLORS: Record<string, string> = {
 
 const MEMBERS = [
   {
-    name: "Dave 'Double Bogey' Mercer",
-    course: "Riverside Municipal GC, OH",
+    name: "Dave 'Double Jointed' Mercer",
+    course: "Denver High Valley, CO",
     tier: "Stoned Rabbit",
     pts: "1,842 pts",
-    quote: "I've never broken 90 but I've never looked bad doing it.",
+    quote: "I can't roll a joint but I know how to light one.",
     img: "/classic-vibe-drinks.jpg",
-    gear: "Skull & Crossclubs Polo",
+    gear: "Acid Wash Pullover",
   },
   {
-    name: "Trina 'Sand Trap' Okafor",
-    course: "Fairview Muni Links, TX",
+    name: "Trina 'Sativa' Okafor",
+    course: "Austin Street Warren, TX",
     tier: "Stoned Rabbit",
     pts: "1,604 pts",
-    quote: "My handicap is 18. My drip is a zero.",
+    quote: "Always chasing the next high, never the score.",
     img: "/product-womens.png",
-    gear: "Backwoods Fade Polo",
+    gear: "Rabbit Hole Beanie",
   },
   {
-    name: "Carlos 'Mulligan' Reyes",
-    course: "Desert Pines Public, AZ",
+    name: "Carlos 'Munchies' Reyes",
+    course: "Phoenix Underground, AZ",
     tier: "Stoned Rabbit",
     pts: "1,310 pts",
-    quote: "The course is temporary. The fit is forever.",
+    quote: "My stash is full and my mind is clear.",
     img: "/drop-editorial.png",
-    gear: "Range Wrangler Polo",
+    gear: "Street Art Grinder",
   },
   {
-    name: "Janelle 'Birdie Attempt' Wu",
-    course: "Meadow Creek GC, WA",
+    name: "Janelle 'Wake n Bake' Wu",
+    course: "Seattle Green Room, WA",
     tier: "Stoned Rabbit",
     pts: "1,220 pts",
-    quote: "First tee nerves are real. My hat keeps them in check.",
+    quote: "Early morning sessions are where the real ideas start.",
     img: "/charity-outing-2.jpg",
-    gear: "Scramble Specialist Hat",
+    gear: "Neon Dreams Tee",
   },
   {
-    name: "Marcus 'Lost Ball' Thompson",
-    course: "Brackenfern Links, GA",
+    name: "Marcus 'Slow Burn' Thompson",
+    course: "Atlanta Alley, GA",
     tier: "Warren Member",
     pts: "892 pts",
-    quote: "I found two balls in the rough. Neither were mine. Still counts.",
+    quote: "A clean bong is a happy crew.",
     img: "/product-polo.png",
-    gear: "Skull & Crossclubs Polo",
+    gear: "The Tag Beaker",
   },
   {
-    name: "Pam 'Club Thrower' Delgado",
-    course: "Lakeside Muni, FL",
+    name: "Pam 'Paper Roller' Delgado",
+    course: "Miami Skyline, FL",
     tier: "Warren Member",
     pts: "741 pts",
-    quote: "I don't throw clubs anymore. I set them down aggressively.",
+    quote: "I don't roll joints, I roll masterpieces.",
     img: "/product-womens.png",
-    gear: "Classic Vibe Polo",
+    gear: "Street Art Grinder",
   },
   {
-    name: "Jim 'Five-Hour Round' Kowalski",
-    course: "North Shore Muni, IL",
+    name: "Jim 'Stoner Time' Kowalski",
+    course: "Chicago Loop, IL",
     tier: "Warren Member",
     pts: "693 pts",
-    quote: "Slow play is a lifestyle. Don't rush greatness.",
+    quote: "Time is relative, especially after a sesh.",
     img: "/drop-editorial.png",
-    gear: "Range Wrangler Polo",
+    gear: "Neon Dreams Tee",
   },
   {
-    name: "Sofia 'Chip Yip' Nascimento",
-    course: "Pinecrest GC, CA",
+    name: "Sofia 'Cloud Nine' Nascimento",
+    course: "Los Angeles Boardroom, CA",
     tier: "Warren Member",
     pts: "558 pts",
-    quote: "Chipping is a mindset. A broken one, but still.",
+    quote: "Life is too short for bad glass.",
     img: "/charity-outing-2.jpg",
-    gear: "Clubhouse Legend Hat",
+    gear: "Rabbit Hole Beanie",
   },
 ];
 
@@ -99,7 +99,7 @@ const PERKS = [
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
-  show:   (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.07, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } }),
+  show:   (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.07, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as any } }),
 };
 
 export default function CrewWall() {
@@ -134,7 +134,7 @@ export default function CrewWall() {
                 WALL.
               </h1>
               <p className="text-white/50 text-lg max-w-xl">
-                These are the real ones. Warren Member and Stoned Rabbit members who earn their spot by spending on gear, showing up to charity rounds, and looking good doing it.
+                These are the real ones. Warren Member and Stoned Rabbit members who earn their spot by spending on gear, representing the movement, and staying lifted.
               </p>
             </div>
             <div className="flex flex-col gap-4 pt-4">
@@ -277,12 +277,12 @@ export default function CrewWall() {
                 EARN YOUR<br />SPOT.
               </h2>
               <p className="text-white/50 text-base mb-8">
-                Reach Warren Member (500 pts) or Stoned Rabbit (1,000 pts) status, then submit your photo, home course, and a one-liner. We'll feature you right here.
+                Reach Warren Member (500 pts) or Stoned Rabbit (1,000 pts) status, then submit your photo, favorite session spot, and a one-liner. We'll feature you right here.
               </p>
               <ul className="space-y-3.5">
                 {[
                   "Reach 500+ pts on any order",
-                  "Submit your photo + home course",
+                  "Submit your photo + session spot",
                   "Drop a one-liner — keep it real",
                   "Get featured within 7 days",
                 ].map((step, i) => (
@@ -338,10 +338,10 @@ export default function CrewWall() {
                       />
                     </div>
                     <div>
-                      <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest block mb-1.5">Home Course + City</label>
+                      <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest block mb-1.5">Favorite Session Spot + City</label>
                       <Input
                         required
-                        placeholder="Riverside Municipal GC, OH"
+                        placeholder="Denver High Valley, CO"
                         className="h-11 rounded-none bg-white/[0.06] border-white/15 text-white placeholder:text-white/20 focus-visible:ring-accent focus-visible:border-accent text-sm"
                       />
                     </div>
@@ -360,7 +360,7 @@ export default function CrewWall() {
                       <Input
                         type="email"
                         required
-                        placeholder="you@muni.com"
+                        placeholder="you@stonedrabbit.com"
                         className="h-11 rounded-none bg-white/[0.06] border-white/15 text-white placeholder:text-white/20 focus-visible:ring-accent focus-visible:border-accent text-sm"
                       />
                     </div>

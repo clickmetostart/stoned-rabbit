@@ -45,7 +45,7 @@ function CountUp({ to, prefix = "", suffix = "", duration = 2200 }: {
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as any } },
 };
 const staggerContainer = {
   hidden: { opacity: 0 },
@@ -214,12 +214,12 @@ function SkewedProductRow({
 
 /* ── collab brands ────────────────────────────────────────────── */
 const COLLAB_BRANDS = [
-  { name: "BUDWEISER",      tag: "King of the Fairway",            accent: "#C8102E", bg: "#0a0a0a", img: "/polo-skull.png" },
-  { name: "JACK DANIEL'S",  tag: "Old No. 7 on the Back Nine",     accent: "#8B7355", bg: "#111111", img: "/polo-flamingo.png" },
-  { name: "COORS LIGHT",    tag: "Cold as Your Putting Game",      accent: "#0057A8", bg: "#0c1929", img: "/product-hat.png" },
-  { name: "TWISTED TEA",    tag: "Half & Half on Hole 9",          accent: "#5A8C3C", bg: "#0d1a0a", img: "/polo-retro.png" },
-  { name: "CAPTAIN MORGAN", tag: "Spiced. Structured. Snapback.",  accent: "#B8860B", bg: "#1a1000", img: "/product-polo.png" },
-  { name: "WHITE CLAW",     tag: "Ain't No Laws on the Muni",      accent: "#7B2D8B", bg: "#0f0a14", img: "/product-womens.png" },
+  { name: "RAW PAPERS",     tag: "Natural unrefined rolling papers", accent: "#d4af37", bg: "#1a120b", img: "/classic-vibe-drinks.jpg" },
+  { name: "COOKIES",        tag: "Bay Area Flavor. Street Legend.",  accent: "#00aef0", bg: "#0a1520", img: "/product-polo.png" },
+  { name: "ZIG-ZAG",        tag: "The Classic Slow Burn Since 1879.",accent: "#df7b29", bg: "#1a100a", img: "/product-hat.png" },
+  { name: "GRAV LABS",      tag: "Scientific Glass. High Art.",      accent: "#e5e5e5", bg: "#0e1217", img: "/graffiti_bong.png" },
+  { name: "SANTA CRUZ SHREDDER", tag: "Medical Grade. Perfect Shred.",accent: "#5a8c3c", bg: "#0c140a", img: "/street_grinder.png" },
+  { name: "BOVEDA",         tag: "Perfect Humidity. Fresh Sessions.", accent: "#7b583a", bg: "#14100c", img: "/classic_stash_jar.png" },
 ];
 
 function CollabBrands() {
@@ -230,7 +230,7 @@ function CollabBrands() {
   return (
     <section className="relative pt-32 pb-16 overflow-hidden">
       <div className="absolute -top-16 right-6 lg:right-16 pointer-events-none select-none z-0 overflow-hidden leading-none">
-        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>ELITE</span>
+        <span className="font-display font-black italic uppercase text-white" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.032 }}>STREET</span>
       </div>
       <div className="relative z-10">
         <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
@@ -238,10 +238,10 @@ function CollabBrands() {
           <div>
             <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
             <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none text-white">
-              ELITE BRANDS.<br /><span className="text-accent">GOLF COURSE LOUD.</span>
+              STREET COLLABS.<br /><span className="text-accent">SESSION READY.</span>
             </h2>
             <p className="text-white/50 text-base mt-4 max-w-xl leading-relaxed">
-              From the cooler at the 19th hole to the legends on the label — we take the brands you already love and put them where they belong. On the polo.
+              From premium papers to scientific glass, we partner with the brands that define the culture. Limited gear, custom drops, and session essentials.
             </p>
           </div>
           <div className="flex gap-2 shrink-0">
@@ -287,11 +287,10 @@ function CollabBrands() {
 
 /* ── shop by category ─────────────────────────────────────────── */
 const SHOP_CATEGORIES = [
-  { label: "MENS",         sub: "Polos with Personality",             img: "/lifestyle-muni.jpg",        href: "/men" },
-  { label: "WOMENS",       sub: "Bold. Breathable. Yours.",           img: "/lifestyle-womens.jpg",       href: "/women" },
-  { label: "YOUTH",        sub: "Future Municipal Legends",          img: "/insta-2.png",               href: "/youth" },
-  { label: "HIS & HERS",   sub: "Matching Energy. Different Scores.", img: "/classic-vibe-fairway.jpg",  href: "/his-hers" },
-  { label: "FATHER & SON", sub: "Pass Down the Legend",              img: "/insta-3.png",               href: "/father-son" },
+  { label: "APPAREL",     sub: "Streetwear with Attitude",             img: "/acid_wash_hoodie.png",    href: "/apparel" },
+  { label: "HEADWEAR",    sub: "Bold Beanies & Structured Snapbacks",  img: "/rabbit_hole_beanie.png",  href: "/headwear" },
+  { label: "ACCESSORIES", sub: "Premium Grinders & Stash Jars",        img: "/street_grinder.png",      href: "/accessories" },
+  { label: "GLASSWARE",   sub: "Artisan Glass & Smoking Rigs",         img: "/graffiti_bong.png",       href: "/glass" },
 ];
 
 const SKEW = -9;
@@ -454,7 +453,7 @@ export default function Home() {
         {/* ── HERO ──────────────────────────────────────────────── */}
         <section className="relative h-[92vh] w-full flex items-end justify-center overflow-hidden pb-16">
           <div className="absolute inset-0 z-0">
-            <img src="/lifestyle-celebrating.jpg" alt="Stoned Rabbit golfers" className="w-full h-full object-cover" />
+            <img src="/lifestyle-celebrating.jpg" alt="Stoned Rabbit crew" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
           </div>
           <div className="relative z-10 container mx-auto px-4 text-center">
@@ -598,7 +597,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
                 className="relative" style={{ height: "560px" }}>
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0 100%)" }}>
-                  <img src="/drop-editorial.png" alt="Golfers on the fairway" className="w-full h-full object-cover object-center" />
+                  <img src="/drop-editorial.png" alt="Streetwear model" className="w-full h-full object-cover object-center" />
                 </div>
                 <div className="absolute bottom-0 left-0 w-1 h-24 bg-accent" />
                 <div className="absolute bottom-0 left-0 w-24 h-1 bg-accent" />
@@ -664,7 +663,7 @@ export default function Home() {
         </section>
 
         {/* ── SHOP THE COLLECTION — skewed ──────────────────────── */}
-        <SkewedProductRow products={PRODUCTS_COLLECTION} title="SHOP THE COLLECTION" href="/men" watermark="COLLECTION" ghostSubtitle="SIGNATURE" />
+        <SkewedProductRow products={PRODUCTS_COLLECTION} title="SHOP THE COLLECTION" href="/apparel" watermark="COLLECTION" ghostSubtitle="SIGNATURE" />
 
         {/* ── SHOP BY CATEGORY ──────────────────────────────────── */}
         <ShopByCategory />
@@ -672,7 +671,7 @@ export default function Home() {
         {/* ── BRAND STORY ───────────────────────────────────────── */}
         <section className="relative py-28 text-white overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <img src="/hero.png" alt="For players who love the game" className="w-full h-full object-cover" />
+            <img src="/hero.png" alt="For those who appreciate the culture" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-transparent" />
           </div>
           {/* Watermark overlaid on photo — bottom right */}

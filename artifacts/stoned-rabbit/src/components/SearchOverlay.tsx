@@ -4,7 +4,7 @@ import { X, Search, ArrowUpRight, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { ALL_PRODUCTS } from "@/data/products";
 
-const SUGGESTED = ["polo", "hat", "women", "scramble", "drop", "skull"];
+const SUGGESTED = ["tee", "hoodie", "hat", "beanie", "grinder", "bong", "drop"];
 
 function highlight(text: string, query: string) {
   if (!query.trim()) return <>{text}</>;
@@ -207,10 +207,10 @@ export function SearchOverlay({ onClose }: { onClose: () => void }) {
                   <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-5">Browse Categories</p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {[
-                      { label: "Men's",       href: "/men",         img: "/product-polo.png" },
-                      { label: "Women's",     href: "/women",       img: "/product-womens.png" },
-                      { label: "Hats",        href: "/hats",        img: "/scramble-specialist-hat.jpg" },
-                      { label: "Accessories", href: "/accessories", img: "/drop-editorial.png" },
+                      { label: "Apparel",     href: "/apparel",     img: "/acid_wash_hoodie.png" },
+                      { label: "Headwear",    href: "/headwear",    img: "/rabbit_hole_beanie.png" },
+                      { label: "Glassware",   href: "/glass",       img: "/graffiti_bong.png" },
+                      { label: "Accessories", href: "/accessories", img: "/street_grinder.png" },
                     ].map(cat => (
                       <Link
                         key={cat.href}

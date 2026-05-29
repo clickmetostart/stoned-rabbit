@@ -12,7 +12,7 @@ const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as any } },
 };
 
 const staggerContainer = {
@@ -375,7 +375,7 @@ export default function ProductDetail() {
                 ? "hats"
                 : product.category.toLowerCase().includes("shorts") || product.category.toLowerCase().includes("bottom")
                 ? "bottoms"
-                : "polos"
+                : "tops"
             }
           />
         )}

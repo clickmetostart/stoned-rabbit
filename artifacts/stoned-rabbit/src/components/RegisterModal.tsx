@@ -2,14 +2,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingBag, MapPin, Calendar, ArrowRight } from "lucide-react";
 
-const SIZES = ["S/M", "L/XL", "XXL"];
+const STYLES = ["Matte Black", "Chamber Brass", "Raw Aluminum"];
 
 export function RegisterModal({ onClose }: { onClose: () => void }) {
-  const [size, setSize] = useState<string | null>(null);
+  const [style, setStyle] = useState<string | null>(null);
   const [added, setAdded] = useState(false);
 
   function handleClaim() {
-    if (!size) return;
+    if (!style) return;
     setAdded(true);
   }
 
@@ -42,8 +42,8 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative overflow-hidden bg-black/30" style={{ minHeight: 420 }}>
             <img
-              src="/scramble-specialist-hat.jpg"
-              alt="Scramble Specialist Hat"
+              src="/freedom_tag.png"
+              alt="Freedom Tag"
               className="w-full h-full object-cover"
               style={{ minHeight: 420 }}
             />
@@ -54,21 +54,21 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
                 className="font-display font-black italic uppercase text-white whitespace-nowrap"
                 style={{ fontSize: "clamp(4rem, 12vw, 10rem)", opacity: 0.07 }}
               >
-                HAT
+                TAG
               </span>
             </div>
 
             <div className="absolute top-5 left-5">
               <span className="bg-accent text-white text-xs font-black uppercase px-3 py-1.5 tracking-widest">
-                Event Only Drop
+                Charity Drop
               </span>
             </div>
             <div className="absolute bottom-6 left-6 right-6">
               <p className="font-display font-black italic text-3xl uppercase text-white leading-tight mb-1">
-                Scramble Specialist
+                Freedom Tag
               </p>
-              <p className="text-white/55 text-sm">Limited-edition · Boy's &amp; Girls Charity Outing</p>
-              <p className="text-accent font-black text-2xl mt-3">$50</p>
+              <p className="text-white/55 text-sm">Limited-edition · Last Prisoner Project</p>
+              <p className="text-accent font-black text-2xl mt-3">$25</p>
             </div>
           </div>
 
@@ -76,23 +76,23 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
             <div>
               <div className="mb-7">
                 <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">
-                  Fore A Good Cause — Boy's &amp; Girls Charity
+                  Project Clean Slate — Expungement Initiative
                 </p>
                 <h2 className="font-display font-black italic text-4xl uppercase tracking-tighter leading-none text-white mb-5">
-                  CLAIM YOUR<br />EVENT MERCH.
+                  CLAIM YOUR<br />FREEDOM TAG.
                 </h2>
                 <div className="space-y-2 text-white/50 text-sm">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>May 30th, 2026</span>
+                    <span>Ongoing Support</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>XYZ Golf Course</span>
+                    <span>Nationwide Campaign</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <ShoppingBag className="w-4 h-4 text-accent flex-shrink-0" />
-                    <span>Delivered to you <span className="text-white font-semibold">at the event</span></span>
+                    <span>Ships directly to you <span className="text-white font-semibold">· Free Shipping</span></span>
                   </div>
                 </div>
               </div>
@@ -100,19 +100,18 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
               <div className="h-px bg-white/[0.08] mb-7" />
 
               <p className="text-white/55 text-sm leading-relaxed mb-7">
-                The <span className="text-accent font-bold">Scramble Specialist</span> trucker hat was built for this outing — and only this one. Order yours before the event, pick it up on game day. Part of every purchase supports the{" "}
-                <span className="text-white font-semibold">Boys &amp; Girls Clubs of America</span>.
+                The custom metal <span className="text-accent font-bold">Freedom Tag</span> is built to represent the movement. Wear it on your keys, your bag, or your stash box. 100% of all proceeds support <span className="text-white font-semibold">The Last Prisoner Project</span> to fund legal clinics and expungement advocacy.
               </p>
 
               <div className="mb-7">
-                <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-3">Select Size</p>
+                <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-3">Select Style</p>
                 <div className="flex gap-2">
-                  {SIZES.map(s => (
+                  {STYLES.map(s => (
                     <button
                       key={s}
-                      onClick={() => setSize(s)}
-                      className={`flex-1 h-11 border font-bold uppercase tracking-wider text-sm transition-all duration-150 ${
-                        size === s
+                      onClick={() => setStyle(s)}
+                      className={`flex-1 h-11 border font-bold uppercase tracking-wider text-xs transition-all duration-150 ${
+                        style === s
                           ? "border-accent bg-accent text-white"
                           : "border-white/20 text-white/60 hover:border-white/50 hover:text-white"
                       }`}
@@ -121,8 +120,8 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
                     </button>
                   ))}
                 </div>
-                {!size && (
-                  <p className="text-white/30 text-xs mt-2">Choose a size to continue</p>
+                {!style && (
+                  <p className="text-white/30 text-xs mt-2">Choose a style to continue</p>
                 )}
               </div>
             </div>
@@ -130,14 +129,14 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
             {!added ? (
               <button
                 onClick={handleClaim}
-                disabled={!size}
+                disabled={!style}
                 className={`w-full h-14 font-black italic uppercase tracking-widest text-base flex items-center justify-center gap-2 transition-all duration-200 ${
-                  size
+                  style
                     ? "bg-accent text-white hover:bg-white hover:text-black cursor-pointer"
                     : "bg-white/10 text-white/30 cursor-not-allowed"
                 }`}
               >
-                Claim My Merch — $50 <ArrowRight className="w-4 h-4" />
+                Claim My Tag — $25 <ArrowRight className="w-4 h-4" />
               </button>
             ) : (
               <motion.div
@@ -145,13 +144,13 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
                 animate={{ opacity: 1, y: 0 }}
                 className="w-full h-14 bg-green-600/20 border border-green-500/40 flex items-center justify-center gap-2"
               >
-                <span className="text-green-400 font-black uppercase tracking-widest text-sm">
-                  You're in — See you at the scramble!
+                <span className="text-green-400 font-black uppercase tracking-widest text-sm text-center">
+                  Order Confirmed · Stay Lifted!
                 </span>
               </motion.div>
             )}
             <p className="text-white/25 text-xs text-center mt-4">
-              Your hat will be ready at check-in · No shipping required
+              Your tag will ship within 3–5 business days · Tracking email to follow
             </p>
           </div>
         </div>
