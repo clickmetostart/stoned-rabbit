@@ -461,8 +461,8 @@ export default function Home() {
         {/* ── HERO ──────────────────────────────────────────────── */}
         <section className="relative h-[92vh] w-full flex items-end justify-center overflow-hidden pb-16">
           <div className="absolute inset-0 z-0">
-            <img src="/lifestyle-celebrating.jpg" alt="Stoned Rabbit crew" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
+            <img src="/Stoned Rabbit Logo - hoodie 1.png" alt="Stoned Rabbit crew" className="w-full h-full object-cover object-top" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
           </div>
           <div className="relative z-10 container mx-auto px-4 text-center">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-5xl mx-auto">
@@ -509,7 +509,7 @@ export default function Home() {
                 title: "On the Street",
                 sub: "What you wear when you're actually out there.",
                 cta: "Shop Apparel",
-                img: "/acid_wash_hoodie.png",
+                img: "/Stoned Rabbit Womens Hoodie and Hat.png",
                 href: "/apparel",
                 ghost: "STREET",
                 align: "items-end",
@@ -519,7 +519,7 @@ export default function Home() {
                 title: "In the Stash",
                 sub: "Headwear, grinders, and gear from the shop to the session.",
                 cta: "Shop Essentials",
-                img: "/rabbit_hole_beanie.png",
+                img: "/Stoned Rabbit Logo - hoodie 2 (women).png",
                 href: "/accessories",
                 ghost: "STASH",
                 align: "items-end",
@@ -609,7 +609,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
                 className="relative" style={{ height: "560px" }}>
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0 100%)" }}>
-                  <img src="/acid_wash_hoodie.png" alt="Collections" className="w-full h-full object-cover object-center" />
+                  <img src="/Stoned Rabbit Teeshirt 1.png" alt="Collections" className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="absolute bottom-0 left-0 w-1 h-24 bg-accent" />
                 <div className="absolute bottom-0 left-0 w-24 h-1 bg-accent" />

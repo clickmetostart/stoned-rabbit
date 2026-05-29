@@ -218,7 +218,7 @@ export function ApparelPage() {
     eyebrow: "Stoned Rabbit — Apparel",
     desc: "Graffiti-inspired tees, heavy hoodies, and streetwear built for the session and the street.",
     ghost: "STREET",
-    heroImg: "/acid_wash_hoodie.png",
+    heroImg: "/Stoned Rabbit Logo - hoodie 1.png",
     filter: p => p.category.toLowerCase().includes("apparel") || p.category.toLowerCase().includes("shirt") || p.category.toLowerCase().includes("hoodie"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
