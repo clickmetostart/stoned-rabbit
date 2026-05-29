@@ -462,17 +462,17 @@ export default function Home() {
                 STONED RABBIT.
               </motion.h1>
               <motion.h1 variants={fadeInUp} className="font-display font-black italic text-7xl md:text-[10rem] uppercase leading-[0.82] tracking-tighter mb-8 text-accent">
-                TOTALLY WORTH IT.
+                FOR THOSE WHO KNOW.
               </motion.h1>
               <motion.p variants={fadeInUp} className="text-lg md:text-xl text-white/80 mb-10 max-w-xl mx-auto">
-                Graffiti-inspired gear. Street-approved attitude.
+                Educated. Elevated. Unapologetically comfortable.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                  Shop The Drop
+                <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors" onClick={() => window.location.href='/collections'}>
+                  Shop Collections
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white hover:text-black rounded-none h-14 px-12 text-base uppercase font-bold bg-transparent transition-colors">
-                  Find Out More
+                <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white hover:text-black rounded-none h-14 px-12 text-base uppercase font-bold bg-transparent transition-colors" onClick={() => window.location.href='/vault'}>
+                  Enter The Vault
                 </Button>
               </motion.div>
             </motion.div>
@@ -483,7 +483,7 @@ export default function Home() {
         <div className="bg-accent overflow-hidden py-5">
           <div className="whitespace-nowrap flex font-display font-black italic text-3xl md:text-4xl tracking-widest uppercase">
             <motion.div className="flex gap-10 items-center" animate={{ x: [0, -1800] }} transition={{ repeat: Infinity, ease: "linear", duration: 18 }}>
-              {["STONED RABBIT","•","GRAFFITI. GLASS. GOOD VIBES.","•","THE WARREN > THE SCORE","•","STAY LIFTED. STAY GROUNDED.","•","NOT FOR EVERYONE. FOR US.","•","STONED RABBIT","•","GRAFFITI. GLASS. GOOD VIBES.","•","THE WARREN > THE SCORE","•"].map((t, i) => (
+              {["STONED RABBIT","•","FOR THOSE WHO KNOW.","•","COLLECTIONS","•","THE VAULT","•","QUIET CONFIDENCE.","•","EDUCATED. ELEVATED.","•","STONED RABBIT","•","FOR THOSE WHO KNOW.","•","THE DROP IS LIVE","•"].map((t, i) => (
                 <span key={i} className="text-white">{t}</span>
               ))}
             </motion.div>
@@ -569,27 +569,31 @@ export default function Home() {
         {/* ── COLLAB BRANDS ─────────────────────────────────────── */}
         <CollabBrands />
 
-        {/* ── THE WARREN ─────────────────────────────────── */}
+        {/* ── COLLECTIONS TEASER ─────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <GhostWord word="THE WARREN" />
+          <div className="absolute inset-0 flex items-center overflow-hidden pointer-events-none select-none z-0">
+            <span className="font-display font-black italic uppercase text-white leading-none pl-8" style={{ fontSize: "clamp(6rem, 22vw, 22rem)", opacity: 0.028, letterSpacing: "-0.04em" }}>
+              COLLECTIONS
+            </span>
+          </div>
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                 <AccentLine className="w-16 mb-6" />
-                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">For the Night Owls</motion.p>
+                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">New This Season</motion.p>
                 <motion.h2 variants={fadeInUp} className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-8">
-                  THE WARREN<br />WELCOMES<br />YOU.
+                  THE<br />COLLECTIONS.<br />
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-white/65 text-lg leading-relaxed mb-4">
-                  Not everyone fits in the mainstream. Most of us thrive where the lights are neon, the music is loud, and the session is just getting started.
+                  Curated drops built around a mood, not a calendar. Each collection has a point of view.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white/65 text-lg leading-relaxed mb-10">
-                  And that's exactly where the best stories happen. Stoned Rabbit is built for the crew that shows up night after night — chasing better vibes, better art, and better connections.
+                  Signature Series. Nocturne. Everyday Carry. And whatever's coming next.
                 </motion.p>
                 <motion.div variants={fadeInUp}>
-                  <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                    Enter The Warren
+                  <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors" onClick={() => window.location.href='/collections'}>
+                    Browse Collections
                   </Button>
                 </motion.div>
               </motion.div>
@@ -597,7 +601,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
                 className="relative" style={{ height: "560px" }}>
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(8% 0, 100% 0, 100% 100%, 0 100%)" }}>
-                  <img src="/drop-editorial.png" alt="Streetwear model" className="w-full h-full object-cover object-center" />
+                  <img src="/acid_wash_hoodie.png" alt="Collections" className="w-full h-full object-cover object-center" />
                 </div>
                 <div className="absolute bottom-0 left-0 w-1 h-24 bg-accent" />
                 <div className="absolute bottom-0 left-0 w-24 h-1 bg-accent" />
@@ -611,9 +615,9 @@ export default function Home() {
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-3">
               {[
-                { to: 10000, prefix: "",  suffix: "+", label: "Stoned Rabbits",  delay: 0 },
+                { to: 10000, prefix: "",  suffix: "+", label: "In The Community",  delay: 0 },
                 { to: 47,    prefix: "",  suffix: "",  label: "Cities Represented", delay: 200 },
-                { to: 250,   prefix: "$", suffix: "K+",label: "Expungement Funds", delay: 400 },
+                { to: 6,     prefix: "",  suffix: "",  label: "Collections",        delay: 400 },
               ].map((s, i) => (
                 <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp}
                   className="text-center py-10 px-4">
@@ -688,108 +692,51 @@ export default function Home() {
                 FOR THOSE WHO APPRECIATE THE ART — AND THE CULTURE.
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-white/80 leading-relaxed max-w-2xl mb-6">
-                This isn't gear for corporate boardrooms and country clubs. It's for late nights, underground shows, weekend sessions, and the hangout that somehow turns into a core memory.
-              </motion.p>
+                  This isn't gear for people who need to announce themselves. It's for the ones who already know what they're about — and dress that way without making a production of it.
+                </motion.p>
               <motion.p variants={fadeInUp} className="font-display font-black italic text-3xl uppercase tracking-wide text-accent">
-                You might not be famous... But you're definitely a legend in The Warren.
-              </motion.p>
+                  Wear it comfortable. Live it quietly.
+                </motion.p>
             </motion.div>
           </div>
         </section>
 
-        {/* ── COMMUNITY INITIATIVE ────────────────────────────────────── */}
+        {/* ── VAULT TEASER ──────────────────────────────────────── */}
         <section className="relative py-28 overflow-hidden">
-          <GhostWord word="COMMUNITY" className="justify-end" />
-
           <div className="relative z-10 container mx-auto px-6 lg:px-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Diagonal photo left */}
+              {/* Left photo */}
               <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
                 className="relative" style={{ height: "580px" }}>
                 <div className="absolute inset-0 overflow-hidden" style={{ clipPath: "polygon(0 0, 92% 0, 100% 100%, 0 100%)" }}>
-                  <img src="/charity-outing-1.jpg" alt="Community support" className="w-full h-full object-cover object-top" />
+                  <img src="/graffiti_bong.png" alt="The Vault" className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="absolute top-0 right-0 w-1 h-20 bg-accent" />
                 <div className="absolute top-0 right-0 w-20 h-1 bg-accent" />
                 <div className="absolute bottom-8 right-4 bg-accent px-4 py-3 z-10">
-                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Expungement</p>
-                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">Support</p>
-                  <p className="text-white/80 text-xs uppercase tracking-widest mt-1">Community Fund</p>
+                  <p className="font-display font-black italic text-white text-sm uppercase tracking-wider leading-none">The Vault</p>
+                  <p className="text-white/80 text-xs uppercase tracking-widest mt-1">Limited Drops</p>
                 </div>
               </motion.div>
 
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                 <AccentLine className="w-16 mb-6" />
-                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Stoned Rabbit Community Fund</motion.p>
+                <motion.p variants={fadeInUp} className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Exclusive Access</motion.p>
                 <motion.h2 variants={fadeInUp} className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter leading-none mb-6">
-                  BECAUSE THE CULTURE DESERVES MORE THAN JUST MERCH.
+                  NOT EVERYTHING IS FOR EVERYONE.
                 </motion.h2>
                 <motion.p variants={fadeInUp} className="text-white/60 text-lg leading-relaxed mb-5">
-                  We believe in giving back to the community that inspired us. The war on drugs disproportionately affected our neighborhoods, and it's time to help make it right.
+                  The Vault holds the pieces that don't make it to the main line. Limited runs, archive drops, and one-of-a-kind collaborations.
                 </motion.p>
                 <motion.p variants={fadeInUp} className="text-white/60 text-lg leading-relaxed mb-8">
-                  We partner with expungement nonprofits to dedicate a portion of every drop toward clearing records and giving people their lives back.
+                  When it's gone, it's gone. No reprints. No restocks.
                 </motion.p>
-                <div className="grid grid-cols-2 gap-3 mb-8">
-                  {[
-                    { step: "01", label: "Buy Gear",       desc: "A portion of every sale goes to the fund." },
-                    { step: "02", label: "Fund Legal Teams",  desc: "We sponsor pro-bono lawyers for expungement." },
-                    { step: "03", label: "Clear Records",        desc: "Helping individuals get a clean slate." },
-                    { step: "04", label: "Wear the Story",        desc: "You represent a movement, not just a brand." },
-                  ].map((s, i) => (
-                    <motion.div key={i} variants={fadeInUp} className="p-4 border-l-2 border-accent/40 bg-white/[0.03]">
-                      <p className="text-accent font-bold text-xs tracking-widest mb-1">{s.step}</p>
-                      <p className="font-bold uppercase text-sm mb-1 text-white">{s.label}</p>
-                      <p className="text-white/45 text-xs leading-relaxed">{s.desc}</p>
-                    </motion.div>
-                  ))}
-                </div>
                 <motion.div variants={fadeInUp}>
-                  <Link href="/community">
-                    <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors">
-                      Learn About The Fund <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
+                  <Button size="lg" className="bg-accent hover:bg-white hover:text-black text-white font-bold tracking-wider rounded-none h-14 px-12 text-base uppercase transition-colors" onClick={() => window.location.href='/vault'}>
+                    Enter The Vault
+                  </Button>
                 </motion.div>
               </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── FEATURED CHARITY EVENT ────────────────────────────── */}
-        <section className="relative py-24 text-white overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <img src="/charity-outing-2.jpg" alt="Community Outing" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/65" />
-          </div>
-          {/* Watermark — JOIN bleeds from center-right */}
-          <div className="absolute inset-0 z-[1] flex items-center overflow-hidden pointer-events-none select-none">
-            <span className="font-display font-black italic uppercase text-white leading-none whitespace-nowrap" style={{ fontSize: "clamp(6rem, 18vw, 18rem)", opacity: 0.06, marginLeft: "22%" }}>
-              JOIN
-            </span>
-          </div>
-          <div className="relative z-10 container mx-auto px-6 lg:px-16">
-            <div className="max-w-4xl mx-auto text-center">
-              <AccentLine className="w-20 mx-auto mb-6" />
-              <p className="text-accent font-bold tracking-widest uppercase text-sm mb-4">Featured Initiative — Project Clean Slate</p>
-              <h2 className="font-display font-black italic text-5xl md:text-7xl uppercase tracking-tighter leading-none mb-6">
-                FIGHTING<br />FOR FAIRNESS.
-              </h2>
-              <p className="text-white/55 text-base mb-3 tracking-wider uppercase font-semibold">Ongoing — Nationwide</p>
-              <p className="text-white/75 text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-                A nationwide push to fund legal representation for those with non-violent cannabis convictions. Stoned Rabbit brings a limited-edition{" "}
-                <span className="text-accent font-bold">Freedom Tag</span> drop to life — designed with purpose, worn with pride.
-              </p>
-              <p className="text-white/45 text-sm mb-10">
-                Supporting <span className="text-white font-bold">The Last Prisoner Project</span>
-              </p>
-              <Button
-                size="lg"
-                onClick={() => setRegisterOpen(true)}
-                className="bg-accent hover:bg-white hover:text-black text-white font-black italic tracking-wider rounded-none h-14 px-14 text-base uppercase transition-colors"
-              >
-                Claim Your Freedom Tag
-              </Button>
             </div>
           </div>
         </section>

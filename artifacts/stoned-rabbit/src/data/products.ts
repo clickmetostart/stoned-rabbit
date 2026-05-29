@@ -6,6 +6,8 @@ export interface Product {
   img: string;
   badge?: string;
   category: string;
+  collection: string;
+  vault?: boolean;
   shortDesc: string;
   description: string;
   details: string[];
@@ -23,12 +25,13 @@ export const ALL_PRODUCTS: Product[] = [
     img: "/neon_dreams_tee.png",
     badge: "NEW DROP",
     category: "Apparel",
-    shortDesc: "Heavyweight cotton with graffiti street art print.",
-    description: "The Neon Dreams Tee is built for the night owls. Thick 100% cotton, relaxed fit, and a bold neon green graffiti rabbit on the back. It glows under blacklight, just in case you find yourself at the right kind of party.",
+    collection: "nocturne",
+    shortDesc: "Heavyweight cotton with a UV-reactive rabbit print.",
+    description: "The Neon Dreams Tee is built for the ones who move when the city gets quiet. Thick 100% cotton, relaxed fit, UV-reactive rabbit mark on the back. Minimal on the front. Everything on the back.",
     details: [
       "100% heavyweight ringspun cotton",
       "Relaxed, oversized fit",
-      "UV-reactive neon puff print",
+      "UV-reactive puff print",
       "Pre-shrunk to minimize shrinkage",
       "Machine wash cold, air dry",
     ],
@@ -45,12 +48,13 @@ export const ALL_PRODUCTS: Product[] = [
     img: "/acid_wash_hoodie.png",
     badge: "BEST SELLER",
     category: "Apparel",
+    collection: "signature",
     shortDesc: "The hoodie you'll never want to take off.",
-    description: "A premium heavyweight acid wash hoodie featuring the Stoned Rabbit tag embroidered in electric pink. French terry interior keeps you warm without overheating during your sesh.",
+    description: "Premium heavyweight acid wash hoodie. French terry interior keeps you warm without overheating. The Stoned Rabbit mark is embroidered in tonal pink — present, but not loud.",
     details: [
       "400gsm heavyweight French Terry",
       "Custom acid wash dye process (each piece is unique)",
-      "High-density embroidery on chest",
+      "High-density tonal embroidery on chest",
       "Double-lined hood",
     ],
     sizes: ["S", "M", "L", "XL", "XXL"],
@@ -66,8 +70,9 @@ export const ALL_PRODUCTS: Product[] = [
     img: "/rabbit_hole_beanie.png",
     badge: "NEW",
     category: "Headwear",
-    shortDesc: "Keep it lowkey. Stay warm.",
-    description: "Classic fisherman-style beanie with a folded cuff and neon green Stoned Rabbit woven label. Fits snug, looks good with everything.",
+    collection: "signature",
+    shortDesc: "Keep it low. Stay warm.",
+    description: "Classic fisherman-style beanie with a folded cuff and woven SR label. Fits snug, looks good with everything, says nothing to people who don't already know.",
     details: [
       "100% hypoallergenic acrylic",
       "Fisherman style short fit",
@@ -77,22 +82,23 @@ export const ALL_PRODUCTS: Product[] = [
     sizes: ["One Size"],
     colors: [
       { name: "Black", hex: "#111111" },
-      { name: "Neon Green", hex: "#39ff14" },
+      { name: "Ash", hex: "#3a3a3a" },
     ],
     related: ["acid-wash-hoodie", "neon-dreams-tee", "street-grinder", "classic-stash-jar"],
   },
   {
     slug: "street-grinder",
-    name: "Street Art Grinder",
+    name: "SR Grinder",
     price: "$40",
     img: "/street_grinder.png",
     badge: "BEST SELLER",
     category: "Accessories",
+    collection: "everyday",
     shortDesc: "Aircraft-grade aluminum. Effortless grind.",
-    description: "A 4-piece, 2.5-inch grinder made from aerospace-grade aluminum. Features sharp diamond-shaped teeth, a mesh kief screen, and a magnetic top. The lid features our signature graffiti rabbit engraved in neon.",
+    description: "A 4-piece, 2.5-inch grinder machined from aerospace-grade aluminum. Sharp diamond-cut teeth, stainless kief screen, magnetic top. The SR mark is laser-etched — not painted.",
     details: [
       "4-piece aluminum construction",
-      "Diamond-cut teeth for a fluffy grind",
+      "Diamond-cut teeth for a fluffy, consistent grind",
       "Stainless steel pollen screen",
       "Magnetic lid",
       "Includes mini scraper",
@@ -108,11 +114,12 @@ export const ALL_PRODUCTS: Product[] = [
     name: "UV Glass Stash Jar",
     price: "$20",
     img: "/classic_stash_jar.png",
-    category: "Glass",
+    category: "Accessories",
+    collection: "everyday",
     shortDesc: "Keep it fresh. Keep it dark.",
-    description: "Premium UV-resistant dark violet glass jar that blocks harmful light from degrading your stash. Airtight seal keeps odors locked in and freshness intact.",
+    description: "Premium UV-blocking violet glass jar. Airtight seal, odor-proof, blocks light degradation. Sits on your shelf and looks like it belongs there.",
     details: [
-      "250ml capacity (holds approx 1/2 oz)",
+      "250ml capacity",
       "UV-blocking violet glass",
       "Airtight screw-top lid",
       "Odor proof",
@@ -128,16 +135,18 @@ export const ALL_PRODUCTS: Product[] = [
     name: "The Tag Beaker",
     price: "$120",
     img: "/graffiti_bong.png",
-    badge: "LIMITED",
+    badge: "VAULT",
     category: "Glass",
-    shortDesc: "12-inch heavy beaker with custom sandblasted graffiti.",
-    description: "This isn't just glass, it's art. A 12-inch heavy-duty borosilicate glass beaker bong with a wide base and ice pinch. Features custom sandblasted Stoned Rabbit graffiti that wraps around the neck.",
+    collection: "vault",
+    vault: true,
+    shortDesc: "12-inch heavy beaker with custom sandblasted SR tag.",
+    description: "This isn't just glass — it's a piece. A 12-inch heavy-duty borosilicate beaker with wide base and ice pinch. Custom sandblasted Stoned Rabbit tag wraps the neck. Limited run. No reprints.",
     details: [
       "12 inches tall",
       "7mm thick borosilicate glass",
       "14mm female joint with diffused downstem",
       "Ice catcher",
-      "Custom sandblasted design",
+      "Custom sandblasted design — no two exactly alike",
     ],
     sizes: ["12 Inch"],
     colors: [
@@ -146,6 +155,35 @@ export const ALL_PRODUCTS: Product[] = [
     related: ["street-grinder", "classic-stash-jar", "neon-dreams-tee", "acid-wash-hoodie"],
   }
 ];
+
+export const COLLECTIONS = [
+  {
+    slug: "signature",
+    name: "Signature Series",
+    sub: "The core line. Always available, always right.",
+    description: "The foundation of Stoned Rabbit. Understated apparel built for the person who doesn't need to explain their taste.",
+    img: "/acid_wash_hoodie.png",
+    count: ALL_PRODUCTS.filter(p => p.collection === "signature").length,
+  },
+  {
+    slug: "nocturne",
+    name: "Nocturne",
+    sub: "For when the city gets quiet.",
+    description: "Dark colorways and UV-reactive details. Built for late nights and early mornings — whenever you're most yourself.",
+    img: "/neon_dreams_tee.png",
+    count: ALL_PRODUCTS.filter(p => p.collection === "nocturne").length,
+  },
+  {
+    slug: "everyday",
+    name: "Everyday Carry",
+    sub: "The essentials. Never leave without them.",
+    description: "Grinders, stash jars, and accessories for the person who has a system. Precision-built. Quietly premium.",
+    img: "/street_grinder.png",
+    count: ALL_PRODUCTS.filter(p => p.collection === "everyday").length,
+  },
+];
+
+export const VAULT_PRODUCTS = ALL_PRODUCTS.filter(p => p.vault);
 
 export function getProductBySlug(slug: string): Product | undefined {
   return ALL_PRODUCTS.find((p) => p.slug === slug);
@@ -156,4 +194,8 @@ export function getRelatedProducts(slugs: string[]): Product[] {
     .map((s) => ALL_PRODUCTS.find((p) => p.slug === s))
     .filter((p): p is Product => Boolean(p))
     .slice(0, 4);
+}
+
+export function getProductsByCollection(collectionSlug: string): Product[] {
+  return ALL_PRODUCTS.filter(p => p.collection === collectionSlug);
 }

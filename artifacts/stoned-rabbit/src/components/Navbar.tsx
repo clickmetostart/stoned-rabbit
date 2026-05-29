@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { SearchOverlay } from "@/components/SearchOverlay";
 
-const NAV_BG = "#0b1a14";
-const MENU_BG = "#0c1920";
+const NAV_BG = "#0a0a0a";
+const MENU_BG = "#111111";
 
 const MENUS = {
   APPAREL: {
@@ -81,29 +81,29 @@ const MENUS = {
 
 type MenuKey = keyof typeof MENUS;
 
-const CHARITY_MENU = {
+const VAULT_NAV = {
   featured: {
-    img: "/charity-outing-2.jpg",
-    badge: "Community",
-    title: "Expungement Support",
-    date: "A portion of every drop",
-    href: "/community",
+    img: "/graffiti_bong.png",
+    badge: "Limited Run",
+    title: "The Tag Beaker",
+    sub: "Sandblasted. One run only.",
+    href: "/vault",
   },
   links: [
-    { label: "Learn About Our Mission", href: "/community" },
-    { label: "Partner With Us",        href: "/community" },
-    { label: "The Warren (Crew Wall)", href: "/the-warren" },
+    { label: "Browse The Vault",      href: "/vault" },
+    { label: "New Drop Notifications", href: "/vault" },
+    { label: "All Collections",        href: "/collections" },
   ],
 };
 
 export default function Navbar() {
   const { itemCount, setCartOpen } = useCart();
-  const [activeMenu, setActiveMenu] = useState<MenuKey | "CHARITY" | null>(null);
+  const [activeMenu, setActiveMenu] = useState<MenuKey | "VAULT" | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleEnter = (key: MenuKey | "CHARITY") => {
+  const handleEnter = (key: MenuKey | "VAULT") => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setActiveMenu(key);
   };
@@ -111,14 +111,14 @@ export default function Navbar() {
     closeTimer.current = setTimeout(() => setActiveMenu(null), 120);
   };
 
-  const menu = activeMenu && activeMenu !== "CHARITY" ? MENUS[activeMenu as MenuKey] : null;
-  const charityOpen = activeMenu === "CHARITY";
+  const menu = activeMenu && activeMenu !== "VAULT" ? MENUS[activeMenu as MenuKey] : null;
+  const vaultOpen = activeMenu === "VAULT";
 
   return (
     <>
       {/* ── PROMO BANNER ──────────────────────────────────────── */}
       <div className="bg-accent text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
-        Free Shipping over $100&nbsp;&nbsp;•&nbsp;&nbsp;Graffiti. Glass. Good Vibes.
+        Free Shipping over $100&nbsp;&nbsp;•&nbsp;&nbsp;For Those Who Know.
       </div>
 
       {/* ── MAIN NAV ──────────────────────────────────────────── */}
@@ -159,17 +159,20 @@ export default function Navbar() {
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${activeMenu === key ? "rotate-180 text-accent" : ""}`} />
               </button>
             ))}
+            <Link href="/collections" className="px-4 py-2 text-sm font-bold tracking-wider uppercase text-white/80 hover:text-accent transition-colors">
+              COLLECTIONS
+            </Link>
             <Link href="/drop" className="px-4 py-2 text-sm font-bold tracking-wider uppercase text-accent hover:text-white transition-colors">
               THE DROP
             </Link>
             <button
-              onMouseEnter={() => handleEnter("CHARITY")}
+              onMouseEnter={() => handleEnter("VAULT")}
               className={`flex items-center gap-1 px-4 py-2 text-sm font-bold tracking-wider uppercase transition-colors ${
-                charityOpen ? "text-accent" : "text-white/80 hover:text-accent"
+                vaultOpen ? "text-accent" : "text-white/80 hover:text-accent"
               }`}
             >
-              COMMUNITY
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${charityOpen ? "rotate-180 text-accent" : ""}`} />
+              THE VAULT
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${vaultOpen ? "rotate-180 text-accent" : ""}`} />
             </button>
           </nav>
 
@@ -282,14 +285,14 @@ export default function Navbar() {
                   </ul>
 
                   <div className="mt-8 p-4 border-l-4 border-accent bg-white/[0.04]">
-                    <p className="font-display font-bold italic text-lg uppercase tracking-tight text-white mb-1">Collaborations</p>
-                    <p className="text-white/50 text-xs leading-relaxed mb-3">Custom drop campaigns and limited editions.</p>
+                    <p className="font-display font-bold italic text-lg uppercase tracking-tight text-white mb-1">The Vault</p>
+                    <p className="text-white/50 text-xs leading-relaxed mb-3">Limited runs. Archive drops. Not everything comes back.</p>
                     <Link
-                      href="/community"
+                      href="/vault"
                       className="text-accent text-xs font-bold uppercase tracking-widest hover:underline flex items-center gap-1"
                       onClick={() => setActiveMenu(null)}
                     >
-                      Learn More <ArrowUpRight className="w-3 h-3" />
+                      Enter The Vault <ArrowUpRight className="w-3 h-3" />
                     </Link>
                   </div>
                 </div>
@@ -298,9 +301,9 @@ export default function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* ── CHARITY ROUNDS DROPDOWN ────────────────────────────── */}
+        {/* ── VAULT DROPDOWN ──────────────────────────────────────── */}
         <AnimatePresence>
-          {charityOpen && (
+          {vaultOpen && (
             <motion.div
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -313,57 +316,44 @@ export default function Navbar() {
             >
               <div className="container mx-auto px-6 py-8 grid grid-cols-12 gap-6 items-start">
 
-                {/* Featured event card */}
+                {/* Featured Vault item */}
                 <Link
-                  href={CHARITY_MENU.featured.href}
+                  href={VAULT_NAV.featured.href}
                   className="col-span-5 group relative block overflow-hidden"
                   style={{ aspectRatio: "16/9", clipPath: "polygon(0 0, 96% 0, 100% 100%, 0 100%)" }}
                   onClick={() => setActiveMenu(null)}
                 >
-                  <img src={CHARITY_MENU.featured.img} alt="Charity Event" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                  <img src={VAULT_NAV.featured.img} alt="Vault Item" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                   <div className="absolute bottom-5 left-5 right-8">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Heart className="w-3.5 h-3.5 text-accent" />
-                      <p className="text-accent text-xs font-bold uppercase tracking-widest">{CHARITY_MENU.featured.badge}</p>
-                    </div>
+                    <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">{VAULT_NAV.featured.badge}</p>
                     <p className="font-display font-black italic text-2xl uppercase tracking-tight leading-none text-white mb-1">
-                      {CHARITY_MENU.featured.title}
+                      {VAULT_NAV.featured.title}
                     </p>
-                    <p className="text-white/55 text-sm">{CHARITY_MENU.featured.date}</p>
+                    <p className="text-white/55 text-sm">{VAULT_NAV.featured.sub}</p>
                   </div>
                 </Link>
 
-                {/* Freedom Tag teaser */}
+                {/* Vault description */}
                 <div className="col-span-3">
-                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-4">Charity Drop</p>
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-4">The Vault</p>
+                  <p className="text-white/60 text-sm leading-relaxed mb-6">
+                    Limited runs, archive drops, and one-of-a-kind pieces. When it's gone, it's gone. No reprints, no restocks.
+                  </p>
                   <Link
-                    href="/community"
-                    className="group block relative overflow-hidden mb-4"
-                    style={{ aspectRatio: "4/3", clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)" }}
-                    onClick={() => setActiveMenu(null)}
-                  >
-                    <img src="/freedom_tag.png" alt="Freedom Tag" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    <div className="absolute bottom-3 left-4">
-                      <p className="text-white font-display font-bold italic text-base uppercase tracking-tight leading-none">Freedom Tag</p>
-                      <p className="text-accent text-xs font-bold uppercase tracking-widest mt-0.5">$25 · Charity Drop</p>
-                    </div>
-                  </Link>
-                  <Link
-                    href="/community"
+                    href="/vault"
                     className="w-full h-10 bg-accent text-white font-black italic uppercase tracking-widest text-xs flex items-center justify-center gap-1.5 hover:bg-white hover:text-black transition-colors duration-200"
                     onClick={() => setActiveMenu(null)}
                   >
-                    Claim Your Tag <ArrowUpRight className="w-3.5 h-3.5" />
+                    Enter The Vault <ArrowUpRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
 
                 {/* Quick links */}
                 <div className="col-span-4 border-l border-white/10 pl-6 pt-2">
-                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-5">Charity Rounds</p>
+                  <p className="text-white/35 text-xs font-bold uppercase tracking-widest mb-5">Quick Links</p>
                   <ul className="space-y-3.5 mb-8">
-                    {CHARITY_MENU.links.map((l, i) => (
+                    {VAULT_NAV.links.map((l, i) => (
                       <li key={i}>
                         <Link
                           href={l.href}
@@ -378,7 +368,7 @@ export default function Navbar() {
                   </ul>
                   <div className="p-4 bg-white/[0.04] border-l-4 border-accent">
                     <p className="text-white/40 text-xs leading-relaxed italic">
-                      "Stay lifted. Stay grounded. The culture is built on good vibes."
+                      "Not everything is for everyone. Some things are just for those who know."
                     </p>
                     <p className="text-accent text-xs font-bold uppercase tracking-widest mt-2">— Stoned Rabbit</p>
                   </div>
@@ -425,9 +415,9 @@ export default function Navbar() {
                   { label: "HEADWEAR",       href: "/headwear" },
                   { label: "ACCESSORIES",    href: "/accessories" },
                   { label: "GLASS",          href: "/glass" },
+                  { label: "COLLECTIONS",    href: "/collections" },
                   { label: "THE DROP",       href: "/drop",       accent: true },
-                  { label: "COMMUNITY",      href: "/community" },
-                  { label: "THE WARREN",     href: "/the-warren", accent: true },
+                  { label: "THE VAULT",      href: "/vault",      accent: true },
                 ].map((item) => (
                   <Link
                     key={item.href}
@@ -443,7 +433,7 @@ export default function Navbar() {
                 ))}
               </nav>
               <div className="p-5 border-t border-white/10">
-                <p className="text-white/30 text-xs italic">Graffiti. Glass. Good Vibes.</p>
+                <p className="text-white/30 text-xs italic">For those who know.</p>
               </div>
             </motion.aside>
           </>

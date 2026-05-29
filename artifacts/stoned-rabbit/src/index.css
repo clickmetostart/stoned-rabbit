@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&family=Space+Grotesk:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -80,38 +80,38 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  /* Stoned Rabbit Palette: Dark background, Neon Green Primary, Neon Pink Accent */
-  --background: 0 0% 5%; /* Very dark grey/black */
-  --foreground: 0 0% 95%; /* Off-white text */
-  --border: 0 0% 15%;
+  /* Stoned Rabbit SR2025 — Brand Pink #FF0099, Brand Lime #AAEE00 */
+  --background: 0 0% 4%; /* Near black */
+  --foreground: 40 15% 93%; /* Warm off-white */
+  --border: 0 0% 13%;
 
-  --card: 0 0% 8%; /* Slightly lighter dark card */
-  --card-foreground: 0 0% 95%;
-  --card-border: 0 0% 15%;
+  --card: 0 0% 7%; /* Dark surface */
+  --card-foreground: 40 15% 93%;
+  --card-border: 0 0% 13%;
 
-  --sidebar: 0 0% 8%;
-  --sidebar-foreground: 0 0% 95%;
-  --sidebar-border: 0 0% 15%;
-  --sidebar-primary: 120 100% 50%;
-  --sidebar-primary-foreground: 0 0% 5%;
-  --sidebar-accent: 0 0% 15%;
-  --sidebar-accent-foreground: 0 0% 95%;
-  --sidebar-ring: 120 100% 50%;
+  --sidebar: 0 0% 7%;
+  --sidebar-foreground: 40 15% 93%;
+  --sidebar-border: 0 0% 13%;
+  --sidebar-primary: 318 100% 50%; /* #FF0099 brand pink */
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 13%;
+  --sidebar-accent-foreground: 40 15% 93%;
+  --sidebar-ring: 318 100% 50%;
 
-  --popover: 0 0% 8%;
-  --popover-foreground: 0 0% 95%;
-  --popover-border: 0 0% 15%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 40 15% 93%;
+  --popover-border: 0 0% 13%;
 
-  --primary: 120 100% 50%; /* Neon Green */
-  --primary-foreground: 0 0% 5%; /* Black text on primary */
+  --primary: 75 86% 46%; /* #AAEE00 brand lime */
+  --primary-foreground: 0 0% 5%;
 
-  --secondary: 0 0% 15%; /* Dark grey */
-  --secondary-foreground: 0 0% 95%;
+  --secondary: 0 0% 13%;
+  --secondary-foreground: 40 15% 93%;
 
-  --muted: 0 0% 20%;
-  --muted-foreground: 0 0% 60%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 58%;
 
-  --accent: 330 100% 50%; /* Neon Pink */
+  --accent: 318 100% 50%; /* #FF0099 brand pink */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
@@ -127,7 +127,7 @@
   --chart-5: 0 0% 15%;
 
   --app-font-sans: 'Space Grotesk', sans-serif;
-  --app-font-serif: Georgia, serif;
+  --app-font-serif: 'Cormorant Garamond', Georgia, serif;
   --app-font-mono: Menlo, monospace;
   --app-font-display: 'Sedgwick Ave Display', cursive;
   
@@ -184,49 +184,49 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  --background: 0 0% 5%;
-  --foreground: 0 0% 95%;
-  --border: 0 0% 15%;
+  --background: 0 0% 4%;
+  --foreground: 40 15% 93%;
+  --border: 0 0% 13%;
 
-  --card: 0 0% 8%;
-  --card-foreground: 0 0% 95%;
-  --card-border: 0 0% 15%;
+  --card: 0 0% 7%;
+  --card-foreground: 40 15% 93%;
+  --card-border: 0 0% 13%;
 
-  --sidebar: 0 0% 8%;
-  --sidebar-foreground: 0 0% 95%;
-  --sidebar-border: 0 0% 15%;
-  --sidebar-primary: 120 100% 50%;
-  --sidebar-primary-foreground: 0 0% 5%;
-  --sidebar-accent: 0 0% 15%;
-  --sidebar-accent-foreground: 0 0% 95%;
-  --sidebar-ring: 120 100% 50%;
+  --sidebar: 0 0% 7%;
+  --sidebar-foreground: 40 15% 93%;
+  --sidebar-border: 0 0% 13%;
+  --sidebar-primary: 318 100% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 13%;
+  --sidebar-accent-foreground: 40 15% 93%;
+  --sidebar-ring: 318 100% 50%;
 
-  --popover: 0 0% 8%;
-  --popover-foreground: 0 0% 95%;
-  --popover-border: 0 0% 15%;
+  --popover: 0 0% 7%;
+  --popover-foreground: 40 15% 93%;
+  --popover-border: 0 0% 13%;
 
-  --primary: 120 100% 50%;
+  --primary: 75 86% 46%;
   --primary-foreground: 0 0% 5%;
 
-  --secondary: 0 0% 15%;
-  --secondary-foreground: 0 0% 95%;
+  --secondary: 0 0% 13%;
+  --secondary-foreground: 40 15% 93%;
 
-  --muted: 0 0% 20%;
-  --muted-foreground: 0 0% 60%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 58%;
 
-  --accent: 330 100% 50%;
+  --accent: 318 100% 50%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --input: 0 0% 20%;
-  --ring: 120 100% 50%;
-  --chart-1: 120 100% 50%;
-  --chart-2: 330 100% 50%;
-  --chart-3: 180 100% 50%;
-  --chart-4: 0 0% 95%;
-  --chart-5: 0 0% 15%;
+  --input: 0 0% 18%;
+  --ring: 318 100% 50%;
+  --chart-1: 318 100% 50%;
+  --chart-2: 75 86% 46%;
+  --chart-3: 180 80% 45%;
+  --chart-4: 40 15% 93%;
+  --chart-5: 0 0% 13%;
 
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);

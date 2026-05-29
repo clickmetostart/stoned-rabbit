@@ -4,10 +4,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
-import Community from "@/pages/community";
 import ProductDetail from "@/pages/product";
 import { ApparelPage, HeadwearPage, AccessoriesPage, GlassPage, DropPage } from "@/pages/shop";
-import CrewWall from "@/pages/crew-wall";
+import CollectionsPage from "@/pages/collections";
+import VaultPage from "@/pages/vault";
 import { CartProvider } from "@/context/CartContext";
 import { CartSidebar } from "@/components/CartSidebar";
 import { RewardsBanner } from "@/components/RewardsBanner";
@@ -18,7 +18,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/community" component={Community} />
+      <Route path="/collections" component={CollectionsPage} />
+      <Route path="/vault" component={VaultPage} />
       <Route path="/product/:slug" component={ProductDetail} />
       <Route path="/apparel" component={ApparelPage} />
       <Route path="/headwear" component={HeadwearPage} />
@@ -29,7 +30,6 @@ function Router() {
       <Route path="/headwear/:sub" component={HeadwearPage} />
       <Route path="/accessories/:sub" component={AccessoriesPage} />
       <Route path="/glass/:sub" component={GlassPage} />
-      <Route path="/the-warren" component={CrewWall} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -53,3 +53,4 @@ function App() {
 }
 
 export default App;
+
