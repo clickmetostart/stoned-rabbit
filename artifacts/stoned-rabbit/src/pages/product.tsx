@@ -9,7 +9,7 @@ import { useCart } from "@/context/CartContext";
 import { SizeGuideModal } from "@/components/SizeGuideModal";
 import { useSEO } from "@/hooks/useSEO";
 
-const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+const PAGE_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },

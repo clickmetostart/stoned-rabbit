@@ -27,7 +27,7 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
 
       <motion.div
         className="relative z-10 w-full max-w-2xl overflow-hidden"
-        style={{ background: "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)", border: "1px solid rgba(255,255,255,0.08)" }}
+        style={{ background: "linear-gradient(160deg, #133732 0%, #000000 100%)", border: "1px solid rgba(255,255,255,0.08)" }}
         initial={{ opacity: 0, y: 60, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.97 }}
@@ -112,11 +112,11 @@ export function ContactModal({ onClose }: { onClose: () => void }) {
                     onChange={handleChange}
                     className="w-full h-12 bg-white/[0.06] border border-white/15 text-white/70 px-4 focus:outline-none focus:border-accent text-sm transition-colors"
                   >
-                    <option value="" className="bg-[#0f1f2e]">Select a range</option>
-                    <option value="under-20" className="bg-[#0f1f2e]">Under 20 crew</option>
-                    <option value="20-50" className="bg-[#0f1f2e]">20–50 crew</option>
-                    <option value="50-100" className="bg-[#0f1f2e]">50–100 crew</option>
-                    <option value="100+" className="bg-[#0f1f2e]">100+ crew</option>
+                    <option value="" className="bg-[#133732]">Select a range</option>
+                    <option value="under-20" className="bg-[#133732]">Under 20 crew</option>
+                    <option value="20-50" className="bg-[#133732]">20–50 crew</option>
+                    <option value="50-100" className="bg-[#133732]">50–100 crew</option>
+                    <option value="100+" className="bg-[#133732]">100+ crew</option>
                   </select>
                 </div>
 

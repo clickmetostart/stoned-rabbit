@@ -43,7 +43,7 @@ export function RewardsBanner() {
         exit={{ y: 80, opacity: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 28 }}
         className="fixed bottom-0 left-0 right-0 z-[900]"
-        style={{ background: "#0b1a14", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        style={{ background: "#000000", borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         {/* Accent top border */}
         <div className="h-[2px]" style={{ background: tier.color }} />

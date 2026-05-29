@@ -7,7 +7,7 @@ import GhostWord from "@/components/GhostWord";
 import { ALL_PRODUCTS, Product } from "@/data/products";
 import { useSEO } from "@/hooks/useSEO";
 
-const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+const PAGE_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 28 },
@@ -103,7 +103,7 @@ export function ShopPage({ config }: { config: ShopConfig }) {
         <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
           <div className="absolute inset-0">
             <img src={config.heroImg} alt={config.title} className="w-full h-full object-cover" />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(100deg, rgba(10,26,20,0.97) 30%, rgba(15,31,46,0.82) 65%, rgba(10,26,20,0.5) 100%)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(100deg, rgba(0,0,0,0.97) 30%, rgba(19,55,50,0.82) 65%, rgba(0,0,0,0.5) 100%)" }} />
           </div>
 
           <div className="relative z-10 container mx-auto px-6 lg:px-16 py-24 flex flex-col justify-end" style={{ minHeight: "52vh" }}>

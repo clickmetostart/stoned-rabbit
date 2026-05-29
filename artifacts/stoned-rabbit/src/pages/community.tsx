@@ -7,7 +7,7 @@ import GhostWord from "@/components/GhostWord";
 import { RegisterModal } from "@/components/RegisterModal";
 import { ContactModal } from "@/components/ContactModal";
 
-const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+const PAGE_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -167,7 +167,7 @@ export default function Charity() {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeInUp}
-                  className="relative p-8 bg-[#0f1f2e] group hover:bg-white/5 transition-colors"
+                  className="relative p-8 bg-[#0e2925] group hover:bg-white/5 transition-colors"
                 >
                   <div className="text-accent mb-6">{s.icon}</div>
                   <p className="font-display font-black italic text-6xl text-white/[0.06] absolute top-4 right-5 leading-none select-none">{s.step}</p>
@@ -379,7 +379,7 @@ export default function Charity() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-accent/15">
               {FEATURED_PRODUCTS.map((p, i) => (
-                <div key={i} className="group cursor-pointer bg-[#0a1a14]">
+                <div key={i} className="group cursor-pointer bg-black">
                   <div
                     className="relative overflow-hidden"
                     style={{ aspectRatio: "3/4", clipPath: "polygon(0 0, 100% 0, 100% 92%, 0 100%)" }}

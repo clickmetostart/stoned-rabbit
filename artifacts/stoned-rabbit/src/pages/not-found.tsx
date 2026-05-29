@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useSEO } from "@/hooks/useSEO";
 
-const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+const PAGE_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 export default function NotFound() {
   useSEO({

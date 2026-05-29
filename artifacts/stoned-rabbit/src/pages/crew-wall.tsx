@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+const PAGE_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 function AccentLine({ className = "" }: { className?: string }) {
   return <div className={`h-[3px] bg-accent ${className}`} />;
@@ -224,7 +224,7 @@ export default function CrewWall() {
                   {/* Tier badge */}
                   <div
                     className="absolute top-3 left-[8%] text-[10px] font-black uppercase tracking-widest px-2.5 py-1 flex items-center gap-1.5"
-                    style={{ background: color, color: m.tier === "Stoned Rabbit" ? "#0b1a14" : "white" }}
+                    style={{ background: color, color: m.tier === "Stoned Rabbit" ? "#000000" : "white" }}
                   >
                     <Star className="w-2.5 h-2.5 fill-current" />
                     {m.tier}

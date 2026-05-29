@@ -3,7 +3,7 @@ import { X, Plus, Minus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { Link } from "wouter";
 
-const SIDEBAR_BG = "linear-gradient(160deg, #0c1d2b 0%, #0a1a14 100%)";
+const SIDEBAR_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 export function CartSidebar() {
   const { items, cartOpen, setCartOpen, removeItem, updateQty, subtotal, itemCount, clearCart } = useCart();

@@ -57,7 +57,7 @@ export function SizeGuideModal({ onClose, defaultTab = "tops" }: { onClose: () =
       <motion.div
         className="relative z-10 w-full max-w-3xl overflow-hidden flex flex-col"
         style={{
-          background: "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)",
+          background: "linear-gradient(160deg, #133732 0%, #000000 100%)",
           border: "1px solid rgba(255,255,255,0.08)",
           maxHeight: "90vh",
         }}

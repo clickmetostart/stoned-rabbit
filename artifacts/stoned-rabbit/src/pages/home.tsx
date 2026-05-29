@@ -11,7 +11,7 @@ import { ContactModal } from "@/components/ContactModal";
 import { ALL_PRODUCTS } from "@/data/products";
 import { useSEO } from "@/hooks/useSEO";
 
-const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
+const PAGE_BG = "linear-gradient(160deg, #133732 0%, #000000 100%)";
 
 /* ── animated countup ─────────────────────────────────────────── */
 function CountUp({ to, prefix = "", suffix = "", duration = 2200 }: {
@@ -886,7 +886,7 @@ export default function Home() {
                   {tier.featured && (
                     <div
                       className="absolute top-0 right-6 -translate-y-1/2 text-[10px] font-black uppercase tracking-widest px-3 py-1"
-                      style={{ background: tier.color, color: "#0b1a14" }}
+                      style={{ background: tier.color, color: "#000000" }}
                     >
                       Most Popular
                     </div>

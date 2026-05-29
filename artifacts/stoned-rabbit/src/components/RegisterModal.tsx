@@ -24,7 +24,7 @@ export function RegisterModal({ onClose }: { onClose: () => void }) {
 
       <motion.div
         className="relative z-10 w-full max-w-4xl overflow-hidden"
-        style={{ background: "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)", border: "1px solid rgba(255,255,255,0.08)" }}
+        style={{ background: "linear-gradient(160deg, #133732 0%, #000000 100%)", border: "1px solid rgba(255,255,255,0.08)" }}
         initial={{ opacity: 0, y: 60, scale: 0.96 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.97 }}
