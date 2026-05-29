@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install Node.js 🟢
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm 📦
+        uses: pnpm/action-setup@v3
+        with:
+          version: 11
+          run_install: false
+
+      - name: Get pnpm store directory 🗄️
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache 💾
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies 🛠️
+        run: pnpm install --ignore-scripts
+
+      - name: Build 🚀
+        env:
+          PORT: 3000
+          BASE_PATH: /stoned-rabbit/
+        run: pnpm --filter @workspace/stoned-rabbit build
+
+      - name: Copy index.html to 404.html for SPA routing fallback 📂
+        run: cp artifacts/stoned-rabbit/dist/public/index.html artifacts/stoned-rabbit/dist/public/404.html
+
+      - name: Deploy ✈️
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: artifacts/stoned-rabbit/dist/public
+          branch: gh-pages
