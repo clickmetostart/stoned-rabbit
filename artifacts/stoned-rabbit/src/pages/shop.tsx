@@ -5,6 +5,7 @@ import { ArrowRight, ArrowUpRight, SlidersHorizontal } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import GhostWord from "@/components/GhostWord";
 import { ALL_PRODUCTS, Product } from "@/data/products";
+import { useSEO } from "@/hooks/useSEO";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -78,6 +79,12 @@ function ProductCard({ p, i }: { p: Product; i: number }) {
 
 export function ShopPage({ config }: { config: ShopConfig }) {
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  useSEO({
+    title: config.title.replace(/\.$/, ""),
+    description: config.desc,
+    canonical: `/${config.title.toLowerCase().replace(/[^a-z]/g, "").replace("justdropped", "drop")}`,
+    keywords: `stoned rabbit ${config.title.toLowerCase()}, cannabis streetwear, ${config.eyebrow.toLowerCase()}`,
+  });
 
   const products = ALL_PRODUCTS.filter(config.filter);
   const [activeFilter, setActiveFilter] = useState("ALL");
@@ -170,19 +177,19 @@ export function ShopPage({ config }: { config: ShopConfig }) {
         <section className="relative overflow-hidden py-20" style={{ background: "rgba(255,255,255,0.02)", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="container mx-auto px-6 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit Community</p>
+              <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Stoned Rabbit</p>
               <h2 className="font-display font-black italic text-4xl md:text-5xl uppercase tracking-tighter text-white leading-none mb-3">
-                THE WARREN.
+                THE VAULT.
               </h2>
               <p className="text-white/45 text-sm leading-relaxed max-w-md">
-                We believe in giving back. A portion of every drop goes towards cannabis expungement programs. Stay lifted, stay grounded.
+                Limited runs. Archive pieces. When it's gone, it's gone — no reprints, no restocks.
               </p>
             </div>
             <Link
-              href="/community"
+              href="/vault"
               className="flex-shrink-0 inline-flex items-center gap-2 bg-accent text-white font-black italic uppercase tracking-widest px-10 h-14 text-base hover:bg-white hover:text-black transition-colors duration-200"
             >
-              Learn More <ArrowRight className="w-4 h-4" />
+              Enter The Vault <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </section>
@@ -209,9 +216,9 @@ export function ApparelPage() {
   return <ShopPage config={{
     title: "APPAREL",
     eyebrow: "Stoned Rabbit — Apparel",
-    desc: "Graffiti-inspired tees, heavy hoodies, and streetwear built for the sesh.",
+    desc: "Graffiti-inspired tees, heavy hoodies, and streetwear built for the session and the street.",
     ghost: "STREET",
-    heroImg: "/lifestyle-swing.jpg",
+    heroImg: "/acid_wash_hoodie.png",
     filter: p => p.category.toLowerCase().includes("apparel") || p.category.toLowerCase().includes("shirt") || p.category.toLowerCase().includes("hoodie"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
@@ -235,7 +242,7 @@ export function AccessoriesPage() {
     eyebrow: "Stoned Rabbit — Accessories",
     desc: "Grinders, rolling trays, lighters, and everyday carry for the elevated individual.",
     ghost: "GEAR",
-    heroImg: "/scramble-specialist-hat.jpg",
+    heroImg: "/classic_stash_jar.png",
     filter: p => p.category.toLowerCase().includes("accessories") || p.category.toLowerCase().includes("accessory") || p.category.toLowerCase().includes("grinder"),
     badges: ["NEW", "CHARITY DROP", "BEST SELLER"],
   }} />;

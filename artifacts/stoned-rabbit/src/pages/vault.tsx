@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { ArrowUpRight, Lock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { VAULT_PRODUCTS, ALL_PRODUCTS } from "@/data/products";
+import { useSEO } from "@/hooks/useSEO";
 
 const PAGE_BG = "#080808";
 
@@ -38,6 +39,12 @@ export default function VaultPage() {
   const [notified, setNotified] = useState<string[]>([]);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  useSEO({
+    title: "The Vault",
+    description: "The Stoned Rabbit Vault — limited runs, archive drops, and one-of-a-kind pieces. When it's gone, it's gone. No reprints. No restocks.",
+    canonical: "/vault",
+    keywords: "stoned rabbit vault, limited edition cannabis apparel, archive drops, exclusive streetwear, limited runs",
+  });
 
   const handleNotify = (slug: string) => {
     setNotifySlug(null);

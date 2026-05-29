@@ -9,6 +9,7 @@ import GhostWord from "@/components/GhostWord";
 import { RegisterModal } from "@/components/RegisterModal";
 import { ContactModal } from "@/components/ContactModal";
 import { ALL_PRODUCTS } from "@/data/products";
+import { useSEO } from "@/hooks/useSEO";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -445,6 +446,13 @@ function ShopByCategory() {
 export default function Home() {
   const [registerOpen, setRegisterOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  useSEO({
+    title: "For Those Who Know",
+    description: "Stoned Rabbit — premium lifestyle brand for the educated smoker. Shop apparel, headwear, glass, grinders, and more. Quiet confidence. Real culture.",
+    canonical: "/",
+    keywords: "stoned rabbit, cannabis lifestyle, streetwear, cannabis apparel, hoodies, beanies, grinders, bongs, smoke shop, educated smoker",
+    type: "website",
+  });
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />

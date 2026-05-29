@@ -2,10 +2,17 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { useSEO } from "@/hooks/useSEO";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
 export default function NotFound() {
+  useSEO({
+    title: "404 — Page Not Found",
+    description: "This page doesn't exist. Head back to the Stoned Rabbit shop and find what you're looking for.",
+    canonical: "/404",
+    noindex: true,
+  });
   return (
     <div className="min-h-screen text-white flex flex-col font-sans" style={{ background: PAGE_BG }}>
       <Navbar />
@@ -30,7 +37,7 @@ export default function NotFound() {
             Stoned Rabbit — But Not Quite This Page
           </p>
           <h1 className="font-display font-black italic text-6xl md:text-8xl uppercase tracking-tighter leading-none mb-6 text-white">
-            LOST IN<br />THE WARREN.
+            LOST IN<br />THE SMOKE.
           </h1>
           <div className="w-16 h-1 bg-accent mx-auto mb-6" />
           <p className="text-white/50 text-lg max-w-md mx-auto mb-10 leading-relaxed">

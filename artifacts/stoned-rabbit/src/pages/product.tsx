@@ -7,6 +7,7 @@ import GhostWord from "@/components/GhostWord";
 import { getProductBySlug, getRelatedProducts } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { SizeGuideModal } from "@/components/SizeGuideModal";
+import { useSEO } from "@/hooks/useSEO";
 
 const PAGE_BG = "linear-gradient(160deg, #0f1f2e 0%, #0a1a14 100%)";
 
@@ -51,6 +52,18 @@ export default function ProductDetail() {
   const [addedToCart, setAddedToCart] = useState(false);
   const [wishlisted, setWishlisted] = useState(false);
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
+
+  useSEO({
+    title: product ? product.name : "Product Not Found",
+    description: product
+      ? `${product.shortDesc} Shop ${product.name} from Stoned Rabbit — for those who know.`
+      : "This product isn't available. Browse the full Stoned Rabbit collection.",
+    canonical: `/product/${slug}`,
+    image: product ? `https://stoned-rabbit-api-server.vercel.app${product.img}` : undefined,
+    type: "product",
+    keywords: product ? `${product.name.toLowerCase()}, stoned rabbit, ${product.category.toLowerCase()}, buy ${product.category.toLowerCase()}` : undefined,
+    noindex: !product,
+  });
 
   if (!product) {
     return (

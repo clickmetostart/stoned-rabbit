@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { COLLECTIONS, ALL_PRODUCTS } from "@/data/products";
+import { useSEO } from "@/hooks/useSEO";
 
 const PAGE_BG = "linear-gradient(160deg, #0a0a0a 0%, #0d0d0d 100%)";
 
@@ -22,6 +23,12 @@ function AccentLine({ className = "" }: { className?: string }) {
 
 export default function CollectionsPage() {
   useEffect(() => { window.scrollTo(0, 0); }, []);
+  useSEO({
+    title: "Collections",
+    description: "Browse Stoned Rabbit collections — curated drops built around a mood, not a calendar. Signature Series, Nocturne, Everyday Carry, and more.",
+    canonical: "/collections",
+    keywords: "stoned rabbit collections, cannabis streetwear collections, signature series, nocturne, everyday carry",
+  });
 
   return (
     <div className="min-h-screen text-white" style={{ background: PAGE_BG }}>
