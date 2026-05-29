@@ -134,7 +134,9 @@ export default function ProductDetail() {
                   style={{ clipPath: "polygon(6% 0, 100% 0, 94% 100%, 0 100%)" }}
                 >
                   {product.badge && (
-                    <div className="absolute top-4 left-8 z-10 bg-accent text-white text-xs font-bold px-3 py-1.5 uppercase tracking-widest">
+                    <div className={`absolute top-4 left-8 z-10 text-xs font-bold px-3 py-1.5 uppercase tracking-widest ${
+                      product.badge === "NEW" || product.badge === "LIMITED" ? "bg-primary text-black" : "bg-accent text-white"
+                    }`}>
                       {product.badge}
                     </div>
                   )}
@@ -341,7 +343,9 @@ export default function ProductDetail() {
                         style={{ clipPath: "polygon(8% 0, 100% 0, 92% 100%, 0 100%)" }}
                       >
                         {p.badge && (
-                          <div className="absolute top-2 left-4 z-10 bg-accent text-white text-xs font-bold px-2 py-1 uppercase tracking-wider">
+                          <div className={`absolute top-2 left-4 z-10 text-xs font-bold px-2 py-1 uppercase tracking-wider ${
+                            p.badge === "NEW" || p.badge === "LIMITED" ? "bg-primary text-black" : "bg-accent text-white"
+                          }`}>
                             {p.badge}
                           </div>
                         )}

@@ -54,7 +54,9 @@ function ProductCard({ p, i }: { p: Product; i: number }) {
 
         {p.badge && (
           <div
-            className="absolute top-3 z-10 bg-accent text-white text-xs font-bold px-2.5 py-1 uppercase tracking-wider"
+            className={`absolute top-3 z-10 text-xs font-bold px-2.5 py-1 uppercase tracking-wider ${
+              p.badge === "NEW" || p.badge === "LIMITED" ? "bg-primary text-black" : "bg-accent text-white"
+            }`}
             style={{ left: "10%" }}
           >
             {p.badge}

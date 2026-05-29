@@ -38,7 +38,7 @@ function CountUp({ to, prefix = "", suffix = "", duration = 2200 }: {
   const display = to >= 1000 ? `${Math.floor(count / 1000)}K` : `${count}`;
 
   return (
-    <span ref={ref} className="font-display font-black italic text-5xl md:text-7xl text-accent leading-none tabular-nums">
+    <span ref={ref} className="font-display font-black italic text-5xl md:text-7xl text-primary leading-none tabular-nums">
       {prefix}{display}{suffix}
     </span>
   );
@@ -181,7 +181,9 @@ function SkewedProductRow({
 
               {/* Badge — sits above image, offset so it lands inside the clip area */}
               {p.badge && (
-                <div className="absolute top-3 z-10 bg-accent text-white text-xs font-bold px-2.5 py-1 uppercase tracking-wider" style={{ left: "12%" }}>
+                <div className={`absolute top-3 z-10 text-xs font-bold px-2.5 py-1 uppercase tracking-wider ${
+                  p.badge === "NEW" || p.badge === "LIMITED" ? "bg-primary text-black" : "bg-accent text-white"
+                }`} style={{ left: "12%" }}>
                   {p.badge}
                 </div>
               )}
@@ -215,12 +217,12 @@ function SkewedProductRow({
 
 /* ── collab brands ────────────────────────────────────────────── */
 const COLLAB_BRANDS = [
-  { name: "RAW PAPERS",     tag: "Natural unrefined rolling papers", accent: "#d4af37", bg: "#1a120b", img: "/classic-vibe-drinks.jpg" },
-  { name: "COOKIES",        tag: "Bay Area Flavor. Street Legend.",  accent: "#00aef0", bg: "#0a1520", img: "/Stoned Rabbit Logo - hoodie 2 (women).png" },
-  { name: "ZIG-ZAG",        tag: "The Classic Slow Burn Since 1879.",accent: "#df7b29", bg: "#1a100a", img: "/Stoned Rabbit Womens Hoodie and Hat.png" },
-  { name: "GRAV LABS",      tag: "Scientific Glass. High Art.",      accent: "#e5e5e5", bg: "#0e1217", img: "/graffiti_bong.png" },
-  { name: "SANTA CRUZ SHREDDER", tag: "Medical Grade. Perfect Shred.",accent: "#5a8c3c", bg: "#0c140a", img: "/classic_stash_jar.png" },
-  { name: "BOVEDA",         tag: "Perfect Humidity. Fresh Sessions.", accent: "#7b583a", bg: "#14100c", img: "/classic_stash_jar.png" },
+  { name: "RAW PAPERS",     tag: "Natural unrefined rolling papers", accent: "#AAEE00", bg: "#0c1e1c", img: "/classic-vibe-drinks.jpg" },
+  { name: "COOKIES",        tag: "Bay Area Flavor. Street Legend.",  accent: "#AAEE00", bg: "#0c1e1c", img: "/Stoned Rabbit Logo - hoodie 2 (women).png" },
+  { name: "ZIG-ZAG",        tag: "The Classic Slow Burn Since 1879.",accent: "#AAEE00", bg: "#0c1e1c", img: "/Stoned Rabbit Womens Hoodie and Hat.png" },
+  { name: "GRAV LABS",      tag: "Scientific Glass. High Art.",      accent: "#AAEE00", bg: "#0c1e1c", img: "/graffiti_bong.png" },
+  { name: "SANTA CRUZ SHREDDER", tag: "Medical Grade. Perfect Shred.",accent: "#AAEE00", bg: "#0c1e1c", img: "/classic_stash_jar.png" },
+  { name: "BOVEDA",         tag: "Perfect Humidity. Fresh Sessions.", accent: "#AAEE00", bg: "#0c1e1c", img: "/classic_stash_jar.png" },
 ];
 
 function CollabBrands() {
@@ -237,9 +239,9 @@ function CollabBrands() {
         <div className="px-6 lg:px-16 mb-2"><AccentLine className="w-16 mb-5" /></div>
         <div className="px-6 lg:px-16 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <p className="text-accent font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
+            <p className="text-primary font-bold tracking-widest uppercase text-xs mb-3">Limited Collab Drops</p>
             <h2 className="font-display font-black italic text-5xl md:text-6xl uppercase tracking-tighter leading-none text-white">
-              STREET COLLABS.<br /><span className="text-accent">SESSION READY.</span>
+              STREET COLLABS.<br /><span className="text-primary">SESSION READY.</span>
             </h2>
             <p className="text-white/50 text-base mt-4 max-w-xl leading-relaxed">
               From premium papers to scientific glass, we partner with the brands that define the culture. Limited gear, custom drops, and session essentials.
@@ -485,11 +487,11 @@ export default function Home() {
         </section>
 
         {/* ── MARQUEE ───────────────────────────────────────────── */}
-        <div className="bg-accent overflow-hidden py-5">
+        <div className="bg-primary overflow-hidden py-5">
           <div className="whitespace-nowrap flex font-display font-black italic text-3xl md:text-4xl tracking-widest uppercase">
             <motion.div className="flex gap-10 items-center" animate={{ x: [0, -1800] }} transition={{ repeat: Infinity, ease: "linear", duration: 18 }}>
               {["STONED RABBIT","•","FOR THOSE WHO KNOW.","•","COLLECTIONS","•","THE VAULT","•","QUIET CONFIDENCE.","•","EDUCATED. ELEVATED.","•","STONED RABBIT","•","FOR THOSE WHO KNOW.","•","THE DROP IS LIVE","•"].map((t, i) => (
-                <span key={i} className="text-white">{t}</span>
+                <span key={i} className="text-black font-black uppercase tracking-widest text-sm">{t}</span>
               ))}
             </motion.div>
           </div>

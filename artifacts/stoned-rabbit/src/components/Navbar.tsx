@@ -117,7 +117,7 @@ export default function Navbar() {
   return (
     <>
       {/* ── PROMO BANNER ──────────────────────────────────────── */}
-      <div className="bg-accent text-white text-center py-2 text-xs font-bold tracking-widest uppercase">
+      <div className="bg-primary text-black text-center py-2 text-xs font-black tracking-widest uppercase">
         Free Shipping over $100&nbsp;&nbsp;•&nbsp;&nbsp;For Those Who Know.
       </div>
 
