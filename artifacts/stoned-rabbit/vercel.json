@@ -1,5 +1,8 @@
 {
   "cleanUrls": true,
+  "framework": null,
+  "buildCommand": "vite build --config vite.config.ts",
+  "outputDirectory": "dist/public",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
