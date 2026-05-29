@@ -207,10 +207,10 @@ export function SearchOverlay({ onClose }: { onClose: () => void }) {
                   <p className="text-white/30 text-xs font-bold uppercase tracking-widest mb-5">Browse Categories</p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {[
-                      { label: "Apparel",     href: "/apparel",     img: "/acid_wash_hoodie.png" },
-                      { label: "Headwear",    href: "/headwear",    img: "/rabbit_hole_beanie.png" },
+                      { label: "Apparel",     href: "/apparel",     img: "/Stoned Rabbit Logo - hoodie 1.png" },
+                      { label: "Headwear",    href: "/headwear",    img: "/Stoned Rabbit Womens Hoodie and Hat.png" },
                       { label: "Glassware",   href: "/glass",       img: "/graffiti_bong.png" },
-                      { label: "Accessories", href: "/accessories", img: "/street_grinder.png" },
+                      { label: "Accessories", href: "/accessories", img: "/classic_stash_jar.png" },
                     ].map(cat => (
                       <Link
                         key={cat.href}

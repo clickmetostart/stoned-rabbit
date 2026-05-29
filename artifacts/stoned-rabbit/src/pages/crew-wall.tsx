@@ -33,7 +33,7 @@ const MEMBERS = [
     tier: "Stoned Rabbit",
     pts: "1,604 pts",
     quote: "Always chasing the next high, never the score.",
-    img: "/product-womens.png",
+    img: "/lifestyle-womens.jpg",
     gear: "Rabbit Hole Beanie",
   },
   {
@@ -60,7 +60,7 @@ const MEMBERS = [
     tier: "Warren Member",
     pts: "892 pts",
     quote: "A clean bong is a happy crew.",
-    img: "/product-polo.png",
+    img: "/lifestyle-swing.jpg",
     gear: "The Tag Beaker",
   },
   {
@@ -69,7 +69,7 @@ const MEMBERS = [
     tier: "Warren Member",
     pts: "741 pts",
     quote: "I don't roll joints, I roll masterpieces.",
-    img: "/product-womens.png",
+    img: "/lifestyle-womens.jpg",
     gear: "Street Art Grinder",
   },
   {

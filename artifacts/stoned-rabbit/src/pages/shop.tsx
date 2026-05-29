@@ -218,7 +218,7 @@ export function ApparelPage() {
     eyebrow: "Stoned Rabbit — Apparel",
     desc: "Graffiti-inspired tees, heavy hoodies, and streetwear built for the session and the street.",
     ghost: "STREET",
-    heroImg: "/Stoned Rabbit Logo - hoodie 1.png",
+    heroImg: "/Stoned Rabbit Hero Image 1.png",
     filter: p => p.category.toLowerCase().includes("apparel") || p.category.toLowerCase().includes("shirt") || p.category.toLowerCase().includes("hoodie"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
@@ -230,7 +230,7 @@ export function HeadwearPage() {
     eyebrow: "Stoned Rabbit — Headwear",
     desc: "Beanies, snapbacks, and buckets to keep the bright lights out.",
     ghost: "LIDS",
-    heroImg: "/product-womens.png",
+    heroImg: "/Stoned Rabbit Hero Image 2.jfif",
     filter: p => p.category.toLowerCase().includes("headwear") || p.category.toLowerCase().includes("hat") || p.category.toLowerCase().includes("beanie"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
@@ -242,7 +242,7 @@ export function AccessoriesPage() {
     eyebrow: "Stoned Rabbit — Accessories",
     desc: "Grinders, rolling trays, lighters, and everyday carry for the elevated individual.",
     ghost: "GEAR",
-    heroImg: "/classic_stash_jar.png",
+    heroImg: "/Stoned Rabbit Hero Image 4.png",
     filter: p => p.category.toLowerCase().includes("accessories") || p.category.toLowerCase().includes("accessory") || p.category.toLowerCase().includes("grinder"),
     badges: ["NEW", "CHARITY DROP", "BEST SELLER"],
   }} />;
@@ -254,7 +254,7 @@ export function GlassPage() {
     eyebrow: "Stoned Rabbit — Glass",
     desc: "Premium bongs, pipes, and rigs for the perfect hit.",
     ghost: "GLASS",
-    heroImg: "/drop-editorial.png",
+    heroImg: "/Stoned Rabbit Hero 3.png",
     filter: p => p.category.toLowerCase().includes("glass") || p.category.toLowerCase().includes("bong"),
     badges: ["NEW DROP", "BEST SELLER"],
   }} />;
@@ -266,7 +266,7 @@ export function DropPage() {
     eyebrow: "The Drop — What's New",
     desc: "Fresh off the rack. The latest Stoned Rabbit gear before it sells out. You snooze, you lose.",
     ghost: "DROPPED",
-    heroImg: "/drop-editorial.png",
+    heroImg: "/Stoned Rabbit Hero Image 4.png",
     filter: p => !!p.badge,
     badges: ["NEW DROP", "BEST SELLER", "NEW", "CHARITY DROP"],
   }} />;

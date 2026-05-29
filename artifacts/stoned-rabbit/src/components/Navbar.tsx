@@ -19,9 +19,9 @@ const MENUS = {
     },
     categories: [
       { label: "Just Dropped", img: "/drop-editorial.png",  href: "/drop" },
-      { label: "Tees",         img: "/product-womens.png",  href: "/apparel" },
-      { label: "Hoodies",      img: "/product-polo.png",    href: "/apparel" },
-      { label: "Beanies",      img: "/product-hat.png",     href: "/headwear" },
+      { label: "Tees",         img: "/Stoned Rabbit womens teeshirt 1.png",  href: "/apparel" },
+      { label: "Hoodies",      img: "/Stoned Rabbit Logo - hoodie 1.png",    href: "/apparel" },
+      { label: "Beanies",      img: "/Stoned Rabbit Womens Hoodie and Hat.png",     href: "/headwear" },
     ],
     links: [
       { label: "View All Apparel",  href: "/apparel" },
@@ -31,14 +31,14 @@ const MENUS = {
   },
   HEADWEAR: {
     featured: {
-      img: "/clubhouse-legend-hat.jpg",
+      img: "/Stoned Rabbit Womens Hoodie and Hat.png",
       label: "Block the Lights",
       sub: "Beanies and snapbacks for the late night runs.",
       href: "/headwear",
     },
     categories: [
-      { label: "Snapbacks", img: "/clubhouse-legend-hat.jpg",  href: "/headwear" },
-      { label: "Beanies",   img: "/product-hat.png",           href: "/headwear" },
+      { label: "Snapbacks", img: "/Stoned Rabbit Womens Hoodie and Hat.png",  href: "/headwear" },
+      { label: "Beanies",   img: "/Stoned Rabbit Womens Hoodie and Hat.png",           href: "/headwear" },
     ],
     links: [
       { label: "View All Headwear", href: "/headwear" },
@@ -47,13 +47,13 @@ const MENUS = {
   },
   ACCESSORIES: {
     featured: {
-      img: "/street_grinder.png",
+      img: "/classic_stash_jar.png",
       label: "Everyday Carry",
       sub: "Grinders, trays, and lighters. Never leave home without it.",
       href: "/accessories",
     },
     categories: [
-      { label: "Grinders",  img: "/street_grinder.png",  href: "/accessories" },
+      { label: "Grinders",  img: "/classic_stash_jar.png",  href: "/accessories" },
       { label: "Stash Jars", img: "/classic_stash_jar.png", href: "/accessories" },
     ],
     links: [

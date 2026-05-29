@@ -53,6 +53,14 @@ export default defineConfig({
     fs: {
       strict: true,
     },
+    watch: {
+      // Exclude OneDrive-synced subfolders and locked file types
+      ignored: [
+        "**/SH New Images/**",
+        "**/*.jfif",
+        "**/*.lnk",
+      ],
+    },
   },
   preview: {
     port,

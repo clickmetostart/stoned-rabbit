@@ -216,10 +216,10 @@ function SkewedProductRow({
 /* ── collab brands ────────────────────────────────────────────── */
 const COLLAB_BRANDS = [
   { name: "RAW PAPERS",     tag: "Natural unrefined rolling papers", accent: "#d4af37", bg: "#1a120b", img: "/classic-vibe-drinks.jpg" },
-  { name: "COOKIES",        tag: "Bay Area Flavor. Street Legend.",  accent: "#00aef0", bg: "#0a1520", img: "/product-polo.png" },
-  { name: "ZIG-ZAG",        tag: "The Classic Slow Burn Since 1879.",accent: "#df7b29", bg: "#1a100a", img: "/product-hat.png" },
+  { name: "COOKIES",        tag: "Bay Area Flavor. Street Legend.",  accent: "#00aef0", bg: "#0a1520", img: "/Stoned Rabbit Logo - hoodie 2 (women).png" },
+  { name: "ZIG-ZAG",        tag: "The Classic Slow Burn Since 1879.",accent: "#df7b29", bg: "#1a100a", img: "/Stoned Rabbit Womens Hoodie and Hat.png" },
   { name: "GRAV LABS",      tag: "Scientific Glass. High Art.",      accent: "#e5e5e5", bg: "#0e1217", img: "/graffiti_bong.png" },
-  { name: "SANTA CRUZ SHREDDER", tag: "Medical Grade. Perfect Shred.",accent: "#5a8c3c", bg: "#0c140a", img: "/street_grinder.png" },
+  { name: "SANTA CRUZ SHREDDER", tag: "Medical Grade. Perfect Shred.",accent: "#5a8c3c", bg: "#0c140a", img: "/classic_stash_jar.png" },
   { name: "BOVEDA",         tag: "Perfect Humidity. Fresh Sessions.", accent: "#7b583a", bg: "#14100c", img: "/classic_stash_jar.png" },
 ];
 
@@ -288,9 +288,9 @@ function CollabBrands() {
 
 /* ── shop by category ─────────────────────────────────────────── */
 const SHOP_CATEGORIES = [
-  { label: "APPAREL",     sub: "Streetwear with Attitude",             img: "/acid_wash_hoodie.png",    href: "/apparel" },
-  { label: "HEADWEAR",    sub: "Bold Beanies & Structured Snapbacks",  img: "/rabbit_hole_beanie.png",  href: "/headwear" },
-  { label: "ACCESSORIES", sub: "Premium Grinders & Stash Jars",        img: "/street_grinder.png",      href: "/accessories" },
+  { label: "APPAREL",     sub: "Streetwear with Attitude",             img: "/Stoned Rabbit Logo - hoodie 1.png",    href: "/apparel" },
+  { label: "HEADWEAR",    sub: "Bold Beanies & Structured Snapbacks",  img: "/Stoned Rabbit Womens Hoodie and Hat.png",  href: "/headwear" },
+  { label: "ACCESSORIES", sub: "Premium Grinders & Stash Jars",        img: "/classic_stash_jar.png",      href: "/accessories" },
   { label: "GLASSWARE",   sub: "Artisan Glass & Smoking Rigs",         img: "/graffiti_bong.png",       href: "/glass" },
 ];
 
@@ -461,7 +461,7 @@ export default function Home() {
         {/* ── HERO ──────────────────────────────────────────────── */}
         <section className="relative h-[92vh] w-full flex items-end justify-center overflow-hidden pb-16">
           <div className="absolute inset-0 z-0">
-            <img src="/Stoned Rabbit Logo - hoodie 1.png" alt="Stoned Rabbit crew" className="w-full h-full object-cover object-top" />
+            <img src="/Stoned Rabbit Hero Image 1.png" alt="Stoned Rabbit crew" className="w-full h-full object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
           </div>
           <div className="relative z-10 container mx-auto px-4 text-center">
@@ -682,8 +682,13 @@ export default function Home() {
 
         {/* ── BRAND STORY ─────────────────────────────────── */}
         <section className="relative py-28 text-white overflow-hidden">
-          {/* Dark base — no golf photo */}
-          <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(135deg, #0a0a0a 0%, #111111 50%, #0d0d0d 100%)" }} />
+          {/* Hero background image for For Those Who Know section */}
+          <div className="absolute inset-0 z-0 opacity-15">
+            <img src="/Stoned Rabbit Hero 3.png" alt="For Those Who Know" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]" />
+          </div>
+          {/* Dark base */}
+          <div className="absolute inset-0 z-0 bg-black/40" />
           {/* Logo as hero graphic — right side */}
           <div className="absolute right-0 top-0 bottom-0 w-1/2 flex items-center justify-center z-[1] overflow-hidden pointer-events-none select-none">
             <img
@@ -794,7 +799,7 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-0">
-            {["/lifestyle-thumbsup.jpg","/insta-1.png","/clubhouse-legend-hat.jpg","/classic-vibe-drinks.jpg","/insta-3.png","/lifestyle-celebrating.jpg"].map((img, i) => (
+            {["/lifestyle-swing.jpg","/lifestyle-womens.jpg","/classic-vibe-fairway.jpg","/classic-vibe-drinks.jpg","/lifestyle-muni.jpg","/lifestyle-celebrating.jpg"].map((img, i) => (
               <a key={i} href="#" className="relative aspect-square group block overflow-hidden">
                 <img src={img} alt={`Crew post ${i+1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-accent/85 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
